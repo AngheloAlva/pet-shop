@@ -1,6 +1,7 @@
 import React from 'react'
 import type { Product } from '@/interfaces/interfaces'
 import Image from 'next/image'
+import Link from 'next/link'
 
 interface ProductCardProps {
   product: Product
@@ -26,18 +27,22 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           </div>
         )
       }
-      <div className='w-full flex items-center justify-center mb-4'>
-        <Image
-          src={product.image[0]}
-          alt={product.name}
-          width={200}
-          height={200}
-          className='cursor-pointer'
-          />
-      </div>
-      <p className='text-[--text-100] font-medium text-base cursor-pointer'>
-        {product.brand} - {product.petType} {product.name}
-      </p>
+      <Link href={`/product/${product._id}`} passHref>
+        <div className='w-full flex items-center justify-center mb-4'>
+          <Image
+            src={product.image[0]}
+            alt={product.name}
+            width={200}
+            height={200}
+            className='cursor-pointer'
+            />
+        </div>
+      </Link>
+      <Link href={`/product/${product._id}`} passHref>
+        <p className='text-[--text-100] font-medium text-base cursor-pointer'>
+          {product.brand} - {product.petType} {product.name}
+        </p>
+      </Link>
       <p className='text-xs text-[--primary-300] mt-2 mb-4 cursor-pointer'>
         {product.brand}
       </p>
