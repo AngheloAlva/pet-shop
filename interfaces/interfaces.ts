@@ -6,7 +6,7 @@ export interface Product {
   miniDescription: string
   description: string[]
   image: string
-  weightOptions: Array<{ weight: number, price: number }>
+  weightOptions: Array<{ weight: string, price: number }>
   stock: number
   brand: string
   discount: number
