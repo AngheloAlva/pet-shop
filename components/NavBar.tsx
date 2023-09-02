@@ -21,7 +21,7 @@ const NavBar = (): JSX.Element => {
         </div>
       </ul>
 
-      <div className='flex justify-between items-center px-10 py-2'>
+      <header className='flex justify-between items-center px-10 py-2'>
         <Image src={'/logo.svg'} alt='logo' width={85} height={85} />
         <div className='border-2 rounded-2xl border-[--primary-200] px-3 items-center flex'>
           <input type='search' placeholder='Buscar...' className='bg-transparent text-xs w-56 focus:outline-none h-7' />
@@ -31,7 +31,7 @@ const NavBar = (): JSX.Element => {
           <FaBagShopping className='text-3xl text-[--accent-100] cursor-pointer' />
           <p className='pl-2 text-[--accent-100] select-none'>$0</p>
         </div>
-      </div>
+      </header>
 
       <ul className='flex bg-[--accent-200] text-[--bg-100] text-[13px] font-semibold px-10 justify-between'>
         <li className='py-2 px-2 flex items-center gap-[.2rem cursor-pointer select-none hover:bg-slate-600'>INICIO</li>
