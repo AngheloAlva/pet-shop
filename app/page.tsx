@@ -3,12 +3,17 @@
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { getProducts } from '@/api/api'
+import type { Product } from '@/interfaces/interfaces'
 
 export default function Home (): JSX.Element {
-  const [products, setProducts] = useState([])
+  const [products, setProducts] = useState<Product[]>([])
 
   useEffect(() => {
-    getProducts(setProducts)
+    try {
+      void getProducts(setProducts)
+    } catch (eror) {
+      console.log(eror)
+    }
   }, [])
 
   return (

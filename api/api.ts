@@ -1,19 +1,5 @@
 import axios from 'axios'
-
-interface Product {
-  _id: string
-  category: string
-  petType: string
-  name: string
-  miniDescription: string
-  description: string[]
-  image: string
-  weightOptions: string[]
-  stock: number
-  brand: string
-  discount: number
-  lifeStage: string
-}
+import type { Product } from '@/interfaces/interfaces'
 
 export const getProducts = async (
   setProducts: React.Dispatch<React.SetStateAction<Product[]>>
