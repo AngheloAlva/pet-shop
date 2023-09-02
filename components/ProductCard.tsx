@@ -32,10 +32,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           alt={product.name}
           width={200}
           height={200}
+          className='cursor-pointer'
           />
       </div>
       <p className='text-[--text-100] font-medium text-base cursor-pointer'>
-        {product.brand} - {product.name}
+        {product.brand} - {product.petType} {product.name}
       </p>
       <p className='text-xs text-[--primary-300] mt-2 mb-4 cursor-pointer'>
         {product.brand}
