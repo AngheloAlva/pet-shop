@@ -13,3 +13,17 @@ export const getProducts = async (
     console.error(error)
   }
 }
+
+export const getProductById = async (
+  id: string
+): Promise<{ product: Product }> => {
+  try {
+    const response = await axios.get<{ product: Product }>(
+      `http://localhost:3001/products/${id}`
+    )
+    return response.data
+  } catch (error) {
+    console.error(error)
+    throw error
+  }
+}

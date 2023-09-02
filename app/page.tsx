@@ -11,8 +11,8 @@ export default function Home (): JSX.Element {
   useEffect(() => {
     try {
       void getProducts(setProducts)
-    } catch (eror) {
-      console.log(eror)
+    } catch (error) {
+      console.log(error)
     }
   }, [])
 
