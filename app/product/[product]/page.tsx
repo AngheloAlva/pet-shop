@@ -8,7 +8,7 @@ import { FaCartPlus } from 'react-icons/fa6'
 
 export default function ProductView ({ params }: { params: { product: string } }): JSX.Element {
   const [product, setProduct] = useState<Product>()
-  const [selectedWeight, setSelectedWeight] = useState('')
+  const [selectedWeight, setSelectedWeight] = useState<Product['weightOptions'][0]>()
   const [quantity, setQuantity] = useState(1)
   const [selectedImage, setSelectedImage] = useState(0)
 
@@ -22,7 +22,7 @@ export default function ProductView ({ params }: { params: { product: string } }
   }, [params.product])
 
   const handleWeightChange = (weight: string): void => {
-    const selectedWeight = product.weightOptions.find(option => option.weight === weight)
+    const selectedWeight = product?.weightOptions.find(option => option.weight === weight)
 
     if (selectedWeight != null) {
       setSelectedWeight(selectedWeight)
@@ -30,7 +30,7 @@ export default function ProductView ({ params }: { params: { product: string } }
   }
 
   const increaseQuantity = (): void => {
-    if (quantity < product?.stock) {
+    if (product?.stock !== undefined && quantity < product?.stock) {
       setQuantity(quantity + 1)
     }
   }
@@ -90,7 +90,7 @@ export default function ProductView ({ params }: { params: { product: string } }
             {
               product?.weightOptions.map((option) => (
                 <button className={`text-[--text-200] pl-3 pr-10 rounded-lg py-2 transition-all select-none flex flex-col
-                  ${option.weight === selectedWeight.weight
+                  ${option.weight === selectedWeight?.weight
                     ? 'bg-[--accent-100]'
                     : 'bg-[--bg-300] text-[--text-200] hover:bg-[--accent-200] hover:text-[--bg-100]'
                   }`}
