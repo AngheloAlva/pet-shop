@@ -4,13 +4,14 @@ import React, { useEffect, useState } from 'react'
 import { getProductById } from '@/api/api'
 import type { Product } from '@/interfaces/interfaces'
 import Image from 'next/image'
-import { FaCartPlus } from 'react-icons/fa6'
+import { FaCartPlus, FaShop, FaTruckFast, FaShieldHalved, FaTruckArrowRight } from 'react-icons/fa6'
 
 export default function ProductView ({ params }: { params: { product: string } }): JSX.Element {
   const [product, setProduct] = useState<Product>()
   const [selectedWeight, setSelectedWeight] = useState<Product['weightOptions'][0]>()
   const [quantity, setQuantity] = useState(1)
   const [selectedImage, setSelectedImage] = useState(0)
+  const [selectedDescription, setSelectedDescription] = useState(0)
 
   useEffect(() => {
     getProductById(params.product)
@@ -127,6 +128,62 @@ export default function ProductView ({ params }: { params: { product: string } }
               <FaCartPlus />Agregar al carrito
             </button>
           </div>
+        </div>
+      </div>
+
+      <div className='flex mx-5 my-12 border-2 py-5 px-4 justify-between rounded-md'>
+        <div className='flex text-xs flex-col w-40'>
+          <FaTruckArrowRight className='text-4xl text-[--bg-100] bg-[--accent-200] rounded-full w-10 h-10 p-1 mb-2' />
+          <p className='font-semibold text-sm'>Envios Gratis</p>
+          <p>¡Conoce cuales comunas aqui!</p>
+        </div>
+        <div className='flex text-xs flex-col w-40'>
+          <FaShieldHalved className='text-4xl text-[--bg-100] bg-[--accent-200] rounded-full w-10 h-10 p-1 mb-2' />
+          <p className='font-semibold text-sm'>Pagos Seguros</p>
+          <p>100% protegido</p>
+        </div>
+        <div className='flex text-xs flex-col w-40'>
+          <FaTruckFast className='text-4xl text-[--bg-100] bg-[--accent-200] rounded-full w-10 h-10 p-1 mb-2' />
+          <p className='font-semibold text-sm'>Envio Express</p>
+          <p>¡Recibe el mismo dia!</p>
+        </div>
+        <div className='flex text-xs flex-col w-40'>
+        <FaShop className='text-4xl text-[--bg-100] bg-[--accent-200] rounded-full w-10 h-10 p-1 mb-2' />
+          <p className='font-semibold text-sm'>Tiendas</p>
+          <p>Atencion de Lunes a Sabados</p>
+        </div>
+      </div>
+
+      <div className='px-5'>
+        <h2 className='text-xl font-semibold text-[--accent-200] mb-3'>Descripción</h2>
+        <div className='flex flex-col gap-1'>
+          {
+            product?.description.map((description, index) => (
+              <div key={index} className='border-2 rounded-md'>
+                <h3
+                  className='border-b-2 py-2 flex pl-4 font-semibold text-sm cursor-pointer'
+                  onClick={() => { setSelectedDescription(index) }}
+                >
+                  {
+                    selectedDescription === index
+                      ? <span className='mr-2'>-</span>
+                      : <span className='mr-2'>+</span>
+                  }
+                  {description.title}
+                </h3>
+                <div className={`py-4 px-7 text-sm flex flex-col gap-2 ${selectedDescription === index ? '' : 'max-h-0 hidden overflow-hidden'}`}>
+                  {
+                    description.description.split('\n').map((line, index) => (
+                      <span key={index}>
+                        {line}
+                        <br />
+                      </span>
+                    ))
+                  }
+                </div>
+              </div>
+            ))
+          }
         </div>
       </div>
     </div>
