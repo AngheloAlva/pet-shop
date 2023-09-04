@@ -8,10 +8,10 @@ const NavBar = (): JSX.Element => {
     <nav className='flex flex-col bg-[--bg-100]'>
       <ul className='text-[.688rem] flex py-2 px-10 bg-[--accent-100] justify-between  font-extrabold text-[--bg-100]'>
         <div className='flex'>
-          <Link href={'/'} passHref>
-            <li className='pr-3 border-r-2 border-[--primary-100] hover:text-[--text-200]'>INICIO</li>
+          <Link href={'/'} passHref className='pr-3 border-r-2 border-[--primary-100] hover:text-[--text-200]'>
+            <li>INICIO</li>
           </Link>
-          <li className='px-3 border-r-2 border-[--primary-100] hover:text-[--text-200]'>TIENDA</li>
+          <li className='px-3 border-r-2 border-[--primary-100] hover:text-[--text-200]'>TIENDAS</li>
           <li className='px-3 border-r-2 border-[--primary-100] hover:text-[--text-200]'>VETERINARIA</li>
           <li className='px-3 font-extrabold text-[--bg-100] hover:text-[--text-200]'>PELUQUERIA</li>
         </div>
