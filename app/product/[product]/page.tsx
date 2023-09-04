@@ -5,13 +5,13 @@ import { getProductById } from '@/api/api'
 import type { Product } from '@/interfaces/interfaces'
 import Image from 'next/image'
 import { FaCartPlus, FaShop, FaTruckFast, FaShieldHalved, FaTruckArrowRight } from 'react-icons/fa6'
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion'
 
 export default function ProductView ({ params }: { params: { product: string } }): JSX.Element {
   const [product, setProduct] = useState<Product>()
   const [selectedWeight, setSelectedWeight] = useState<Product['weightOptions'][0]>()
   const [quantity, setQuantity] = useState(1)
   const [selectedImage, setSelectedImage] = useState(0)
-  const [selectedDescription, setSelectedDescription] = useState(0)
 
   useEffect(() => {
     getProductById(params.product)
@@ -156,35 +156,34 @@ export default function ProductView ({ params }: { params: { product: string } }
 
       <div className='px-5'>
         <h2 className='text-xl font-semibold text-[--accent-200] mb-3'>Descripción</h2>
-        <div className='flex flex-col gap-1'>
+        <Accordion type='single' collapsible className='flex flex-col gap-1'>
           {
             product?.description.map((description, index) => (
-              <div key={index} className='border-2 rounded-md'>
-                <h3
-                  className='border-b-2 py-2 flex pl-4 font-semibold text-sm cursor-pointer'
-                  onClick={() => { setSelectedDescription(index) }}
-                >
-                  {
-                    selectedDescription === index
-                      ? <span className='mr-2'>-</span>
-                      : <span className='mr-2'>+</span>
-                  }
+              <AccordionItem value={description.title} key={index}>
+                <AccordionTrigger>
                   {description.title}
-                </h3>
-                <div className={`py-4 px-7 text-sm flex flex-col gap-2 ${selectedDescription === index ? '' : 'max-h-0 hidden overflow-hidden'}`}>
+                </AccordionTrigger>
+                <AccordionContent>
                   {
-                    description.description.split('\n').map((line, index) => (
-                      <span key={index}>
-                        {line}
-                        <br />
-                      </span>
-                    ))
+                    description.title === 'Cantidad Recomendada'
+                      ? <Image
+                          className='flex items-center justify-center w-full'
+                          src={description.description}
+                          width={700}
+                          height={400} alt={description.title}
+                        />
+                      : description.description.split('\n').map((line, index) => (
+                        <span key={index}>
+                          {line}
+                          <br />
+                        </span>
+                      ))
                   }
-                </div>
-              </div>
+                </AccordionContent>
+              </AccordionItem>
             ))
           }
-        </div>
+        </Accordion>
       </div>
     </div>
   )
