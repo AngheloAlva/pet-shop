@@ -1,5 +1,6 @@
-import Image from 'next/image'
 import React from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
 import { FaSquareFacebook, FaSquareInstagram, FaEnvelope, FaCircleUser, FaArrowRightFromBracket, FaBagShopping, FaMagnifyingGlass, FaAngleDown } from 'react-icons/fa6'
 
 const NavBar = (): JSX.Element => {
@@ -7,7 +8,9 @@ const NavBar = (): JSX.Element => {
     <nav className='flex flex-col bg-[--bg-100]'>
       <ul className='text-[.688rem] flex py-2 px-10 bg-[--accent-100] justify-between  font-extrabold text-[--bg-100]'>
         <div className='flex'>
-          <li className='pr-3 border-r-2 border-[--primary-100] hover:text-[--text-200]'>INICIO</li>
+          <Link href={'/'} passHref>
+            <li className='pr-3 border-r-2 border-[--primary-100] hover:text-[--text-200]'>INICIO</li>
+          </Link>
           <li className='px-3 border-r-2 border-[--primary-100] hover:text-[--text-200]'>TIENDA</li>
           <li className='px-3 border-r-2 border-[--primary-100] hover:text-[--text-200]'>VETERINARIA</li>
           <li className='px-3 font-extrabold text-[--bg-100] hover:text-[--text-200]'>PELUQUERIA</li>
@@ -34,7 +37,9 @@ const NavBar = (): JSX.Element => {
       </header>
 
       <ul className='flex bg-[--accent-200] text-[--bg-100] text-[13px] font-semibold px-10 justify-between'>
-        <li className='py-2 px-2 flex items-center gap-[.2rem cursor-pointer select-none hover:bg-slate-600'>INICIO</li>
+        <Link href={'/'} passHref className='py-2 px-2 flex items-center gap-[.2rem cursor-pointer select-none hover:bg-slate-600'>
+          <li>INICIO</li>
+        </Link>
         <li className='py-2 px-2 flex items-center gap-[.2rem] cursor-pointer select-none hover:bg-pink-500'>ESPECIAL INVIERNO <FaAngleDown /></li>
         <li className='py-2 px-2 flex items-center gap-[.2rem] cursor-pointer select-none hover:bg-teal-500'>PERROS <FaAngleDown /></li>
         <li className='py-2 px-2 flex items-center gap-[.2rem] cursor-pointer select-none hover:bg-yellow-500'>GATOS <FaAngleDown /></li>
