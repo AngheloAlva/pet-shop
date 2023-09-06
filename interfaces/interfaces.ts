@@ -18,3 +18,11 @@ interface Description {
   description: string
   _id: string
 }
+
+export interface NavMenuItemProps {
+  navMenuTitle: string
+  itemsArray: Array<{
+    title: string
+    description: string[]
+  }>
+}

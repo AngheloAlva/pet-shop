@@ -19,7 +19,7 @@ import {
 } from 'react-icons/fa6'
 import NavMenuItem from './NavMenuItem'
 
-import { dogMenu } from '@/data/NavbarItems'
+import { catMenu, dogMenu, aquaristicMenu, birdMenu, reptileMenu, smallAnimalMenu } from '@/data/NavbarItems'
 
 const NavBar = (): JSX.Element => {
   return (
@@ -63,6 +63,11 @@ const NavBar = (): JSX.Element => {
       <NavigationMenu className='bg-[--accent-200]'>
         <NavigationMenuList>
           <NavMenuItem navMenuTitle='PERROS' itemsArray={dogMenu} />
+          <NavMenuItem navMenuTitle='GATOS' itemsArray={catMenu} />
+          <NavMenuItem navMenuTitle='ACUARISTICA' itemsArray={aquaristicMenu} />
+          <NavMenuItem navMenuTitle='AVES' itemsArray={birdMenu} />
+          <NavMenuItem navMenuTitle='MASCOTAS PEQUEÑAS' itemsArray={smallAnimalMenu} />
+          <NavMenuItem navMenuTitle='REPTILES' itemsArray={reptileMenu} />
         </NavigationMenuList>
       </NavigationMenu>
 
