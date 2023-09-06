@@ -1,5 +1,6 @@
 'use client'
 
+import Form from '@/components/Form'
 import React from 'react'
 
 const page = (): JSX.Element => {
@@ -27,6 +28,8 @@ const page = (): JSX.Element => {
           Para agendar hora llena el formulario a continuación
         </p>
       </main>
+
+      <Form />
     </>
   )
 }
