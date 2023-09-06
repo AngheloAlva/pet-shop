@@ -1,8 +1,28 @@
+'use client'
+
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { FaSquareFacebook, FaSquareInstagram, FaEnvelope, FaCircleUser, FaArrowRightFromBracket, FaBagShopping, FaMagnifyingGlass, FaAngleDown } from 'react-icons/fa6'
 import { Separator } from '@/components/ui/separator'
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuTrigger,
+  ListItem,
+  NavigationMenuList
+} from '@/components/ui/navigation-menu'
+import {
+  FaSquareFacebook,
+  FaSquareInstagram,
+  FaEnvelope,
+  FaCircleUser,
+  FaArrowRightFromBracket,
+  FaBagShopping,
+  FaMagnifyingGlass
+} from 'react-icons/fa6'
+
+import { dogMenu } from '@/data/NavbarItems'
 
 const NavBar = (): JSX.Element => {
   return (
@@ -43,20 +63,34 @@ const NavBar = (): JSX.Element => {
         </div>
       </header>
 
-      <ul className='flex bg-[--accent-200] text-[--bg-100] text-[13px] font-semibold px-10 justify-between'>
-        <Link href={'/'} passHref className='py-2 px-2 flex items-center gap-[.2rem cursor-pointer select-none hover:bg-slate-600'>
-          <li>INICIO</li>
-        </Link>
-        <li className='py-2 px-2 flex items-center gap-[.2rem] cursor-pointer select-none hover:bg-pink-500'>ESPECIAL INVIERNO <FaAngleDown /></li>
-        <li className='py-2 px-2 flex items-center gap-[.2rem] cursor-pointer select-none hover:bg-teal-500'>PERROS <FaAngleDown /></li>
-        <li className='py-2 px-2 flex items-center gap-[.2rem] cursor-pointer select-none hover:bg-yellow-500'>GATOS <FaAngleDown /></li>
-        <li className='py-2 px-2 flex items-center gap-[.2rem] cursor-pointer select-none hover:bg-green-500'>ACUARISTICA <FaAngleDown /></li>
-        <li className='py-2 px-2 flex items-center gap-[.2rem] cursor-pointer select-none hover:bg-red-500'>AVES <FaAngleDown /></li>
-        <li className='py-2 px-2 flex items-center gap-[.2rem] cursor-pointer select-none hover:bg-yellow-900'>MASCOTAS PEQUEÑAS <FaAngleDown /></li>
-        <li className='py-2 px-2 flex items-center gap-[.2rem] cursor-pointer select-none hover:bg-orange-300'>REPTILES <FaAngleDown /></li>
-        <li className='py-2 px-2 flex items-center gap-[.2rem] cursor-pointer select-none hover:bg-stone-900'>MASCOTAS <FaAngleDown /></li>
-        <li className='py-2 px-2 flex items-center gap-[.2rem] cursor-pointer select-none hover:bg-teal-200'>LIQUIDACION <FaAngleDown /></li>
-      </ul>
+      <NavigationMenu className='bg-[--accent-200]'>
+        <NavigationMenuList>
+          <NavigationMenuItem>
+            <NavigationMenuTrigger className='font-bold bg-transparent text-[--bg-100] data-[state=open]:bg-[#30b5b2] rounded-none'>
+              PERROS
+            </NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <div className="grid gap-1 p-4 grid-cols-3 w-[40rem] ">
+                {dogMenu.map((component) => (
+                  <ListItem
+                    key={component.title}
+                    title={component.title}
+                  >
+                    <ul>
+                      <li className='flex flex-col'>
+                        {component.description.map((description) => (
+                          <a href='#' key={description} className='hover:text-[--text-100] hover:font-semibold transition-all cursor-pointer'>{description}</a>
+                        ))}
+                      </li>
+                    </ul>
+                  </ListItem>
+                ))}
+              </div>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+        </NavigationMenuList>
+      </NavigationMenu>
+
     </nav>
   )
 }
