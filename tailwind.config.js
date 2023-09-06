@@ -17,6 +17,12 @@ module.exports = {
     },
     extend: {
       colors: {
+        dog: '#30b5b2',
+        cat: '#e8be33',
+        aquaristic: '#92bd23',
+        smallAnimal: '#5d5d5d',
+        bird: '#de3f3f',
+        reptile: '#d0aa93',
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

@@ -10,7 +10,7 @@ import {
 const NavMenuItem = ({ navMenuTitle, itemsArray }: NavMenuItemProps): JSX.Element => {
   return (
     <NavigationMenuItem>
-      <NavigationMenuTrigger className='font-bold text-xs flex bg-transparent text-[--bg-100] data-[state=open]:bg-[#30b5b2] rounded-none'>
+      <NavigationMenuTrigger className='font-bold text-xs flex bg-transparent transition-all data-[state=open]:bg-[--accent-100] data-[state=open]:text-[--text-100] text-[--bg-100] rounded-none'>
         {navMenuTitle}
       </NavigationMenuTrigger>
       <NavigationMenuContent>
