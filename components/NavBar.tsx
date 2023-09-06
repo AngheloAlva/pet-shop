@@ -34,7 +34,9 @@ const NavBar = (): JSX.Element => {
             <li>TIENDAS</li>
           </Link>
           <Separator orientation='vertical' />
-          <li className='px-3 hover:text-[--text-200]'>VETERINARIA</li>
+          <Link href={'/veterinaria'} passHref className='px-3 hover:text-[--text-200]'>
+            <li>VETERINARIA</li>
+          </Link>
           <Separator orientation='vertical' />
           <li className='px-3 font-extrabold text-[--bg-100] hover:text-[--text-200]'>PELUQUERIA</li>
         </div>
