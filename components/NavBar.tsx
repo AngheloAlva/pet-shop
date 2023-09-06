@@ -30,7 +30,9 @@ const NavBar = (): JSX.Element => {
             <li>INICIO</li>
           </Link>
           <Separator orientation='vertical' />
-          <li className='px-3 hover:text-[--text-200]'>TIENDAS</li>
+          <Link href={'/tiendas'} passHref className='px-3 hover:text-[--text-200]'>
+            <li>TIENDAS</li>
+          </Link>
           <Separator orientation='vertical' />
           <li className='px-3 hover:text-[--text-200]'>VETERINARIA</li>
           <Separator orientation='vertical' />
@@ -49,7 +51,9 @@ const NavBar = (): JSX.Element => {
       </ul>
 
       <header className='flex justify-between items-center px-10 py-2'>
-        <Image src={'/logo.svg'} alt='logo' width={85} height={85} />
+        <Link href={'/'} passHref>
+          <Image src={'/logo.svg'} alt='logo' width={85} height={85} />
+        </Link>
         <div className='border-2 rounded-2xl border-[--primary-200] px-3 items-center flex'>
           <input type='search' placeholder='Buscar...' className='bg-transparent text-xs w-56 focus:outline-none h-7' />
           <FaMagnifyingGlass className='text-[--primary-200] cursor-pointer' />
