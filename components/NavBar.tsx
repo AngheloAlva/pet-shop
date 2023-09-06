@@ -6,10 +6,6 @@ import Link from 'next/link'
 import { Separator } from '@/components/ui/separator'
 import {
   NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuTrigger,
-  ListItem,
   NavigationMenuList
 } from '@/components/ui/navigation-menu'
 import {
@@ -21,6 +17,7 @@ import {
   FaBagShopping,
   FaMagnifyingGlass
 } from 'react-icons/fa6'
+import NavMenuItem from './NavMenuItem'
 
 import { dogMenu } from '@/data/NavbarItems'
 
@@ -65,29 +62,7 @@ const NavBar = (): JSX.Element => {
 
       <NavigationMenu className='bg-[--accent-200]'>
         <NavigationMenuList>
-          <NavigationMenuItem>
-            <NavigationMenuTrigger className='font-bold bg-transparent text-[--bg-100] data-[state=open]:bg-[#30b5b2] rounded-none'>
-              PERROS
-            </NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <div className="grid gap-1 p-4 grid-cols-3 w-[40rem] ">
-                {dogMenu.map((component) => (
-                  <ListItem
-                    key={component.title}
-                    title={component.title}
-                  >
-                    <ul>
-                      <li className='flex flex-col'>
-                        {component.description.map((description) => (
-                          <a href='#' key={description} className='hover:text-[--text-100] hover:font-semibold transition-all cursor-pointer'>{description}</a>
-                        ))}
-                      </li>
-                    </ul>
-                  </ListItem>
-                ))}
-              </div>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
+          <NavMenuItem navMenuTitle='PERROS' itemsArray={dogMenu} />
         </NavigationMenuList>
       </NavigationMenu>
 
