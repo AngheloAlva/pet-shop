@@ -7,7 +7,11 @@ import { Input } from './ui/input'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger } from './ui/select'
 import { SelectValue } from '@radix-ui/react-select'
 
-const Form = (): JSX.Element => {
+interface FormProps {
+  service: string
+}
+
+const Form = ({ service }: FormProps): JSX.Element => {
   const [date, setDate] = React.useState<Date | Date[]>()
   const [popoverOpen, setPopoverOpen] = React.useState(false)
 
@@ -76,7 +80,7 @@ const Form = (): JSX.Element => {
               <Label htmlFor='nombre' className='flex items-center gap-1'>
                 Nombre
               </Label>
-              <Input id='nombre' type='email' />
+              <Input id='nombre' type='text' />
             </div>
             <div>
               <Label htmlFor='servicio' className='flex items-center gap-1'>
@@ -84,11 +88,15 @@ const Form = (): JSX.Element => {
               </Label>
               <Select>
                   <SelectTrigger>
-                    <SelectValue placeholder='Consulta' />
+                    <SelectValue placeholder={service === 'veterinaria' ? 'Consulta' : 'Peluqueria'} />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectGroup>
-                      <SelectItem value='consulta'>Consulta</SelectItem>
+                      {
+                        service === 'veterinaria'
+                          ? <SelectItem value='consulta'>Consulta</SelectItem>
+                          : <SelectItem value='peluqueria'>Peluqueria</SelectItem>
+                      }
                     </SelectGroup>
                   </SelectContent>
                 </Select>
@@ -112,7 +120,7 @@ const Form = (): JSX.Element => {
               <Label htmlFor='Nombre Mascota' className='flex items-center gap-1'>
                 Nombre de Mascota
               </Label>
-              <Input id='Nombre Mascota' type='text' />
+              <Input id='Nombre Mascota' autoComplete='none' type='text' />
             </div>
             <div>
               <Label htmlFor='Apellido' className='flex items-center gap-1'>

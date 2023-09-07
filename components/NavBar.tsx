@@ -38,7 +38,9 @@ const NavBar = (): JSX.Element => {
             <li>VETERINARIA</li>
           </Link>
           <Separator orientation='vertical' />
-          <li className='px-3 font-extrabold text-[--bg-100] hover:text-[--text-200]'>PELUQUERIA</li>
+          <Link href={'/peluqueria'} passHref className='px-3 hover:text-[--text-200]'>
+            <li>PELUQUERIA</li>
+          </Link>
         </div>
         <div className='flex content-center'>
           <li className='pr-2'><FaSquareFacebook className='mt-[.156rem]' /></li>
