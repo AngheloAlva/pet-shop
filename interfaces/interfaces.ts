@@ -26,3 +26,10 @@ export interface NavMenuItemProps {
     description: string[]
   }>
 }
+
+export interface CarouselProps {
+  images: Array<{
+    src: string
+    href: string
+  }>
+}

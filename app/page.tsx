@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { getProducts } from '@/api/api'
 import type { Product } from '@/interfaces/interfaces'
 import ProductCard from '@/components/ProductCard'
+import Carousel from '@/components/Carousel'
 
 export default function Home (): JSX.Element {
   const [products, setProducts] = useState<Product[]>([])
@@ -16,8 +17,25 @@ export default function Home (): JSX.Element {
     }
   }, [])
 
+  const carouselImages = [
+    {
+      src: '/banners/home-banner-1.png',
+      href: '/'
+    },
+    {
+      src: '/banners/home-banner-2.png',
+      href: '/'
+    },
+    {
+      src: '/banners/home-banner-3.png',
+      href: '/'
+    }
+  ]
+
   return (
     <>
+      <Carousel images={carouselImages} />
+
       <h2 className='text-xl font-bold my-5 pl-4'>Top Ventas</h2>
       <div className='grid grid-cols-2 md:grid-cols-3 px-5 gap-y-4'>
         {
