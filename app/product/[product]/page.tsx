@@ -80,7 +80,7 @@ export default function ProductView ({ params }: { params: { product: string } }
         <div className='flex flex-col w-1/2'>
           <h1 className='text-2xl font-semibold text-[--accent-200]'>{product?.name}</h1>
           <p className='text-[--text-200] font-medium text-base mt-1 mb-3 cursor-pointer'>
-            {product?.brand}
+            {product?.brand.name}
           </p>
           <hr />
           <p className='text-sm mt-2 mb-4'>
