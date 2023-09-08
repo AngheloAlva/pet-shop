@@ -45,7 +45,7 @@ const NavBar = (): JSX.Element => {
 
         <div className='flex content-center'>
           <li className='pr-2'><FaSquareFacebook className='mt-[.156rem]' /></li>
-          <li className='pr-3'><FaSquareInstagram className='mt-[.156rem]' /></li><Separator orientation='vertical' />
+          <li className='pr-3'><FaSquareInstagram className='mt-[.156rem]' /></li>
           <Separator orientation='vertical' />
           <li className='flex gap-2 px-3'><FaEnvelope className='mt-[.156rem]' /> CONTACTENOS</li>
           <Separator orientation='vertical' />
