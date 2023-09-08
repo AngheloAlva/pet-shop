@@ -6,6 +6,7 @@ import {
   NavigationMenuTrigger,
   ListItem
 } from '@/components/ui/navigation-menu'
+import Link from 'next/link'
 
 const NavMenuItem = ({ navMenuTitle, itemsArray }: NavMenuItemProps): JSX.Element => {
   return (
@@ -19,11 +20,18 @@ const NavMenuItem = ({ navMenuTitle, itemsArray }: NavMenuItemProps): JSX.Elemen
             <ListItem
               key={component.title}
               title={component.title}
+              titleHref={component.href}
             >
               <ul>
                 <li className='flex flex-col'>
                   {component.description.map((description) => (
-                    <a href='#' key={description} className='hover:text-[--text-100] hover:font-semibold transition-all cursor-pointer'>{description}</a>
+                    <Link
+                      href='#'
+                      key={description}
+                      className='hover:text-[--text-100] hover:font-semibold transition-all cursor-pointer'
+                    >
+                      {description}
+                    </Link>
                   ))}
                 </li>
               </ul>

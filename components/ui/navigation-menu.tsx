@@ -4,6 +4,7 @@ import { cva } from 'class-variance-authority'
 import { ChevronDown } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
+import Link from 'next/link'
 
 const NavigationMenu = React.forwardRef<
 React.ElementRef<typeof NavigationMenuPrimitive.Root>,
@@ -118,7 +119,7 @@ NavigationMenuIndicator.displayName =
 const ListItem = React.forwardRef<
 React.ElementRef<'a'>,
 React.ComponentPropsWithoutRef<'a'>
->(({ className, title, children, ...props }, ref) => {
+>(({ className, title, children, titleHref, ...props }, ref) => {
   return (
     <div>
       <NavigationMenuLink asChild>
@@ -130,7 +131,9 @@ React.ComponentPropsWithoutRef<'a'>
           )}
           {...props}
         >
-          <a href='#' className='text-sm font-medium leading-none cursor-pointer hover:font-semibold transition-all'>{title}</a>
+          <Link href={`/${titleHref}`} className='text-sm font-medium leading-none cursor-pointer hover:font-semibold transition-all'>
+            {title}
+          </Link>
           <div className=' text-xs leading-snug text-muted-foreground'>
             {children}
           </div>

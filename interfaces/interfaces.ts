@@ -28,6 +28,7 @@ export interface NavMenuItemProps {
   navMenuTitle: string
   itemsArray: Array<{
     title: string
+    href: string
     description: string[]
   }>
 }
