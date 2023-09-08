@@ -43,9 +43,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           {product.brand.name} - {product.petType} {product.name}
         </p>
       </Link>
-      <p className='text-xs text-[--primary-300] mt-2 mb-4 cursor-pointer'>
+      <Link href={`/brand/${product.brand._id}`} className='text-xs text-[--primary-300] mt-2 mb-4 cursor-pointer'>
         {product.brand.name}
-      </p>
+      </Link>
       <div className='flex gap-2 mt-2 mb-6'>
         {
           product.weightOptions.map(option => (

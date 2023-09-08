@@ -20,6 +20,7 @@ interface Description {
 }
 
 interface Brand {
+  _id: string
   name: string
   image: string
 }

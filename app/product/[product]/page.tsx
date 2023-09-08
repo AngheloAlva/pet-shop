@@ -6,6 +6,7 @@ import type { Product } from '@/interfaces/interfaces'
 import Image from 'next/image'
 import { FaCartPlus, FaShop, FaTruckFast, FaShieldHalved, FaTruckArrowRight } from 'react-icons/fa6'
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion'
+import Link from 'next/link'
 
 export default function ProductView ({ params }: { params: { product: string } }): JSX.Element {
   const [product, setProduct] = useState<Product>()
@@ -79,9 +80,9 @@ export default function ProductView ({ params }: { params: { product: string } }
 
         <div className='flex flex-col w-1/2'>
           <h1 className='text-2xl font-semibold text-[--accent-200]'>{product?.name}</h1>
-          <p className='text-[--text-200] font-medium text-base mt-1 mb-3 cursor-pointer'>
+          <Link href={`/brand/${product?.brand._id}`} className='text-[--text-200] font-medium text-base mt-1 mb-3 cursor-pointer'>
             {product?.brand.name}
-          </p>
+          </Link>
           <hr />
           <p className='text-sm mt-2 mb-4'>
             {product?.miniDescription}
