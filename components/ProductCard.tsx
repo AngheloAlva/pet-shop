@@ -40,11 +40,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       </Link>
       <Link href={`/product/${product._id}`} passHref>
         <p className='text-[--text-100] font-medium text-base cursor-pointer'>
-          {product.brand} - {product.petType} {product.name}
+          {product.brand.name} - {product.petType} {product.name}
         </p>
       </Link>
       <p className='text-xs text-[--primary-300] mt-2 mb-4 cursor-pointer'>
-        {product.brand}
+        {product.brand.name}
       </p>
       <div className='flex gap-2 mt-2 mb-6'>
         {

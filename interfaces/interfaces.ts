@@ -8,7 +8,7 @@ export interface Product {
   image: string[]
   weightOptions: Array<{ weight: string, price: number }>
   stock: number
-  brand: string
+  brand: Brand
   discount: number
   lifeStage: string
 }
@@ -17,6 +17,11 @@ interface Description {
   title: string
   description: string
   _id: string
+}
+
+interface Brand {
+  name: string
+  image: string
 }
 
 export interface NavMenuItemProps {
