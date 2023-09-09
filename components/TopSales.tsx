@@ -42,25 +42,9 @@ const TopSales = ({ products }: TopSalesProps): JSX.Element => {
         </div>
       </div>
       <Swiper
-        slidesPerView={5}
+        slidesPerView={'auto'}
+        spaceBetween={15}
         ref={swiperRef}
-        breakpoints={{
-          320: {
-            slidesPerView: 2
-          },
-          640: {
-            slidesPerView: 3
-          },
-          768: {
-            slidesPerView: 4
-          },
-          1024: {
-            slidesPerView: 5
-          },
-          1280: {
-            slidesPerView: 6
-          }
-        }}
       >
         {
           products.map((product, index) => (
