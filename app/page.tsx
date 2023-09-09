@@ -2,13 +2,13 @@
 
 import { useEffect, useState } from 'react'
 import { getProducts } from '@/api/api'
-import ProductCard from '@/components/ProductCard'
 import Carousel from '@/components/Carousel'
 import Image from 'next/image'
 import Link from 'next/link'
 
 import type { Product } from '@/interfaces/interfaces'
 import { carouselImages, promotionsImages } from '../data/imgsArrays'
+import TopSales from '@/components/TopSales'
 
 export default function Home (): JSX.Element {
   const [products, setProducts] = useState<Product[]>([])
@@ -25,14 +25,7 @@ export default function Home (): JSX.Element {
     <>
       <Carousel images={carouselImages} />
 
-      <h2 className='text-xl font-bold my-5 pl-5'>Top Ventas</h2>
-      <div className='grid grid-cols-2 md:grid-cols-3 px-5 gap-y-4'>
-        {
-          products.map((product, index) => (
-            <ProductCard key={index} product={product} />
-          ))
-        }
-      </div>
+      <TopSales products={products} />
 
       <h2 className='text-xl font-bold my-5 pl-5'>Promociones</h2>
       <div className='grid grid-cols-2 gap-4 px-5'>
