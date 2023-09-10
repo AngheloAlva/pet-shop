@@ -48,7 +48,7 @@ const TopSales = ({ products }: TopSalesProps): JSX.Element => {
       >
         {
           products.map((product, index) => (
-            <SwiperSlide key={index}>
+            <SwiperSlide key={index} className='max-w-[16rem]'>
               <ProductCard product={product} />
             </SwiperSlide>
           ))
