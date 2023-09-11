@@ -6,7 +6,7 @@ const Footer = (): JSX.Element => {
   return (
     <footer className='flex justify-between text-xs px-5 py-10 mt-10 bg-[--text-100] text-[--bg-100]'>
       <ul className='max-w-[10rem]'>
-        <Image src={'/logo-dark.svg'} alt="Logo" width={100} height={100} />
+        <Image src={'/logo.png'} alt="Logo" width={100} height={100} />
         <li className='mt-3'>En PetShop, encuentra todo lo que necesitas para cuidar de tu mascota. Con más de 10.000 productos y alimentos para perros, gatos, aves, chinchillas, conejos y hurones, y envío gratis y rápido en Santiago, hacer que tus mascotas sean felices es fácil.</li>
       </ul>
       <ul className='flex flex-col gap-3'>
