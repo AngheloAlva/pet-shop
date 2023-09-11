@@ -31,3 +31,14 @@ export const promotionsImages = [
     href: '/'
   }
 ]
+
+export const servicesImages = [
+  {
+    src: '/promotions/peluqueria.png',
+    href: '/'
+  },
+  {
+    src: '/promotions/veterinaria.png',
+    href: '/'
+  }
+]
