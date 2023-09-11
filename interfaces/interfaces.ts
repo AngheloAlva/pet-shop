@@ -40,3 +40,8 @@ export interface CarouselProps {
     href: string
   }>
 }
+
+export interface ProductSlideProps {
+  slideTitle: string
+  products: Product[]
+}
