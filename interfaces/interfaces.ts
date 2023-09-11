@@ -8,7 +8,7 @@ export interface Product {
   image: string[]
   weightOptions: Array<{ weight: string, price: number }>
   stock: number
-  brand: Brand
+  brand: ProductBrand
   discount: number
   lifeStage: string
 }
@@ -19,7 +19,7 @@ interface Description {
   _id: string
 }
 
-interface Brand {
+interface ProductBrand {
   _id: string
   name: string
   image: string
@@ -44,4 +44,10 @@ export interface CarouselProps {
 export interface ProductSlideProps {
   slideTitle: string
   products: Product[]
+}
+
+export interface Brand {
+  _id: string
+  name: string
+  image: string
 }

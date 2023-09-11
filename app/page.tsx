@@ -1,21 +1,24 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { getProducts } from '@/api/api'
+import { getBrands, getProducts } from '@/api/api'
 import Carousel from '@/components/Carousel'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import type { Product } from '@/interfaces/interfaces'
+import type { Product, Brand } from '@/interfaces/interfaces'
 import { carouselImages, promotionsImages, servicesImages } from '../data/imgsArrays'
 import ProductsSlide from '@/components/ProductsSlider'
+import BrandsSlider from '@/components/BrandsSlider'
 
 export default function Home (): JSX.Element {
   const [products, setProducts] = useState<Product[]>([])
+  const [brands, setBrands] = useState<Brand[]>([])
 
   useEffect(() => {
     try {
       void getProducts(setProducts)
+      void getBrands(setBrands)
     } catch (error) {
       console.log(error)
     }
@@ -51,6 +54,9 @@ export default function Home (): JSX.Element {
       </div>
 
       <h2 className='text-xl font-bold mb-3 mt-5 pl-5'>Marcas</h2>
+      <div className='mx-5'>
+        <BrandsSlider brands={brands} />
+      </div>
     </>
   )
 }
