@@ -17,20 +17,6 @@ import {
   DropdownMenuGroup,
   DropdownMenuItem
 } from '@/components/ui/dropdown-menu'
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger
-} from '@/components/ui/dialog'
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger
-} from '@/components/ui/accordion'
 import SheetMenu from './nav/SheetMenu'
 
 import { catMenu, dogMenu, aquaristicMenu, birdMenu, reptileMenu, smallAnimalMenu } from '@/data/NavbarItems'
@@ -42,9 +28,9 @@ import {
   FaEnvelope,
   FaCircleUser,
   FaArrowRightFromBracket,
-  FaBagShopping,
-  FaMagnifyingGlass
+  FaBagShopping
 } from 'react-icons/fa6'
+import Search from './nav/Search'
 
 const NavBar = (): JSX.Element => {
   return (
@@ -68,7 +54,7 @@ const NavBar = (): JSX.Element => {
           </Link>
         </div>
 
-        {/* <div className='flex content-center'>
+        <div className='content-center hidden'>
           <li className='pr-2'><FaSquareFacebook className='mt-[.156rem]' /></li>
           <li className='pr-3'><FaSquareInstagram className='mt-[.156rem]' /></li>
           <Separator orientation='vertical' />
@@ -77,7 +63,7 @@ const NavBar = (): JSX.Element => {
           <li className='flex gap-2 px-3'><FaCircleUser className='mt-[.156rem]' /> REGISTRO</li>
           <Separator orientation='vertical' />
           <li className='flex gap-2 pl-3'><FaArrowRightFromBracket className='mt-[.156rem]' /> LOG IN</li>
-        </div> */}
+        </div>
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -112,31 +98,7 @@ const NavBar = (): JSX.Element => {
         </div>
 
         <div className='flex gap-2 items-center'>
-          <Dialog>
-            <DialogTrigger asChild>
-              <div className='border-2 rounded-xl border-[--primary-200] px-3 items-center flex'>
-                <input type='search' placeholder='Buscar...' className='bg-transparent text-xs focus:outline-none h-7' />
-                <FaMagnifyingGlass className='text-[--primary-200] cursor-pointer' />
-              </div>
-            </DialogTrigger>
-            <DialogContent className='max-w-[25rem] rounded-lg py-0'>
-              <DialogHeader>
-                <DialogTitle className='text-left pt-3'>
-                  <div className='px-3 items-center flex'>
-                    <FaMagnifyingGlass className='text-[--primary-200] cursor-pointer mr-3' />
-                    <input type='search' placeholder='Buscar...' className='bg-transparent text-sm focus:outline-none h-7' />
-                  </div>
-                </DialogTitle>
-                <Separator />
-                <DialogDescription className='text-left text-xs px-3 py-2'>
-                  <p>Resultados de busqueda</p>
-                </DialogDescription>
-              </DialogHeader>
-              <div className='w-full'>
-
-              </div>
-            </DialogContent>
-          </Dialog>
+          <Search />
           <FaBagShopping className='text-3xl text-[--bg-100] cursor-pointer bg-[--accent-200] p-1 rounded-xl' />
         </div>
       </header>
