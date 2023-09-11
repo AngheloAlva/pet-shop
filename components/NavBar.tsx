@@ -25,7 +25,15 @@ import {
   DialogTitle,
   DialogTrigger
 } from '@/components/ui/dialog'
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger
+} from '@/components/ui/accordion'
+import SheetMenu from './nav/SheetMenu'
 
+import { catMenu, dogMenu, aquaristicMenu, birdMenu, reptileMenu, smallAnimalMenu } from '@/data/NavbarItems'
 import NavMenuItem from './NavMenuItem'
 
 import {
@@ -37,8 +45,6 @@ import {
   FaBagShopping,
   FaMagnifyingGlass
 } from 'react-icons/fa6'
-
-import { catMenu, dogMenu, aquaristicMenu, birdMenu, reptileMenu, smallAnimalMenu } from '@/data/NavbarItems'
 
 const NavBar = (): JSX.Element => {
   return (
@@ -98,12 +104,15 @@ const NavBar = (): JSX.Element => {
       </ul>
 
       <header className='flex justify-between items-center px-2 py-2 bg-[--bg-100] border-b-2 border-[--accent-100]'>
-        <Link href={'/'} passHref>
-          <Image src={'/color-logo.png'} alt='logo' width={45} height={45} />
-        </Link>
+        <div className="flex items-center gap-2">
+          <Link href={'/'} passHref>
+            <Image src={'/color-logo.png'} alt='logo' width={45} height={45} />
+          </Link>
+          <SheetMenu />
+        </div>
 
         <div className='flex gap-2 items-center'>
-        <Dialog>
+          <Dialog>
             <DialogTrigger asChild>
               <div className='border-2 rounded-xl border-[--primary-200] px-3 items-center flex'>
                 <input type='search' placeholder='Buscar...' className='bg-transparent text-xs focus:outline-none h-7' />
