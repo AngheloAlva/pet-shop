@@ -89,7 +89,7 @@ const NavBar = (): JSX.Element => {
         </DropdownMenu>
       </ul>
 
-      <header className='flex justify-between items-center px-2 py-2 bg-[--bg-100] border-b-2 border-[--accent-100]'>
+      <header className='flex justify-between items-center px-2 py-3 bg-[--bg-100]'>
         <div className="flex items-center gap-2">
           <Link href={'/'} passHref>
             <Image src={'/color-logo.png'} alt='logo' width={45} height={45} />
@@ -99,7 +99,7 @@ const NavBar = (): JSX.Element => {
 
         <div className='flex gap-2 items-center'>
           <Search />
-          <FaBagShopping className='text-3xl text-[--bg-100] cursor-pointer bg-[--accent-200] p-1 rounded-xl' />
+          <FaBagShopping className='text-3xl text-[--bg-100] cursor-pointer bg-[--accent-100] p-1 rounded-xl hover:bg-[--accent-200]' />
         </div>
       </header>
 
