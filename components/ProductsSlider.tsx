@@ -5,13 +5,9 @@ import { FaAngleRight, FaAngleLeft } from 'react-icons/fa6'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import SwiperCore from 'swiper/modules'
 
-import type { Product } from '@/interfaces/interfaces'
+import type { ProductSlideProps } from '@/interfaces/interfaces'
 
-interface TopSalesProps {
-  products: Product[]
-}
-
-const TopSales = ({ products }: TopSalesProps): JSX.Element => {
+const ProductsSlide = ({ slideTitle, products }: ProductSlideProps): JSX.Element => {
   const swiperRef = useRef(null)
 
   const handlePrevClick = (): void => {
@@ -29,8 +25,8 @@ const TopSales = ({ products }: TopSalesProps): JSX.Element => {
   return (
     <div className='px-5'>
       <div className='flex justify-between items-center'>
-        <h2 className='text-xl font-bold my-5'>
-          Top Ventas
+        <h2 className='text-xl font-bold mt-4 mb-3'>
+          {slideTitle}
         </h2>
         <div className='flex gap-2'>
           <button onClick={handlePrevClick} className='bg-[--accent-100] rounded-lg text-[--bg-100] py-1 px-1 text-base transition-all hover:bg-[--accent-200]' >
@@ -58,4 +54,4 @@ const TopSales = ({ products }: TopSalesProps): JSX.Element => {
   )
 }
 
-export default TopSales
+export default ProductsSlide
