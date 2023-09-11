@@ -8,7 +8,7 @@ import Link from 'next/link'
 
 import type { Product } from '@/interfaces/interfaces'
 import { carouselImages, promotionsImages } from '../data/imgsArrays'
-import TopSales from '@/components/TopSales'
+import TopSales from '@/components/ProductsSlider'
 
 export default function Home (): JSX.Element {
   const [products, setProducts] = useState<Product[]>([])
