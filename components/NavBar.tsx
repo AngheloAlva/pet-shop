@@ -89,7 +89,7 @@ const NavBar = (): JSX.Element => {
         </DropdownMenu>
       </ul>
 
-      <header className='flex justify-between items-center px-2 py-3 bg-[--bg-100]'>
+      <header className='flex justify-between items-center px-2 py-3 bg-[--bg-100] border-b-2 border-[--accent-100]'>
         <div className="flex items-center gap-2">
           <Link href={'/'} passHref>
             <Image src={'/color-logo.png'} alt='logo' width={45} height={45} />
