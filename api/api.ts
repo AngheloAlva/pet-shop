@@ -61,3 +61,17 @@ export const getBrands = async (
     console.error(error)
   }
 }
+
+export const getProductsBySearch = async (
+  search: string,
+  setProducts: React.Dispatch<React.SetStateAction<Product[]>>
+): Promise<void> => {
+  try {
+    const response = await axios.get<{ products: Product[] }>(
+      `http://localhost:3001/products/search?term=${search}`
+    )
+    setProducts(response.data.products)
+  } catch (error) {
+    console.error(error)
+  }
+}
