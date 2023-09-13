@@ -57,6 +57,16 @@ export default function Home (): JSX.Element {
       <div className='mx-5'>
         <BrandsSlider brands={brands} />
       </div>
+
+      <div className='mx-5 my-5 relative'>
+        <Image src={'/imgs/email-subscription.png'} alt='Email Subscription' width={1000} height={400} className='rounded-lg z-0' />
+        <div className=''>
+          <form action="">
+            <input type="email" placeholder='Email...' className='absolute bottom-14 left-5 rounded-lg py-1 px-2 text-[--text-200]' />
+            <button type='submit' className='absolute bottom-5 left-5 rounded-lg py-1 px-2 bg-[--accent-100] text-[--text-100] font-semibold'>Suscribirse</button>
+          </form>
+        </div>
+      </div>
     </>
   )
 }
