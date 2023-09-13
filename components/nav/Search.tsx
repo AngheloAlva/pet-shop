@@ -1,41 +1,71 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { getProductsBySearch } from '@/api/api'
+import type { Product } from '@/interfaces/interfaces'
 
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
+  DialogPrimitive,
   DialogTitle,
   DialogTrigger
 } from '@/components/ui/dialog'
 import { Separator } from '@/components/ui/separator'
+import MiniProductCard from '../MiniProductCard'
 
-import { FaMagnifyingGlass } from 'react-icons/fa6'
+import { FaMagnifyingGlass, FaXmark } from 'react-icons/fa6'
 
 const Search = (): JSX.Element => {
+  const [searchResults, setSearchResults] = useState<Product[]>([])
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+
+  const handleSearchChange = async (e: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
+    const searchQuery = e.target.value
+    if (searchQuery.length === 0) { setSearchResults([]); return }
+
+    if (searchQuery.length > 2) {
+      setIsLoading(true)
+      await getProductsBySearch(searchQuery, setSearchResults)
+      setIsLoading(false)
+    } else {
+      setSearchResults([])
+    }
+  }
+
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <div className='border-2 rounded-xl border-[--primary-200] px-3 items-center flex'>
-          <input type='search' placeholder='Buscar...' className='bg-transparent text-xs focus:outline-none h-7' />
-          <FaMagnifyingGlass className='text-[--primary-200] cursor-pointer' />
+        <div className='border-2 rounded-xl border-[--primary-200] px-3 items-center flex cursor-pointer gap-7 h-8'>
+          <span className='text-[--primary-200]'>Buscar...</span>
+          <FaMagnifyingGlass className='text-[--primary-200]' />
         </div>
       </DialogTrigger>
       <DialogContent className='max-w-[25rem] rounded-lg py-0'>
         <DialogHeader>
-          <DialogTitle className='text-left pt-3'>
+          <DialogTitle className='text-left pt-3 flex justify-between items-center'>
             <div className='px-3 items-center flex'>
               <FaMagnifyingGlass className='text-[--primary-200] cursor-pointer mr-3' />
-              <input type='search' placeholder='Buscar...' className='bg-transparent text-sm focus:outline-none h-7' />
+              {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
+              <input type='text' placeholder='Buscar...' className='bg-transparent text-sm focus:outline-none h-7 w-full' onChange={handleSearchChange} />
             </div>
+            <DialogPrimitive.Close>
+              <FaXmark className='text-[--text-200]' />
+            </DialogPrimitive.Close>
           </DialogTitle>
           <Separator />
-          <DialogDescription className='text-left text-xs px-3 py-2'>
+          <DialogDescription className='text-left text-xs px-3 pt-2'>
             <p>Resultados de busqueda</p>
           </DialogDescription>
         </DialogHeader>
-        <div className='w-full'>
-
+        <div className='w-full mb-5'>
+          {
+            isLoading
+              ? <p className='text-center'><span className="loader"></span></p>
+              : searchResults.length > 0 && searchResults.length <= 5
+                ? searchResults.map((product: Product) => <MiniProductCard key={product._id} product={product} setSearchResults={setSearchResults} />)
+                : null
+          }
         </div>
       </DialogContent>
     </Dialog>
