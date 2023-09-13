@@ -21,17 +21,17 @@ const Form = ({ service }: FormProps): JSX.Element => {
 
   return (
     <form className='w-5/6 border-2 rounded-lg border-t-4 border-t-[--accent-200] flex flex-col gap-4 px-7 py-7 mx-auto'>
-        <h3 className='text-[--accent-200]'>INFORMACION PERSONAL</h3>
-        <div className='flex gap-4 w-full justify-between my-4'>
-          <div className='flex gap-4 flex-col w-1/2'>
-            <div className='flex gap-2'>
-              <div>
+        <h3 className='text-[--accent-200]'>INFORMACION NECESARIA</h3>
+        <div className='flex gap-4 w-full justify-between flex-col'>
+          <div className='flex gap-4 flex-col'>
+            <div className='flex gap-2 justify-between'>
+              <div className='w-[80%]'>
                 <Label htmlFor='date' className='flex items-center gap-1'>
                   Fecha
                 </Label>
                 <Popover open={popoverOpen} onOpenChange={setPopoverOpen}>
                   <PopoverTrigger asChild id='date'>
-                    <Button variant={'outline'} className='w-48'>
+                    <Button variant={'outline'} className='w-full'>
                       {
                         date instanceof Date
                           ? date.toLocaleDateString()
@@ -52,7 +52,7 @@ const Form = ({ service }: FormProps): JSX.Element => {
                   </PopoverContent>
                 </Popover>
               </div>
-              <div>
+              <div className='w-[28%]'>
                 <Label htmlFor='hora' className='flex items-center gap-1'>
                   Hora
                 </Label>
@@ -115,7 +115,7 @@ const Form = ({ service }: FormProps): JSX.Element => {
             </div>
           </div>
 
-          <div className="flex gap-4 flex-col w-1/2">
+          <div className="flex gap-4 flex-col w-full">
             <div>
               <Label htmlFor='Nombre Mascota' className='flex items-center gap-1'>
                 Nombre de Mascota
@@ -145,9 +145,7 @@ const Form = ({ service }: FormProps): JSX.Element => {
                 </SelectContent>
               </Select>
             </div>
-
-            <div className='h-[3.875rem]' />
-
+            {/* <div className='h-[3.875rem]' /> */}
             <div>
               <Label htmlFor='email-repeat' className='flex items-center gap-1'>
                 Repetir Email
@@ -160,7 +158,7 @@ const Form = ({ service }: FormProps): JSX.Element => {
           <button
             type='submit'
             onClick={onSubmit}
-            className='bg-[--accent-200] text-[--bg-100] py-2 px-3 rounded-md transition-all hover:bg-[--accent-100] hover:text-[--text-100]'
+            className='bg-[--accent-200] text-[--bg-100] py-2 px-3 rounded-md transition-all hover:bg-[--accent-100] hover:text-[--text-100] mt-4 w-full font-semibold text-center focus:outline-none '
           >
             Registrar
           </button>

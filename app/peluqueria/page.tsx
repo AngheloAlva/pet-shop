@@ -1,15 +1,17 @@
 'use client'
 
 import Form from '@/components/Form'
+import { Separator } from '@/components/ui/separator'
 import React from 'react'
 
 const page = (): JSX.Element => {
   return (
     <>
       <main className='py-5 px-12'>
-        <h1 className='font-bold text-3xl py-5 mb-14 text-[--text-100] border-b-2 w-full flex justify-center'>
+        <h1 className='font-bold text-2xl text-[--text-100] w-full flex justify-center'>
           Agenda tu hora para Peluqueria Canina
         </h1>
+        <Separator className='mt-5 mb-8' />
         <p className='text-base text-[--text-200] mb-5 font-light text-left'>
           Contamos con un espacio para tu peludo de 4 patas, donde encontraran un lugar para disfrutar sin estrés, mientras son consentidos por un profesional. Estamos especializados en higiene y estética, además tenemos como objetivo preservar la salud de ellos.
         </p>
