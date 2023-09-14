@@ -2,12 +2,16 @@ import React from 'react'
 import type { Product } from '@/interfaces/interfaces'
 import Image from 'next/image'
 import Link from 'next/link'
+import { cn } from '@/lib/utils'
 
 interface ProductCardProps {
   product: Product
+  className?: string
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+const ProductCard: React.FC<ProductCardProps> = ({ product, className }) => {
+  const producCardClass = 'bg-white border-2 border-[--bg-300] rounded-xl px-3 py-2 w-64 relative overflow-hidden'
+
   const [selectedWeight, setSelectedWeight] = React.useState(product.weightOptions[0])
 
   const handleWeightChange = (weight: string): void => {
@@ -19,7 +23,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   }
 
   return (
-    <div className='bg-white border-2 border-[--bg-300] rounded-xl px-3 py-2 w-64 relative overflow-hidden'>
+    <div className={cn(producCardClass, className)} >
       {
         product.discount > 0 && (
           <div className='absolute -top-2 -left-12 bg-[--primary-100] text-[--text-200] font-bold rounded-lg px-14 py-4 -rotate-45'>
@@ -49,7 +53,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       <p className='text-[--text-200] font-semibold text-lg mb-5'>
         ${selectedWeight.price.toLocaleString('es-CL')}
       </p>
-      <div className='flex gap-2 mt-2'>
+      <div className='flex gap-2 mt-2 flex-wrap'>
         {
           product.weightOptions.map(option => (
             <p className={`
