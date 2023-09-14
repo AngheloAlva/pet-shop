@@ -9,18 +9,11 @@ import {
   NavigationMenu,
   NavigationMenuList
 } from '@/components/ui/navigation-menu'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-  DropdownMenuGroup,
-  DropdownMenuItem
-} from '@/components/ui/dropdown-menu'
 import SheetMenu from './nav/SheetMenu'
 
 import { catMenu, dogMenu, aquaristicMenu, birdMenu, reptileMenu, smallAnimalMenu } from '@/data/NavbarItems'
 import NavMenuItem from './NavMenuItem'
+import { UserButton, SignedIn, SignedOut, SignInButton } from '@clerk/nextjs'
 
 import {
   FaSquareFacebook,
@@ -35,7 +28,7 @@ import Search from './nav/Search'
 const NavBar = (): JSX.Element => {
   return (
     <nav className='flex flex-col bg-[--bg-100]'>
-      <ul className='text-[.6rem] flex py-1 px-2 bg-[--accent-100] justify-between font-bold text-[--bg-100]'>
+      <ul className='text-[.62rem] flex py-1 px-2 bg-[--accent-100] justify-between font-bold text-[--bg-100]'>
         <div className='flex items-center'>
           <Link href={'/'} passHref className='pr-2 hover:text-[--text-200]'>
             <li>INICIO</li>
@@ -65,28 +58,12 @@ const NavBar = (): JSX.Element => {
           <li className='flex gap-2 pl-3'><FaArrowRightFromBracket className='mt-[.156rem]' /> LOG IN</li>
         </div>
 
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <button className='flex gap-2 border-2 border-[--bg-100] rounded-md px-3 text-xs'>
-              Cuenta
-            </button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className='w-40'>
-            <DropdownMenuGroup className='flex flex-col w-full'>
-              <DropdownMenuItem className='text-xs flex gap-2 items-center'>
-                <FaEnvelope /> CONTACTENOS
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem className='text-xs flex gap-2 items-center'>
-                <FaCircleUser /> REGISTRO
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem className='text-xs flex gap-2 items-center'>
-                <FaArrowRightFromBracket /> LOG IN
-              </DropdownMenuItem>
-            </DropdownMenuGroup>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <SignedIn>
+          <UserButton afterSignOutUrl='/' />
+        </SignedIn>
+        <SignedOut>
+          <SignInButton children={'INICIAR SESION'} afterSignInUrl='/' afterSignUpUrl='/' mode='modal' />
+        </SignedOut>
       </ul>
 
       <header className='flex justify-between items-center px-2 py-3 bg-[--bg-100] border-b-2 border-[--accent-100]'>
