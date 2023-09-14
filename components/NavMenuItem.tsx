@@ -20,7 +20,7 @@ const NavMenuItem = ({ navMenuTitle, itemsArray }: NavMenuItemProps): JSX.Elemen
             <ListItem
               key={component.title}
               title={component.title}
-              titleHref={component.href}
+              titleHref={`/category/${component.href}`}
             >
               <ul>
                 <li className='flex flex-col'>
