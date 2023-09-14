@@ -5,6 +5,8 @@ import {
   AccordionItem,
   AccordionTrigger
 } from '@/components/ui/accordion'
+
+import { SheetClose } from '../ui/sheet'
 import Link from 'next/link'
 
 interface AcordionMenuProps {
@@ -20,14 +22,18 @@ const AcordionMenu = ({ categoryName, typeMenu }: AcordionMenuProps): JSX.Elemen
   return (
     <AccordionItem value={categoryName} className='border-none'>
       <AccordionTrigger className='text-left text-sm font-semibold border-none'>
-        <p>{categoryName}</p>
+        <Link href={'#'}>
+          {categoryName}
+        </Link>
       </AccordionTrigger>
       <AccordionContent className='text-left text-xs'>
         {
           typeMenu.map((item, index) => (
             <>
-              <Link href={'#'} key={index} className='py-1 px-2 hover:bg-[--accent-100] hover:cursor-pointer'>
-                {item.title}
+              <Link href={item.href} key={index} className='py-1 px-2 cursor-pointer hover:font-semibold transition-all'>
+                <SheetClose>
+                  {item.title}
+                </SheetClose>
               </Link>
             </>
           ))
