@@ -36,9 +36,9 @@ const Search = (): JSX.Element => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <div className='border-2 rounded-xl border-[--primary-200] px-3 items-center flex cursor-pointer gap-7 h-8'>
-          <span className='text-[--primary-200]'>Buscar...</span>
-          <FaMagnifyingGlass className='text-[--primary-200]' />
+        <div className='border-2 rounded-xl border-[--bg-100] px-3 items-center flex cursor-pointer gap-7 h-8 text-[--bg-100] font-bold hover:text-[--bg-200] hover:border-[--bg-200] transition-colors'>
+          <span>Buscar...</span>
+          <FaMagnifyingGlass />
         </div>
       </DialogTrigger>
       <DialogContent className='max-w-[25rem] rounded-lg py-0'>

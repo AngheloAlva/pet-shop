@@ -22,7 +22,7 @@ const SheetMenu = (): JSX.Element => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <button className='text-2xl text-[--text-200]'>
+        <button className='text-2xl text-[--bg-100]'>
           <FaBars />
         </button>
       </SheetTrigger>
