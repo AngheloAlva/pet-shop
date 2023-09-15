@@ -12,7 +12,6 @@ import SheetMenu from './nav/SheetMenu'
 
 import { catMenu, dogMenu, aquaristicMenu, birdMenu, reptileMenu, smallAnimalMenu } from '@/data/NavbarItems'
 import NavMenuItem from './NavMenuItem'
-import { UserButton, SignedIn, SignedOut, SignInButton } from '@clerk/nextjs'
 
 import {
   FaCircleUser,
@@ -40,12 +39,6 @@ const NavBar = (): JSX.Element => {
         <div className='flex gap-2 items-center'>
           <Search />
           <FaBagShopping className='text-3xl text-[--bg-100] cursor-pointer p-[.1rem] rounded-full border-[--bg-100] border-2 hover:text-[--bg-200] hover:border-[--bg-200] transition-colors' />
-          <SignedIn>
-            <UserButton afterSignOutUrl='/' userProfileMode='navigation' userProfileUrl='/account' />
-          </SignedIn>
-          <SignedOut>
-            <SignInButton children={signInButton} afterSignInUrl='/' afterSignUpUrl='/' mode='modal' />
-          </SignedOut>
         </div>
       </header>
 
