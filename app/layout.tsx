@@ -3,6 +3,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Nunito_Sans } from 'next/font/google'
 import Footer from '@/components/Footer'
+import { UserProvider } from '@auth0/nextjs-auth0/client'
 
 const nunitoSans = Nunito_Sans({
   weight: ['200', '300', '400', '500', '600', '700', '800'],
@@ -22,11 +23,13 @@ export default function RootLayout ({
 }) {
   return (
     <html lang="es">
-      <body className={nunitoSans.className}>
-        <NavBar />
-        {children}
-        <Footer />
-      </body>
+      <UserProvider>
+        <body className={nunitoSans.className}>
+          <NavBar />
+          {children}
+          <Footer />
+        </body>
+      </UserProvider>
     </html>
   )
 }

@@ -18,8 +18,12 @@ import {
   FaBagShopping
 } from 'react-icons/fa6'
 import Search from './nav/Search'
+import { useUser } from '@auth0/nextjs-auth0/client'
 
 const NavBar = (): JSX.Element => {
+  const { user, error, isLoading } = useUser()
+  console.log(user, error, isLoading)
+
   const signInButton = (
     <div className='flex gap-2 items-center'>
       <FaCircleUser className='text-3xl text-[--bg-100] cursor-pointer p-[.1rem] rounded-full border-[--bg-100] border-2 hover:text-[--bg-200] hover:border-[--bg-200] transition-colors' />
@@ -39,6 +43,8 @@ const NavBar = (): JSX.Element => {
         <div className='flex gap-2 items-center'>
           <Search />
           <FaBagShopping className='text-3xl text-[--bg-100] cursor-pointer p-[.1rem] rounded-full border-[--bg-100] border-2 hover:text-[--bg-200] hover:border-[--bg-200] transition-colors' />
+          <a href="/api/auth/login">{signInButton}</a>
+          <a href="/api/auth/logout">Logout</a>
         </div>
       </header>
 
