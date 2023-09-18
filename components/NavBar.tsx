@@ -4,17 +4,13 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import {
-  NavigationMenu,
-  NavigationMenuList
-} from '@/components/ui/navigation-menu'
+import { NavigationMenu, NavigationMenuList } from '@/components/ui/navigation-menu'
 import SheetMenu from './nav/SheetMenu'
-
-import { catMenu, dogMenu, aquaristicMenu, birdMenu, reptileMenu, smallAnimalMenu } from '@/data/NavbarItems'
 import NavMenuItem from './NavMenuItem'
 import UserDropdown from './nav/User-dropdown'
 import Search from './nav/Search'
 
+import { catMenu, dogMenu, aquaristicMenu, birdMenu, reptileMenu, smallAnimalMenu } from '@/data/NavbarItems'
 import { FaBagShopping } from 'react-icons/fa6'
 
 const NavBar = (): JSX.Element => {
