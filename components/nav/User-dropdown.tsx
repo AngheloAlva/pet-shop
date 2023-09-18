@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Link from 'next/link'
 
 import { useUser } from '@auth0/nextjs-auth0/client'
@@ -13,8 +13,22 @@ import {
   DropdownMenuLabel
 } from '@/components/ui/dropdown-menu'
 
+import { postUser } from '@/api/api'
+
 const UserDropdown = (): JSX.Element => {
   const { user } = useUser()
+
+  useEffect(() => {
+    if (user === undefined) return
+
+    const newUser = {
+      id: user.sub ?? '',
+      name: user.nickname ?? '',
+      email: user.email ?? ''
+    }
+
+    void postUser(newUser)
+  }, [user])
 
   return (
     <DropdownMenu>
@@ -29,7 +43,7 @@ const UserDropdown = (): JSX.Element => {
                 <>
                   <DropdownMenuLabel className='text-[--text-200]'>
                     <div className='flex gap-2 items-center'>
-                      <img src={user.picture ?? ''} alt={`Foto de perfil de ${user.name}` ?? ''} className='rounded-full w-7' />
+                      <img src={user.picture ?? ''} alt={`Foto de perfil de ${user.nickname}` ?? ''} className='rounded-full w-7' />
                       {user.name}
                     </div>
                   </DropdownMenuLabel>
