@@ -22,19 +22,21 @@ const UserDropdown = (): JSX.Element => {
         <FaCircleUser className='text-3xl text-[--bg-100] cursor-pointer p-[.1rem] rounded-full border-[--bg-100] border-2 hover:text-[--bg-200] hover:border-[--bg-200] transition-colors' />
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuLabel className='text-[--text-200]'>
-          {
-            user === undefined
-              ? ''
-              : (
-                  <div className='flex gap-2 items-center'>
-                    <img src={user.picture ?? ''} alt={`Foto de perfil de ${user.name}` ?? ''} className='rounded-full w-7' />
-                    {user.name}
-                  </div>
-                )
-          }
-        </DropdownMenuLabel>
-        <DropdownMenuSeparator />
+        {
+          user === undefined
+            ? ''
+            : (
+                <>
+                  <DropdownMenuLabel className='text-[--text-200]'>
+                    <div className='flex gap-2 items-center'>
+                      <img src={user.picture ?? ''} alt={`Foto de perfil de ${user.name}` ?? ''} className='rounded-full w-7' />
+                      {user.name}
+                    </div>
+                  </DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                </>
+              )
+        }
         {
           user === undefined
             ? (

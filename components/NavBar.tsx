@@ -15,9 +15,7 @@ import NavMenuItem from './NavMenuItem'
 import UserDropdown from './nav/User-dropdown'
 import Search from './nav/Search'
 
-import {
-  FaBagShopping
-} from 'react-icons/fa6'
+import { FaBagShopping } from 'react-icons/fa6'
 
 const NavBar = (): JSX.Element => {
   return (
