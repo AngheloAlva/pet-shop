@@ -51,3 +51,57 @@ export interface Brand {
   name: string
   image: string
 }
+
+export interface User {
+  id: string
+  name: string
+  email: string
+  lastName: string
+  address: {
+    street: string
+    number: number
+    zipCode: number
+    city: string
+    region: string
+    isApartament: boolean
+    apartamentNumber: number
+  }
+  phone: string
+  orders: Order[]
+  cart: {
+    products: Product[]
+    quantity: number
+  }
+  lastProductsViewed: Product[]
+}
+
+export interface SimpleUser {
+  id: string
+  name: string
+  email: string
+}
+
+export interface Order {
+  id: string
+  userId: string
+  RUT: string
+  products: {
+    products: Product[]
+    quantity: number
+    price: number
+  }
+  total: number
+  paymentMethod: string
+  paymentStatus: string
+  shippingMethod: string
+  shippingStatus: string
+  shippingAddress: {
+    street: string
+    number: number
+    zipCode: number
+    city: string
+    region: string
+    isApartament: boolean
+    apartamentNumber: number
+  }
+}
