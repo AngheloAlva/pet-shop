@@ -6,7 +6,7 @@
 
 - **Framework** [Next.js](https://nextjs.org/)
 - **Estilos** [TailwindCSS](https://tailwindcss.com/) 
-- **Gestion de usuarios** [Clerk](https://clerk.com/)
+- **Gestion de usuarios** [Auth0](https://auth0.com/es)
 - **Infraestructura de pagos** [Stripe](https://stripe.com/es-us)
 - **Emails** [React Email](https://react.email/docs/introduction)
 - **Gestion de contenido** [Contentlayer](https://contentlayer.dev/)
