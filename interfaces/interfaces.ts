@@ -57,12 +57,13 @@ export interface User {
   name: string
   email: string
   lastName: string
+  RUT: string
   address: {
     street: string
     number: number
     zipCode: number
-    city: string
     region: string
+    comuna: string
     isApartament: boolean
     apartamentNumber: number
   }

@@ -23,7 +23,7 @@ const UserDropdown = (): JSX.Element => {
 
     const newUser = {
       id: user.sub ?? '',
-      name: user.nickname ?? '',
+      name: user.name ?? '',
       email: user.email ?? ''
     }
 

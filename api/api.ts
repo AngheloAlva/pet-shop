@@ -1,5 +1,5 @@
 import axios from 'axios'
-import type { Brand, Product, SimpleUser } from '@/interfaces/interfaces'
+import type { Brand, Product, SimpleUser, User } from '@/interfaces/interfaces'
 
 export const getProducts = async (
   setProducts: React.Dispatch<React.SetStateAction<Product[]>>,
@@ -81,5 +81,15 @@ export const postUser = async (user: SimpleUser): Promise<void> => {
     await axios.post('http://localhost:3001/users', user)
   } catch (error) {
     console.error(error)
+  }
+}
+
+export const getUser = async (id: string): Promise<User> => {
+  try {
+    const response = await axios.get<User[]>(`http://localhost:3001/users/${id}`)
+    return response.data[0]
+  } catch (error) {
+    console.error(error)
+    throw error
   }
 }
