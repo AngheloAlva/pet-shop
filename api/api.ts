@@ -93,3 +93,11 @@ export const getUser = async (id: string): Promise<User> => {
     throw error
   }
 }
+
+export const updateUser = async (user: User): Promise<void> => {
+  try {
+    await axios.put(`http://localhost:3001/users/${user.id}`, user)
+  } catch (error) {
+    console.error(error)
+  }
+}

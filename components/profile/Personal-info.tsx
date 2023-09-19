@@ -10,6 +10,8 @@ import { Label } from '@/components/ui/label'
 import { I, II, III, IV, V, VI, VII, VIII, IX, X, XI, XII, XIV, XV, XVI, Metropolitana } from '@/data/comunasArray'
 import type { User } from '@/interfaces/interfaces'
 
+import { updateUser } from '@/api/api'
+
 interface PersonalInfoProps {
   user: User
 }
@@ -17,30 +19,56 @@ interface PersonalInfoProps {
 const PersonalInfo = ({ user }: PersonalInfoProps): JSX.Element => {
   const [isApartment, setIsApartment] = React.useState<boolean>(false)
   const [comunas, setComunas] = React.useState<string[]>([])
+  const [region, setRegion] = React.useState<string>('')
+  const [comuna, setComuna] = React.useState<string>('')
 
-  const regiones = {
-    I, II, III, IV, V, VI, VII, VIII, IX, X, XI, XII, XIV, XV, XVI, RM: Metropolitana
-  }
+  const regiones = { I, II, III, IV, V, VI, VII, VIII, IX, X, XI, XII, XIV, XV, XVI, RM: Metropolitana }
 
-  const handleRegion = (region: string[]): void => {
+  const handleRegion = (region: string): void => {
+    setRegion(region)
     setComunas(regiones[region])
   }
 
+  const handleComuna = (comuna: string): void => {
+    setComuna(comuna)
+  }
+
+  const handleSubmit = async (e: { preventDefault: () => void }): Promise<void> => {
+    e.preventDefault()
+
+    await updateUser({
+      id: user.id,
+      name: document.getElementById('name')?.value,
+      lastName: document.getElementById('lastname')?.value,
+      RUT: document.getElementById('rut')?.value,
+      phone: document.getElementById('phone')?.value,
+      address: {
+        street: document.getElementById('address')?.value,
+        number: document.getElementById('number')?.value,
+        region,
+        comuna,
+        isApartament: isApartment,
+        apartamentNumber: document.getElementById('aparment-number')?.value,
+        zipCode: document.getElementById('zip-code')?.value
+      }
+    })
+  }
+
   return (
-    <div className='border-2 rounded-lg py-2 px-3'>
+    <form className='border-2 rounded-lg py-2 px-3' onSubmit={handleSubmit}>
       <div className='grid grid-cols-2 gap-x-3 mt-2'>
         <Label htmlFor='name'>Nombre</Label>
         <Label htmlFor='lastname'>Apellido</Label>
-        <Input id='name' value={user.name} />
-        <Input id='lastname' value={user.lastName} />
+        <Input id='name' defaultValue={user.name} />
+        <Input id='lastname' defaultValue={user.lastName} required />
       </div>
       <Label htmlFor='email'>Correo</Label>
-      <Input id='email' value={user.email} disabled />
+      <Input id='email' defaultValue={user.email} disabled required />
       <div className='grid grid-cols-2 gap-x-3 mt-2'>
         <Label htmlFor='rut'>RUT</Label>
         <Label htmlFor='phone'>Telefono</Label>
-        <Input id='rut' value={user.RUT} />
-        <Input id='phone' value={user.phone} />
+        <Input id='rut' defaultValue={user.RUT} required />
+        <Input id='phone' defaultValue={user.phone} required />
       </div>
 
       <Separator className='my-4' />
@@ -49,12 +77,12 @@ const PersonalInfo = ({ user }: PersonalInfoProps): JSX.Element => {
       <div className='grid grid-cols-3 gap-x-3 mt-2'>
         <Label htmlFor='address' className='col-span-2'>Calle</Label>
         <Label htmlFor='number'>Numero</Label>
-        <Input id='address' value={user.address?.street} className='col-span-2' />
-        <Input id='number' value={user.address?.number} />
+        <Input id='address' defaultValue={user.address?.street} className='col-span-2' required />
+        <Input id='number' defaultValue={user.address?.number} required />
 
       </div>
       <Label htmlFor='region'>Region</Label>
-      <Select onValueChange={handleRegion}>
+      <Select onValueChange={handleRegion} required>
         <SelectTrigger className='mt-3'>
           <SelectValue>
             {user.address?.region}
@@ -80,7 +108,7 @@ const PersonalInfo = ({ user }: PersonalInfoProps): JSX.Element => {
         </SelectContent>
       </Select>
       <Label htmlFor='comuna'>Comuna</Label>
-      <Select>
+      <Select onValueChange={handleComuna} required>
         <SelectTrigger className='mt-3'>
           <SelectValue>
             {user.address?.comuna}
@@ -104,17 +132,17 @@ const PersonalInfo = ({ user }: PersonalInfoProps): JSX.Element => {
         isApartment && (
           <>
             <Label htmlFor='aparment-number'>Numero de Dpto</Label>
-            <Input id='aparment-number' value={user.address?.apartamentNumber} />
+            <Input id='aparment-number' value={user.address?.apartamentNumber} required={isApartment} />
           </>
         )
       }
       <Label htmlFor='zip-code'>Codigo Postal</Label>
       <Input id='zip-code' value={user.address?.zipCode} />
 
-      <Button className='my-5 w-full text-base bg-[--accent-200] text-[--bg-100] font-bold hover:bg-[--accent-100] transition-all hover:text-[--text-200]' >
+      <Button type='submit' className='my-5 w-full text-base bg-[--accent-200] text-[--bg-100] font-bold hover:bg-[--accent-100] transition-all hover:text-[--text-200]' >
         Guardar
       </Button>
-    </div>
+    </form>
   )
 }
 
