@@ -1,5 +1,5 @@
 import axios from 'axios'
-import type { Brand, Product, SimpleUser, User } from '@/interfaces/interfaces'
+import type { Brand, Product, SimpleUser, User, UserUpdate } from '@/interfaces/interfaces'
 
 export const getProducts = async (
   setProducts: React.Dispatch<React.SetStateAction<Product[]>>,
@@ -94,7 +94,7 @@ export const getUser = async (id: string): Promise<User> => {
   }
 }
 
-export const updateUser = async (user: User): Promise<void> => {
+export const updateUser = async (user: UserUpdate): Promise<void> => {
   try {
     await axios.put(`http://localhost:3001/users/${user.id}`, user)
   } catch (error) {

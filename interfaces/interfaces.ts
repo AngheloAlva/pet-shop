@@ -76,6 +76,23 @@ export interface User {
   lastProductsViewed: Product[]
 }
 
+export interface UserUpdate {
+  id: string
+  name: string
+  lastName: string
+  RUT: string
+  address: {
+    street: string
+    number: number
+    zipCode: number
+    region: string
+    comuna: string
+    isApartament: boolean
+    apartamentNumber: number
+  }
+  phone: string
+}
+
 export interface SimpleUser {
   id: string
   name: string
