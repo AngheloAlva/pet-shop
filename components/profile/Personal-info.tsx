@@ -42,8 +42,8 @@ const PersonalInfo = ({ user }: PersonalInfoProps): JSX.Element => {
   }
 
   useEffect(() => {
-    setRegion(((user.address?.region).length > 0) ? user.address.region : 'Seleccione una region')
-    setComuna(((user.address?.comuna).length > 0) ? user.address.comuna : 'Seleccione una comuna')
+    setRegion(((user.address?.region)?.length > 0) ? user.address.region : 'Seleccione una region')
+    setComuna(((user.address?.comuna)?.length > 0) ? user.address.comuna : 'Seleccione una comuna')
   }, [user.address?.region, user.address?.comuna])
 
   const handleRegion = (region: string): void => {

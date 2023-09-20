@@ -33,7 +33,6 @@ const ProfilePage = (): JSX.Element => {
           <TabsTrigger value='personal-info'>Datos Personales</TabsTrigger>
           <TabsTrigger value='history'>Historial</TabsTrigger>
           <TabsTrigger value='payment-methods'>Metodos de pago</TabsTrigger>
-          <TabsTrigger value='directions'>Direcciones</TabsTrigger>
         </TabsList>
         <TabsContent value='personal-info'>
           <PersonalInfo user={userDb} />
