@@ -61,14 +61,4 @@ const Cart = (): JSX.Element => {
   )
 }
 
-// cartItems:
-// [
-// {
-//     product: '64f278aadd50459425fe4c02',
-//     quantity: 1,
-//     optionSelectedIndex: 0,
-//     _id: '650c4f969fdcc9feae228aa1'
-//   }
-// ]
-
 export default Cart
