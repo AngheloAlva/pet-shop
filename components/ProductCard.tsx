@@ -4,12 +4,15 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 
+import { addProductToCart } from '@/api/api'
+
 interface ProductCardProps {
   product: Product
-  className?: string
+  className: string
+  userId: string
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product, className }) => {
+const ProductCard: React.FC<ProductCardProps> = ({ product, className, userId }) => {
   const producCardClass = 'bg-white border-2 border-[--bg-300] rounded-xl px-3 py-2 w-64 relative overflow-hidden'
 
   const [selectedWeight, setSelectedWeight] = React.useState(product.weightOptions[0])
@@ -19,6 +22,16 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, className }) => {
 
     if (selectedWeight != null) {
       setSelectedWeight(selectedWeight)
+    }
+  }
+
+  const addToCart = async (): Promise<void> => {
+    const optionSelectedIndex = product.weightOptions.findIndex(option => option.weight === selectedWeight.weight)
+    console.log(userId, product._id, optionSelectedIndex, 1)
+    try {
+      const response = await addProductToCart(userId, product._id, optionSelectedIndex, 1)
+    } catch (error) {
+      console.log(error)
     }
   }
 
@@ -70,7 +83,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, className }) => {
           ))
         }
       </div>
-      <button className='p-2 my-2 w-full bg-[--accent-100] text-[--text-200] rounded-lg transition-all hover:bg-[--accent-200] hover:text-[--bg-100]'>
+      <button onClick={addToCart} className='p-2 my-2 w-full bg-[--accent-100] text-[--text-200] rounded-lg transition-all hover:bg-[--accent-200] hover:text-[--bg-100]'>
         Agregar
       </button>
     </div>

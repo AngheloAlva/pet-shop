@@ -11,9 +11,13 @@ import { carouselImages, promotionsImages, servicesImages } from '../data/imgsAr
 import ProductsSlide from '@/components/ProductsSlider'
 import BrandsSlider from '@/components/BrandsSlider'
 
+import { useUser } from '@auth0/nextjs-auth0/client'
+
 export default function Home (): JSX.Element {
   const [products, setProducts] = useState<Product[]>([])
   const [brands, setBrands] = useState<Brand[]>([])
+
+  const { user } = useUser()
 
   useEffect(() => {
     try {
@@ -28,7 +32,7 @@ export default function Home (): JSX.Element {
     <>
       <Carousel images={carouselImages} />
 
-      <ProductsSlide slideTitle='Top Ventas' products={products} />
+      <ProductsSlide slideTitle='Top Ventas' products={products} userId={user?.sub ?? ''} />
 
       <h2 className='text-xl font-bold mb-3 mt-5 pl-5'>Promociones</h2>
       <div className='flex flex-col gap-3 px-5'>
@@ -41,7 +45,7 @@ export default function Home (): JSX.Element {
         }
       </div>
 
-      <ProductsSlide slideTitle='Nuevos Productos' products={products} />
+      <ProductsSlide slideTitle='Nuevos Productos' products={products} userId={user?.sub ?? ''} />
 
       <div className='flex flex-col w-full px-5 my-7 gap-3'>
         {

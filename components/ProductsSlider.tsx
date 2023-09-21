@@ -7,7 +7,7 @@ import SwiperCore from 'swiper/modules'
 
 import type { ProductSlideProps } from '@/interfaces/interfaces'
 
-const ProductsSlide = ({ slideTitle, products }: ProductSlideProps): JSX.Element => {
+const ProductsSlide = ({ slideTitle, products, userId }: ProductSlideProps): JSX.Element => {
   const swiperRef = useRef(null)
 
   const handlePrevClick = (): void => {
@@ -45,7 +45,7 @@ const ProductsSlide = ({ slideTitle, products }: ProductSlideProps): JSX.Element
         {
           products.map((product, index) => (
             <SwiperSlide key={index} className='max-w-[16rem]'>
-              <ProductCard product={product} />
+              <ProductCard product={product} className='' userId={userId} />
             </SwiperSlide>
           ))
         }
