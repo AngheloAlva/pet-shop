@@ -1,5 +1,5 @@
 import axios from 'axios'
-import type { Brand, Product, SimpleUser, User, UserUpdate } from '@/interfaces/interfaces'
+import type { Brand, ItemCart, Product, SimpleUser, User, UserUpdate } from '@/interfaces/interfaces'
 
 export const getProducts = async (
   setProducts: React.Dispatch<React.SetStateAction<Product[]>>,
@@ -97,6 +97,56 @@ export const getUser = async (id: string): Promise<User> => {
 export const updateUser = async (user: UserUpdate): Promise<void> => {
   try {
     await axios.put(`http://localhost:3001/users/${user.id}`, user)
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export const addProductToCart = async (
+  userId: string,
+  productId: string,
+  quantity: number
+): Promise<void> => {
+  try {
+    await axios.post('http://localhost:3001/users/cart', {
+      userId,
+      productId,
+      quantity
+    })
+      .then((response) => {
+        console.log(response)
+      })
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export const getCart = async (userId: string): Promise<ItemCart[]> => {
+  try {
+    const response = await axios.get<ItemCart[]>(`http://localhost:3001/users/${userId}/cart`)
+    return response.data.map((item) => ({
+      product: item.product,
+      quantity: item.quantity,
+      optionSelectedIndex: item.optionSelectedIndex,
+      _id: item._id
+    }))
+  } catch (error) {
+    console.error(error)
+    throw error
+  }
+}
+
+export const updateCart = async (
+  userId: string,
+  productId: string,
+  quantity: number
+): Promise<void> => {
+  try {
+    await axios.put('http://localhost:3001/users/cart', {
+      userId,
+      productId,
+      quantity
+    })
   } catch (error) {
     console.error(error)
   }
