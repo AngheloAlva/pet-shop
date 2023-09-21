@@ -105,17 +105,16 @@ export const updateUser = async (user: UserUpdate): Promise<void> => {
 export const addProductToCart = async (
   userId: string,
   productId: string,
-  quantity: number
+  quantity: number,
+  optionSelectedIndex: number
 ): Promise<void> => {
   try {
     await axios.post('http://localhost:3001/users/cart', {
       userId,
       productId,
-      quantity
+      quantity,
+      optionSelectedIndex
     })
-      .then((response) => {
-        console.log(response)
-      })
   } catch (error) {
     console.error(error)
   }

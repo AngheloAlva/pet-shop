@@ -44,6 +44,7 @@ export interface CarouselProps {
 export interface ProductSlideProps {
   slideTitle: string
   products: Product[]
+  userId: string
 }
 
 export interface Brand {
