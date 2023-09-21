@@ -11,7 +11,7 @@ import UserDropdown from './nav/User-dropdown'
 import Search from './nav/Search'
 
 import { catMenu, dogMenu, aquaristicMenu, birdMenu, reptileMenu, smallAnimalMenu } from '@/data/NavbarItems'
-import { FaBagShopping } from 'react-icons/fa6'
+import Cart from './nav/Cart'
 
 const NavBar = (): JSX.Element => {
   return (
@@ -26,7 +26,7 @@ const NavBar = (): JSX.Element => {
 
         <div className='flex gap-2 items-center'>
           <Search />
-          <FaBagShopping className='text-3xl text-[--bg-100] cursor-pointer p-[.1rem] rounded-full border-[--bg-100] border-2 hover:text-[--bg-200] hover:border-[--bg-200] transition-colors' />
+          <Cart />
           <UserDropdown />
         </div>
       </header>

@@ -123,3 +123,10 @@ export interface Order {
     apartamentNumber: number
   }
 }
+
+export interface ItemCart {
+  product: Product
+  quantity: number
+  optionSelectedIndex: number
+  _id: string
+}
