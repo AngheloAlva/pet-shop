@@ -1,9 +1,12 @@
+'use client'
+
 import NavBar from '@/components/NavBar'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Nunito_Sans } from 'next/font/google'
 import Footer from '@/components/Footer'
 import { UserProvider } from '@auth0/nextjs-auth0/client'
+import { CartProvider } from '@/context/CartContext'
 
 const nunitoSans = Nunito_Sans({
   weight: ['200', '300', '400', '500', '600', '700', '800'],
@@ -24,11 +27,13 @@ export default function RootLayout ({
   return (
     <html lang="es">
       <UserProvider>
-        <body className={nunitoSans.className}>
-          <NavBar />
-          {children}
-          <Footer />
-        </body>
+        <CartProvider>
+          <body className={nunitoSans.className}>
+            <NavBar />
+            {children}
+            <Footer />
+          </body>
+        </CartProvider>
       </UserProvider>
     </html>
   )

@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import type { Product } from '@/interfaces/interfaces'
 import Image from 'next/image'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 
 import { addProductToCart } from '@/api/api'
+import { CartContext } from '@/context/CartContext'
 
 interface ProductCardProps {
   product: Product
@@ -16,6 +17,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, className, userId })
   const producCardClass = 'bg-white border-2 border-[--bg-300] rounded-xl px-3 py-2 w-64 relative overflow-hidden'
 
   const [selectedWeight, setSelectedWeight] = React.useState(product.weightOptions[0])
+  const { refreshCart } = useContext(CartContext)
 
   const handleWeightChange = (weight: string): void => {
     const selectedWeight = product.weightOptions.find(option => option.weight === weight)
@@ -27,9 +29,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, className, userId })
 
   const addToCart = async (): Promise<void> => {
     const optionSelectedIndex = product.weightOptions.findIndex(option => option.weight === selectedWeight.weight)
-    console.log(userId, product._id, optionSelectedIndex, 1)
     try {
-      const response = await addProductToCart(userId, product._id, optionSelectedIndex, 1)
+      await addProductToCart(userId, product._id, 1, optionSelectedIndex)
+      await refreshCart()
     } catch (error) {
       console.log(error)
     }
@@ -83,6 +85,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, className, userId })
           ))
         }
       </div>
+      {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
       <button onClick={addToCart} className='p-2 my-2 w-full bg-[--accent-100] text-[--text-200] rounded-lg transition-all hover:bg-[--accent-200] hover:text-[--bg-100]'>
         Agregar
       </button>
