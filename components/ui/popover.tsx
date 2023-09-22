@@ -28,4 +28,4 @@ React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content>
 ))
 PopoverContent.displayName = PopoverPrimitive.Content.displayName
 
-export { Popover, PopoverTrigger, PopoverContent }
+export { Popover, PopoverTrigger, PopoverContent, PopoverPrimitive }
