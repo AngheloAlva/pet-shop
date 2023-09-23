@@ -26,6 +26,14 @@ export const getProducts = async (
   }
 }
 
+export const createProduct = async (product: Product): Promise<void> => {
+  try {
+    await axios.post('http://localhost:3001/products', product)
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 export const getProductById = async (
   id: string
 ): Promise<Product> => {

@@ -35,10 +35,10 @@ export const promotionsImages = [
 export const servicesImages = [
   {
     src: '/promotions/peluqueria.png',
-    href: '/'
+    href: '/peluqueria'
   },
   {
     src: '/promotions/veterinaria.png',
-    href: '/'
+    href: '/veterinaria'
   }
 ]

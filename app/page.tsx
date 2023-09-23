@@ -5,11 +5,11 @@ import { getBrands, getProducts } from '@/api/api'
 import Carousel from '@/components/Carousel'
 import Image from 'next/image'
 import Link from 'next/link'
+import ProductsSlide from '@/components/ProductsSlider'
+import BrandsSlider from '@/components/BrandsSlider'
 
 import type { Product, Brand } from '@/interfaces/interfaces'
 import { carouselImages, promotionsImages, servicesImages } from '../data/imgsArrays'
-import ProductsSlide from '@/components/ProductsSlider'
-import BrandsSlider from '@/components/BrandsSlider'
 
 import { useUser } from '@auth0/nextjs-auth0/client'
 

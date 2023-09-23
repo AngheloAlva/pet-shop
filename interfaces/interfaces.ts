@@ -75,6 +75,7 @@ export interface User {
     quantity: number
   }
   lastProductsViewed: Product[]
+  role: string
 }
 
 export interface UserUpdate {
