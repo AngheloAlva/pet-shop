@@ -46,7 +46,6 @@ const ProductCart = ({ userId, product, quantity, optionSelectedIndex }: Product
   }
 
   const deleteProduct = async (): Promise<void> => {
-    setQuantityProduct(0)
     await updateCart(userId, product._id, 0)
     await refreshCart()
   }

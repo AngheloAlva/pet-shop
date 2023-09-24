@@ -40,13 +40,13 @@ const Cart = (): JSX.Element => {
           {
             cartItems.length > 0
               ? cart.map((product, index) => (
-              <ProductCart
-                key={index}
-                userId={user?.sub ?? ''}
-                product={product}
-                quantity={cartItems[index].quantity}
-                optionSelectedIndex={cartItems[index].optionSelectedIndex}
-              />
+                  <ProductCart
+                    key={index}
+                    userId={user?.sub ?? ''}
+                    product={product}
+                    quantity={cartItems[index]?.quantity}
+                    optionSelectedIndex={cartItems[index]?.optionSelectedIndex}
+                  />
               ))
               : (
                 <div className='flex flex-col text-[--text-200] items-center gap-5 py-2'>
