@@ -27,10 +27,10 @@ const ProfilePage = (): JSX.Element => {
   return (
     <>
       {
-        userDb?.role === 'USER_ROLE'
+        userDb?.role === 'ADMIN_ROLE'
           ? (
             <div>
-              <h2 className='bg-[--accent-200] text-xl font-semibold text-[--bg-100]'>
+              <h2 className='bg-[--accent-200] text-xl font-semibold text-[--bg-100] px-2'>
                 MODO ADMINISTRADOR
               </h2>
               <Tabs defaultValue='products' className='mx-5 my-5'>

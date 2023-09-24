@@ -14,7 +14,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Textarea } from '@/components/ui/textarea'
 
 import { createProduct, getCategories, getBrands } from '@/api/api'
-import { set } from 'date-fns'
 
 interface Description {
   title: string
@@ -50,20 +49,19 @@ const ProductManagement = (): JSX.Element => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    console.log(
-      {
-        name: (document.getElementById('name') as HTMLInputElement).value,
-        category,
-        brand,
-        miniDescription: (document.getElementById('mini-description') as HTMLInputElement).value,
-        descriptions,
-        stock: (document.getElementById('stock') as HTMLInputElement).value,
-        lifeStage
-      }
-    )
+    const product = {
+      name: (document.getElementById('name') as HTMLInputElement).value,
+      category,
+      brand,
+      miniDescription: (document.getElementById('mini-description') as HTMLInputElement).value,
+      descriptions,
+      stock: (document.getElementById('stock') as HTMLInputElement).value,
+      lifeStage
+    }
 
-    // e.target.reset()
-    // setDescriptions([{ title: '', description: '' }])
+    void createProduct(product)
+
+    setDescriptions([{ title: '', description: '' }])
   }
 
   const handleAddDescription = (e: React.FormEvent<HTMLFormElement>) => {

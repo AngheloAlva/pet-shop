@@ -58,10 +58,16 @@ const Cart = (): JSX.Element => {
                 )
           }
         </div>
-        <Separator className='my-5' />
-        <Button onClick={handleCheckout} className='bg-[--accent-100] text-[--bg-100] font-bold py-2 rounded-lg hover:bg-[--accent-200] text-base'>
-          Continuar con el pago
-        </Button>
+        {
+          cartItems.length > 0 && (
+            <>
+              <Separator className='my-5' />
+              <Button onClick={handleCheckout} className='bg-[--accent-100] text-[--bg-100] font-bold py-2 rounded-lg hover:bg-[--accent-200] text-base'>
+                Continuar con el pago
+              </Button>
+            </>
+          )
+        }
       </PopoverContent>
     </Popover>
   )
