@@ -158,3 +158,16 @@ export const updateCart = async (
     console.error(error)
   }
 }
+
+export const createCheckoutSession = async (
+  items: Array<{ productId: string, quantity: number, optionSelectedIndex: number }>
+): Promise<string | undefined> => {
+  try {
+    const response = await axios.post(
+      'http://localhost:3001/payment', { items }
+    )
+    return response.data
+  } catch (error) {
+    console.log(error)
+  }
+}
