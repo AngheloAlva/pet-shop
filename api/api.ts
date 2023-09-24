@@ -1,5 +1,5 @@
 import axios from 'axios'
-import type { Brand, ItemCart, Product, SimpleUser, User, UserUpdate } from '@/interfaces/interfaces'
+import type { Brand, ItemCart, Order, Product, SimpleUser, User, UserUpdate } from '@/interfaces/interfaces'
 
 export const getProducts = async (
   setProducts: React.Dispatch<React.SetStateAction<Product[]>>,
@@ -169,5 +169,15 @@ export const createCheckoutSession = async (
     return response.data
   } catch (error) {
     console.log(error)
+  }
+}
+
+export const createOrder = async (order: Order): Promise<Order> => {
+  try {
+    const response = await axios.post<Order>('http://localhost:3001/orders', order)
+    return response.data
+  } catch (error) {
+    console.error(error)
+    throw error
   }
 }
