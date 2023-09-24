@@ -59,7 +59,7 @@ const ProductCart = ({ userId, product, quantity, optionSelectedIndex }: Product
             {product.name}
           </p>
           <p className='font-semibold'>
-            $ {product.weightOptions[optionSelectedIndex]?.price}
+            $ {product.weightOptions[optionSelectedIndex]?.price.toLocaleString()}
           </p>
         </div>
         <div className='flex items-center gap-1'>

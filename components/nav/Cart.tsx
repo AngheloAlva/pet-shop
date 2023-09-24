@@ -9,24 +9,11 @@ import { FaBagShopping } from 'react-icons/fa6'
 import { useUser } from '@auth0/nextjs-auth0/client'
 import { CartContext } from '@/context/CartContext'
 import { Separator } from '@/components/ui/separator'
-import { Button } from '../ui/button'
-
-import { createCheckoutSession } from '@/api/api'
+import Link from 'next/link'
 
 const Cart = (): JSX.Element => {
   const { cart, cartItems } = useContext(CartContext)
   const { user } = useUser()
-
-  const handleCheckout = async (): Promise<void> => {
-    const items = cartItems.map(item => ({
-      id: item.product,
-      quantity: item.quantity,
-      optionSelectedIndex: item.optionSelectedIndex
-    }))
-
-    const session = await createCheckoutSession(items)
-    window.location.href = session.url
-  }
 
   return (
     <Popover>
@@ -62,9 +49,11 @@ const Cart = (): JSX.Element => {
           cartItems.length > 0 && (
             <>
               <Separator className='my-5' />
-              <Button onClick={handleCheckout} className='bg-[--accent-100] text-[--bg-100] font-bold py-2 rounded-lg hover:bg-[--accent-200] text-base'>
-                Continuar con el pago
-              </Button>
+              <Link href={'/shipping'} className='bg-[--accent-100] text-[--bg-100] font-bold py-2 rounded-lg hover:bg-[--accent-200] text-base text-center'>
+                <PopoverPrimitive.Close>
+                  Continuar al checkout
+                </PopoverPrimitive.Close>
+              </Link>
             </>
           )
         }
