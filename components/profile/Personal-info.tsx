@@ -156,7 +156,7 @@ const PersonalInfo = ({ user }: PersonalInfoProps): JSX.Element => {
         )
       }
       <Label htmlFor='zip-code'>Codigo Postal</Label>
-      <Input id='zip-code' value={user.address?.zipCode} />
+      <Input id='zip-code' defaultValue={user.address?.zipCode} />
 
       <Button type='submit' className='my-5 w-full text-base bg-[--accent-200] text-[--bg-100] font-bold hover:bg-[--accent-100] transition-all hover:text-[--text-200]' >
         Guardar
