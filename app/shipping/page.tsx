@@ -93,20 +93,37 @@ const page = (): JSX.Element => {
         cartItems.length > 0 && (
           <>
             <div className='border-2 rounded-lg p-4 mt-2'>
-              <h2 className='text-lg font-semibold'>Datos de envio</h2>
-              <div className='flex flex-col gap-2 mt-2'>
-                <p className='font-semibold'>Nombre: {userDb.name} {userDb.lastName}</p>
-                <p className='font-semibold'>Email: {userDb.email}</p>
-                <p className='font-semibold'>Telefono: {userDb.phone}</p>
-                <p className='font-semibold'>Direccion:</p>
-                <p className='font-semibold ml-4'>Comuna: {userDb.address?.comuna}</p>
-                <p className='font-semibold ml-4'>Region: {userDb.address?.region}</p>
-                <p className='font-semibold ml-4'>Calle: {userDb.address?.street} {userDb.address?.number}</p>
-                <p className='font-semibold ml-4'>Codigo postal: {userDb.address?.zipCode}</p>
-              </div>
-              <button className='border-2 rounded-md px-3 py-1 my-3 w-full'>
-                Usar otra direccion
-              </button>
+              {
+                userDb.address?.region === undefined 
+                  ? (
+                      <div className='flex flex-col gap-2'>
+                        <p className='font-semibold'>Aun no tienes una direccion de envio</p>
+                        <Link href='/profile'>
+                          <button className='border-2 rounded-md px-3 py-1 my-3 w-full'>
+                            Agregar direccion
+                          </button>
+                        </Link>
+                      </div>
+                    )
+                  : (
+                    <>
+                      <h2 className='text-lg font-semibold'>Datos de envio</h2>
+                      <div className='flex flex-col gap-2 mt-2'>
+                        <p className='font-semibold'>Nombre: {userDb.name} {userDb.lastName}</p>
+                        <p className='font-semibold'>Email: {userDb.email}</p>
+                        <p className='font-semibold'>Telefono: {userDb.phone}</p>
+                        <p className='font-semibold'>Direccion:</p>
+                        <p className='font-semibold ml-4'>Comuna: {userDb.address?.comu na}</p>
+                        <p className='font-semibold ml-4'>Region: {userDb.address?.region}</p>
+                        <p className='font-semibold ml-4'>Calle: {userDb.address?.street} {userDb.address?.number}</p>
+                        <p className='font-semibold ml-4'>Codigo postal: {userDb.address?.zipCode}</p>
+                      </div>
+                      <button className='border-2 rounded-md px-3 py-1 my-3 w-full'>
+                        Usar otra direccion
+                      </button>
+                    </>
+                    )
+              }
             </div>
 
             <div className='border-2 rounded-lg p-4 mt-2'>
