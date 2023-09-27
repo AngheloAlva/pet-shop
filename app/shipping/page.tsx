@@ -94,7 +94,7 @@ const page = (): JSX.Element => {
           <>
             <div className='border-2 rounded-lg p-4 mt-2'>
               {
-                userDb.address?.region === undefined 
+                userDb.address?.region === undefined
                   ? (
                       <div className='flex flex-col gap-2'>
                         <p className='font-semibold'>Aun no tienes una direccion de envio</p>
@@ -113,7 +113,7 @@ const page = (): JSX.Element => {
                         <p className='font-semibold'>Email: {userDb.email}</p>
                         <p className='font-semibold'>Telefono: {userDb.phone}</p>
                         <p className='font-semibold'>Direccion:</p>
-                        <p className='font-semibold ml-4'>Comuna: {userDb.address?.comu na}</p>
+                        <p className='font-semibold ml-4'>Comuna: {userDb.address?.comuna}</p>
                         <p className='font-semibold ml-4'>Region: {userDb.address?.region}</p>
                         <p className='font-semibold ml-4'>Calle: {userDb.address?.street} {userDb.address?.number}</p>
                         <p className='font-semibold ml-4'>Codigo postal: {userDb.address?.zipCode}</p>

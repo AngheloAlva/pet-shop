@@ -121,6 +121,7 @@ const ProductManagement = (): JSX.Element => {
                   type='text'
                   placeholder='Título de la descripción'
                   value={currentDescription.title}
+                  className='mb-2'
                   onChange={(e) => handleDescriptionChange('title', e.target.value)}
                 />
 
@@ -129,9 +130,11 @@ const ProductManagement = (): JSX.Element => {
                   id='description'
                   placeholder='Descripción'
                   value={currentDescription.description}
+                  className='max-h-20'
                   onChange={(e) => handleDescriptionChange('description', e.target.value)}
                 />
 
+                <p className='text-xs mt-1'>* Agrega las descripciones necesarias, al agregar una se limpiaran los campos y podras agregar la siguiente seccion</p>
                 <button onClick={handleAddDescription} className='border-2 bg-[--bg-300] text-[--text-100] px-2 py-1 my-2 rounded-lg'>
                   Añadir descripción
                 </button>
