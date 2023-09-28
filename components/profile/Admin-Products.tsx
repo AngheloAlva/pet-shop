@@ -14,64 +14,64 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Textarea } from '@/components/ui/textarea'
 
 import { createProduct, getCategories, getBrands } from '@/api/api'
-
-interface Description {
-  title: string
-  description: string
-}
+import type { Brand, Category, Description } from '@/interfaces/interfaces'
+import { fi } from 'date-fns/locale'
 
 const ProductManagement = (): JSX.Element => {
-  const [categories, setCategories] = React.useState<string[]>([])
-  const [brands, setBrands] = React.useState<string[]>([])
-  const [descriptions, setDescriptions] = React.useState<Description[]>([{ title: '', description: '' }])
   const [currentDescription, setCurrentDescription] = React.useState<Description>({ title: '', description: '' })
-  const [category, setCategory] = React.useState<string>('')
-  const [brand, setBrand] = React.useState<string>('')
-  const [lifeStage, setLifeStage] = React.useState<string>('')
+  const [categories, setCategories] = React.useState<Category[]>([])
+  const [brands, setBrands] = React.useState<Brand[]>([])
+  const [formData, setFormData] = React.useState({
+    name: '',
+    category: '',
+    brand: '',
+    miniDescription: '',
+    descriptions: [{ title: '', description: '' }],
+    stock: '',
+    lifeStage: ''
+  })
 
   React.useEffect(() => {
-    void getCategories(setCategories)
-    void getBrands(setBrands)
+    void getCategories()
+      .then((res) => { setCategories(res) })
+    void getBrands()
+      .then((res) => { setBrands(res) })
   }, [])
 
-  const handleCategory = (category: string) => {
-    setCategory(category)
-  }
-
-  const handleBrand = (brand: string) => {
-    setBrand(brand)
-  }
-
-  const handleLifeStage = (lifeStage: string) => {
-    setLifeStage(lifeStage)
+  const handleFieldChange = (field: string, value: string) => {
+    setFormData({ ...formData, [field]: value })
   }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     const product = {
-      name: (document.getElementById('name') as HTMLInputElement).value,
-      category,
-      brand,
-      miniDescription: (document.getElementById('mini-description') as HTMLInputElement).value,
-      descriptions,
-      stock: (document.getElementById('stock') as HTMLInputElement).value,
-      lifeStage
+      name: formData.name,
+      category: formData.category,
+      brand: formData.brand,
+      miniDescription: formData.miniDescription,
+      descriptions: formData.descriptions,
+      stock: formData.stock,
+      lifeStage: formData.lifeStage
     }
 
-    void createProduct(product)
+    // void createProduct(product)
+    console.log(product)
 
-    setDescriptions([{ title: '', description: '' }])
+    // setFormData({ ...formData, name: '', category: '', brand: '', miniDescription: '', descriptions: [{ title: '', description: '' }], stock: '', lifeStage: '' })
+  }
+
+  const handleDescriptionChange = (field?: string, value?: string) => {
+    if ((field != null) && (value != null)) {
+      const updatedDescription = { ...currentDescription, [field]: value }
+      setCurrentDescription(updatedDescription)
+    }
   }
 
   const handleAddDescription = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setDescriptions([...descriptions, currentDescription])
+    setFormData({ ...formData, descriptions: [...formData.descriptions, currentDescription] })
     setCurrentDescription({ title: '', description: '' })
-  }
-
-  const handleDescriptionChange = (field: keyof Description, value: string) => {
-    setCurrentDescription({ ...currentDescription, [field]: value })
   }
 
   return (
@@ -87,7 +87,7 @@ const ProductManagement = (): JSX.Element => {
               <Label htmlFor='name'>Nombre</Label>
               <Input id='name' type='text' placeholder='Nombre del producto' className='w-full mb-3' />
               <Label htmlFor='category'>Categoria</Label>
-              <Select onValueChange={handleCategory}>
+              <Select onValueChange={(e) => { handleFieldChange('category', e.target.value) }}>
                 <SelectTrigger className='w-full mb-3'>
                   <SelectValue placeholder='Seleccione una cateogira' />
                 </SelectTrigger>
@@ -100,7 +100,7 @@ const ProductManagement = (): JSX.Element => {
                 </SelectContent>
               </Select>
               <Label htmlFor='brand'>Marca</Label>
-              <Select onValueChange={handleBrand}>
+              <Select onValueChange={(e) => { handleFieldChange('brand', e.target.value) }}>
                 <SelectTrigger className='w-full mb-3'>
                   <SelectValue placeholder='Seleccione una marca' />
                 </SelectTrigger>
@@ -122,7 +122,7 @@ const ProductManagement = (): JSX.Element => {
                   placeholder='Título de la descripción'
                   value={currentDescription.title}
                   className='mb-2'
-                  onChange={(e) => handleDescriptionChange('title', e.target.value)}
+                  onChange={(e) => { handleDescriptionChange() }}
                 />
 
                 <Label htmlFor='description'>Descripción</Label>
@@ -131,7 +131,7 @@ const ProductManagement = (): JSX.Element => {
                   placeholder='Descripción'
                   value={currentDescription.description}
                   className='max-h-20'
-                  onChange={(e) => handleDescriptionChange('description', e.target.value)}
+                  onChange={(e) => { handleDescriptionChange() }}
                 />
 
                 <p className='text-xs mt-1'>* Agrega las descripciones necesarias, al agregar una se limpiaran los campos y podras agregar la siguiente seccion</p>
@@ -142,7 +142,7 @@ const ProductManagement = (): JSX.Element => {
               <Label htmlFor='stock'>Stock</Label>
               <Input id='stock' type='number' placeholder='Stock del producto' className='w-full mb-3' />
               <Label htmlFor='lifeStage'>Etapa de vida</Label>
-              <Select onValueChange={handleLifeStage}>
+              <Select onValueChange={(e) => { handleFieldChange('lifeStage', e.target.value) }}>
                 <SelectTrigger className='w-full mb-3'>
                   <SelectValue placeholder='Seleccione una etapa de vida' />
                 </SelectTrigger>

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import type { Brand, ItemCart, Order, Product, SimpleUser, User, UserUpdate } from '@/interfaces/interfaces'
+import type { Brand, Category, ItemCart, Order, Product, SimpleUser, User, UserUpdate } from '@/interfaces/interfaces'
 
 export const getProducts = async (
   setProducts: React.Dispatch<React.SetStateAction<Product[]>>,
@@ -48,25 +48,23 @@ export const getProductById = async (
   }
 }
 
-export const getCategories = async (
-  setCategories: React.Dispatch<React.SetStateAction<object>>
-): Promise<void> => {
+export const getCategories = async (): Promise<Category[]> => {
   try {
-    const response = await axios.get<{ categories: object }>('http://localhost:3001/categories')
-    setCategories(response.data)
+    const response = await axios.get<Category[]>('http://localhost:3001/categories')
+    return response.data
   } catch (error) {
     console.error(error)
+    throw error
   }
 }
 
-export const getBrands = async (
-  setBrands: React.Dispatch<React.SetStateAction<Brand[]>>
-): Promise<void> => {
+export const getBrands = async (): Promise<Brand[]> => {
   try {
     const response = await axios.get<{ brands: Brand[] }>('http://localhost:3001/brands')
-    setBrands(response.data.brands)
+    return response.data.brands
   } catch (error) {
     console.error(error)
+    throw error
   }
 }
 

@@ -6,17 +6,21 @@ export interface Product {
   miniDescription: string
   description: Description[]
   image: string[]
-  weightOptions: Array<{ weight: string, price: number }>
-  stock: number
+  options: ProductOption[]
   brand: ProductBrand
-  discount: number
-  lifeStage: string
+  lifeStage: string[]
 }
 
-interface Description {
+export interface Description {
   title: string
   description: string
-  _id: string
+}
+
+interface ProductOption {
+  option: string
+  price: number
+  stock: number
+  discount: number
 }
 
 interface ProductBrand {
@@ -131,4 +135,11 @@ export interface ItemCart {
   quantity: number
   optionSelectedIndex: number
   _id: string
+}
+
+export interface Category {
+  _id: string
+  name: string
+  description: string
+  image: string
 }

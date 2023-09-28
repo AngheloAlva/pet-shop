@@ -22,7 +22,10 @@ const Search = (): JSX.Element => {
 
   const handleSearchChange = async (e: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
     const searchQuery = e.target.value
-    if (searchQuery.length === 0) { setSearchResults([]); return }
+    if (searchQuery.length === 0) {
+      setSearchResults([])
+      return
+    }
 
     if (searchQuery.length > 2) {
       setIsLoading(true)
