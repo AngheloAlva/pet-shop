@@ -1,14 +1,14 @@
 export interface Product {
   _id: string
-  category: string
-  petType: string
   name: string
+  petType: string[]
   miniDescription: string
   description: Description[]
   image: string[]
   options: ProductOption[]
-  brand: ProductBrand
+  brand: Brand
   lifeStage: string[]
+  category: Category
 }
 
 export interface Description {
@@ -18,15 +18,9 @@ export interface Description {
 
 interface ProductOption {
   option: string
-  price: number
-  stock: number
-  discount: number
-}
-
-interface ProductBrand {
-  _id: string
-  name: string
-  image: string
+  price: number | string
+  stock: number | string
+  discount: number | string
 }
 
 export interface NavMenuItemProps {

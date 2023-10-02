@@ -9,26 +9,27 @@ import { CartContext } from '@/context/CartContext'
 
 interface ProductCardProps {
   product: Product
-  className: string
+  className?: string
   userId: string
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product, className, userId }) => {
+const ProductCard = ({ product, className, userId }: ProductCardProps): JSX.Element => {
+  console.log(product)
   const producCardClass = 'bg-white border-2 border-[--bg-300] rounded-xl px-3 py-2 w-64 relative overflow-hidden'
 
-  const [selectedWeight, setSelectedWeight] = React.useState(product.weightOptions[0])
+  const [selectedOption, setSelectedOption] = React.useState(product.options[0])
   const { refreshCart } = useContext(CartContext)
 
-  const handleWeightChange = (weight: string): void => {
-    const selectedWeight = product.weightOptions.find(option => option.weight === weight)
+  const handleWeightChange = (option: string): void => {
+    const selectedOption = product.options.find(op => op.option === option)
 
-    if (selectedWeight != null) {
-      setSelectedWeight(selectedWeight)
+    if (selectedOption != null) {
+      setSelectedOption(selectedOption)
     }
   }
 
   const addToCart = async (): Promise<void> => {
-    const optionSelectedIndex = product.weightOptions.findIndex(option => option.weight === selectedWeight.weight)
+    const optionSelectedIndex = product.options.findIndex(op => op.option === selectedOption.option)
     try {
       await addProductToCart(userId, product._id, 1, optionSelectedIndex)
       await refreshCart()
@@ -39,13 +40,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, className, userId })
 
   return (
     <div className={cn(producCardClass, className)} >
-      {
+      {/* {
         product.discount > 0 && (
           <div className='absolute -top-2 -left-12 bg-[--primary-100] text-[--text-200] font-bold rounded-lg px-14 py-4 -rotate-45'>
             -{product.discount}%
           </div>
         )
-      }
+      } */}
       <Link href={`/product/${product._id}`} passHref>
         <div className='w-full flex items-center justify-center mb-4'>
           <Image
@@ -66,21 +67,21 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, className, userId })
         {product.brand.name}
       </Link>
       <p className='text-[--text-200] font-semibold text-lg mb-5'>
-        ${selectedWeight.price.toLocaleString('es-CL')}
+        {/* ${selectedOption.price.toLocaleString('es-CL')} */}
       </p>
       <div className='flex gap-2 mt-2 flex-wrap'>
         {
-          product.weightOptions.map(option => (
+          product.options.map(op => (
             <p className={`
               text-[--text-100] text-sm px-2 rounded-lg py-1 cursor-pointer transition-all select-none
-              ${option.weight === selectedWeight.weight
+              ${op.option === selectedOption.option
                 ? 'bg-[--accent-100]'
                 : 'bg-[--bg-300] text-[--text-100] hover:bg-[--accent-200] hover:text-[--bg-100]'
               }
             `}
-            key={option.weight}
-              onClick={() => { handleWeightChange(option.weight) }}>
-              {option.weight}
+            key={op.option}
+              onClick={() => { handleWeightChange(op.option) }}>
+              {op.option}
             </p>
           ))
         }

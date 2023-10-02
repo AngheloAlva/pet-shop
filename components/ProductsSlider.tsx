@@ -44,9 +44,7 @@ const ProductsSlide = ({ slideTitle, products, userId }: ProductSlideProps): JSX
       >
         {
           products.map((product, index) => (
-            <SwiperSlide key={index} className='max-w-[16rem]'>
-              <ProductCard product={product} className='' userId={userId} />
-            </SwiperSlide>
+            <ProductCard product={product} className={''} userId={userId} key={index} />
           ))
         }
       </Swiper>
