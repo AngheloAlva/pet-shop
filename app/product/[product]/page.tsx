@@ -10,7 +10,7 @@ import Link from 'next/link'
 
 export default function ProductView ({ params }: { params: { product: string } }): JSX.Element {
   const [product, setProduct] = useState<Product>()
-  const [selectedWeight, setSelectedWeight] = useState<Product['weightOptions'][0]>()
+  const [optionSelected, setoptionSelected] = useState<Product['options'][0]>()
   const [quantity, setQuantity] = useState(1)
   const [selectedImage, setSelectedImage] = useState(0)
 
@@ -18,24 +18,25 @@ export default function ProductView ({ params }: { params: { product: string } }
     getProductById(params.product)
       .then((data) => {
         setProduct(data)
-        setSelectedWeight(data.weightOptions[0])
+        console.log(data)
+        setoptionSelected(data.options[0])
       })
       .catch((error) => { console.log(error) })
   }, [params.product])
 
-  const handleWeightChange = (weight: string): void => {
-    const selectedWeight = product?.weightOptions.find(option => option.weight === weight)
+  const handleWeightChange = (option: string): void => {
+    const optionSelected = product?.options.find(op => op.option === option)
 
-    if (selectedWeight != null) {
-      setSelectedWeight(selectedWeight)
+    if (optionSelected != null) {
+      setoptionSelected(optionSelected)
     }
   }
 
-  const increaseQuantity = (): void => {
-    if (product?.stock !== undefined && quantity < product?.stock) {
-      setQuantity(quantity + 1)
-    }
-  }
+  // const increaseQuantity = (): void => {
+  //   if (product?.stock !== undefined && quantity < product?.stock) {
+  //     setQuantity(quantity + 1)
+  //   }
+  // }
 
   const decreaseQuantity = (): void => {
     if (quantity > 1) {
@@ -90,20 +91,20 @@ export default function ProductView ({ params }: { params: { product: string } }
           <hr />
           <div className='flex gap-2 mt-6 mb-4'>
             {
-              product?.weightOptions.map((option) => (
+              product?.options.map((op) => (
                 <button className={`text-[--text-200] pl-3 pr-10 rounded-lg py-2 transition-all select-none flex flex-col
-                  ${option.weight === selectedWeight?.weight
+                  ${op.option === optionSelected?.option
                     ? 'bg-[--accent-100]'
                     : 'bg-[--bg-300] text-[--text-200] hover:bg-[--accent-200] hover:text-[--bg-100]'
                   }`}
-                  key={option.weight}
-                  onClick={() => { handleWeightChange(option.weight) }}
+                  key={op.option}
+                  onClick={() => { handleWeightChange(op.option) }}
                 >
                   <div className='font-bold text-sm'>
-                    {option.weight}
+                    {op.option}
                   </div>
                   <div className='font-semibold text-lg'>
-                    ${option.price}
+                    ${op.price}
                   </div>
                 </button>
               ))
@@ -119,10 +120,10 @@ export default function ProductView ({ params }: { params: { product: string } }
               <div className='w-7 h-7 bg-[--bg-300] select-none text-[--text-200] rounded-lg transition-all flex items-center justify-center'>
                 {quantity}
               </div>
-              <button className={`w-7 h-7 bg-[--bg-300] text-[--text-200] rounded-lg transition-all hover:bg-[--accent-200] hover:text-[--bg-100] flex items-center justify-center ${quantity === product?.stock ? 'opacity-80 cursor-not-allowed' : ''}`}
-                onClick={increaseQuantity}>
+              {/* <button className={`w-7 h-7 bg-[--bg-300] text-[--text-200] rounded-lg transition-all hover:bg-[--accent-200] hover:text-[--bg-100] flex items-center justify-center ${quantity === product?.stock ? 'opacity-80 cursor-not-allowed' : ''}`} */}
+                {/* onClick={increaseQuantity}>
                 +
-              </button>
+              </button> */}
             </div>
 
             <button className='flex items-center font-semibold tracking-wide justify-center gap-2 h-10 w-full bg-[--accent-100] text-[--text-200] rounded-lg transition-all hover:bg-[--accent-200] hover:text-[--bg-100]'>
