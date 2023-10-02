@@ -41,7 +41,7 @@ export const getProductById = async (
     const response = await axios.get<Product>(
       `http://localhost:3001/products/${id}`
     )
-    return response.data
+    return response.data.product
   } catch (error) {
     console.error(error)
     throw error
