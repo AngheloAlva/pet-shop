@@ -41,7 +41,7 @@ const ProductCart = ({ userId, product, quantity, optionSelectedIndex }: Product
   }
 
   const quantityMore = (): void => {
-    if (product.stock === quantityProduct) return
+    if (product.options[optionSelectedIndex].stock === quantityProduct) return
     setQuantityProduct(quantityProduct + 1)
   }
 
@@ -59,7 +59,7 @@ const ProductCart = ({ userId, product, quantity, optionSelectedIndex }: Product
             {product.name}
           </p>
           <p className='font-semibold'>
-            $ {product.weightOptions[optionSelectedIndex]?.price.toLocaleString()}
+            $ {product.options[optionSelectedIndex]?.price.toLocaleString()}
           </p>
         </div>
         <div className='flex items-center gap-1'>

@@ -14,7 +14,6 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ product, className, userId }: ProductCardProps): JSX.Element => {
-  console.log(product)
   const producCardClass = 'bg-white border-2 border-[--bg-300] rounded-xl px-3 py-2 w-64 relative overflow-hidden'
 
   const [selectedOption, setSelectedOption] = React.useState(product.options[0])
@@ -40,13 +39,13 @@ const ProductCard = ({ product, className, userId }: ProductCardProps): JSX.Elem
 
   return (
     <div className={cn(producCardClass, className)} >
-      {/* {
-        product.discount > 0 && (
+      {
+        product.options.map(op => Number(op.discount) > 0 && (
           <div className='absolute -top-2 -left-12 bg-[--primary-100] text-[--text-200] font-bold rounded-lg px-14 py-4 -rotate-45'>
-            -{product.discount}%
+            -{op.discount}%
           </div>
-        )
-      } */}
+        ))
+      }
       <Link href={`/product/${product._id}`} passHref>
         <div className='w-full flex items-center justify-center mb-4'>
           <Image
@@ -60,7 +59,7 @@ const ProductCard = ({ product, className, userId }: ProductCardProps): JSX.Elem
       </Link>
       <Link href={`/product/${product._id}`} passHref>
         <p className='text-[--text-100] font-medium text-base cursor-pointer'>
-          {product.brand.name} - {product.petType} {product.name}
+          {product.name}
         </p>
       </Link>
       <Link href={`/brand/${product.brand._id}`} className='text-xs text-[--primary-300] cursor-pointer'>
