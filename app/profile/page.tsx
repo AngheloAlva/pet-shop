@@ -2,7 +2,7 @@
 
 import React, { useEffect } from 'react'
 import { useUser, withPageAuthRequired } from '@auth0/nextjs-auth0/client'
-import { getUser } from '@/api/api'
+import { getUser } from '@/api/user'
 
 import {
   Tabs,
@@ -20,7 +20,7 @@ const ProfilePage = (): JSX.Element => {
 
   useEffect(() => {
     void getUser(user?.sub as string)
-      .then((res) => { setUserDb(res) })
+      .then((res) => { setUserDb(res.user) })
   }, [])
 
   return (

@@ -28,7 +28,7 @@ const Cart = (): JSX.Element => {
             cartItems.length > 0
               ? cart.map((product, index) => (
                   <ProductCart
-                    key={index}
+                    key={product?._id}
                     userId={user?.sub ?? ''}
                     product={product}
                     quantity={cartItems[index]?.quantity}

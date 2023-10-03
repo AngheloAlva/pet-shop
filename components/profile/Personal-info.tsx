@@ -10,7 +10,7 @@ import { Label } from '@/components/ui/label'
 import { I, II, III, IV, V, VI, VII, VIII, IX, X, XI, XII, XIV, XV, XVI, Metropolitana } from '@/data/comunasArray'
 import type { User } from '@/interfaces/interfaces'
 
-import { updateUser } from '@/api/api'
+import { updateUser } from '@/api/user'
 
 interface PersonalInfoProps {
   user: User

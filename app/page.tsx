@@ -1,16 +1,18 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { getBrands, getProducts } from '@/api/api'
-import Carousel from '@/components/Carousel'
-import Image from 'next/image'
 import Link from 'next/link'
-import ProductsSlide from '@/components/ProductsSlider'
+import Image from 'next/image'
+import { useEffect, useState } from 'react'
+
+import Carousel from '@/components/Carousel'
 import BrandsSlider from '@/components/BrandsSlider'
+import ProductsSlide from '@/components/ProductsSlider'
 
 import type { Product, Brand } from '@/interfaces/interfaces'
 import { carouselImages, promotionsImages, servicesImages } from '../data/imgsArrays'
 
+import { getBrands } from '@/api/brand'
+import { getProducts } from '@/api/product'
 import { useUser } from '@auth0/nextjs-auth0/client'
 
 export default function Home (): JSX.Element {
@@ -21,8 +23,10 @@ export default function Home (): JSX.Element {
 
   useEffect(() => {
     try {
-      void getProducts(setProducts)
-      void getBrands(setBrands)
+      void getProducts()
+        .then((products) => { setProducts(products.products) })
+      void getBrands()
+        .then((brands) => { setBrands(brands.brands) })
     } catch (error) {
       console.log(error)
     }

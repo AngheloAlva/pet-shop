@@ -13,7 +13,7 @@ import {
   DropdownMenuLabel
 } from '@/components/ui/dropdown-menu'
 
-import { postUser } from '@/api/api'
+import { postUser } from '@/api/user'
 
 const UserDropdown = (): JSX.Element => {
   const { user } = useUser()

@@ -21,7 +21,7 @@ const MiniProductCard = ({ product, setSearchResults }: MiniProductCardProps): J
             {product.name}
           </p>
           <p className='text-[--text-200] font-semibold text-lg'>
-            ${product.weightOptions[0].price.toLocaleString('es-CL')}
+            ${product.options[0].price.toLocaleString('es-CL')}
           </p>
         </div>
       </DialogPrimitive.Close>

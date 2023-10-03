@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 
-import { addProductToCart } from '@/api/api'
+import { addProductToCart } from '@/api/cart'
 import { CartContext } from '@/context/CartContext'
 
 interface ProductCardProps {

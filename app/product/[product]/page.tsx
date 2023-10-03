@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import { getProductById } from '@/api/api'
+import { getProductById } from '@/api/product'
 import type { Product } from '@/interfaces/interfaces'
 import Image from 'next/image'
 import { FaCartPlus, FaShop, FaTruckFast, FaShieldHalved, FaTruckArrowRight } from 'react-icons/fa6'
@@ -17,9 +17,8 @@ export default function ProductView ({ params }: { params: { product: string } }
   useEffect(() => {
     getProductById(params.product)
       .then((data) => {
-        setProduct(data)
-        console.log(data)
-        setoptionSelected(data.options[0])
+        setProduct(data.product)
+        setoptionSelected(data.product.options[0])
       })
       .catch((error) => { console.log(error) })
   }, [params.product])

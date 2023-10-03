@@ -4,7 +4,7 @@ import type { Product } from '@/interfaces/interfaces'
 import Image from 'next/image'
 import { FaRegTrashCan } from 'react-icons/fa6'
 
-import { updateCart } from '@/api/api'
+import { updateCart } from '@/api/cart'
 import { CartContext } from '@/context/CartContext'
 
 interface ProductCartProps {
@@ -32,7 +32,7 @@ const ProductCart = ({ userId, product, quantity, optionSelectedIndex }: Product
   }
 
   useEffect(() => {
-    updateCartDebounced(userId, product._id, quantityProduct)
+    updateCartDebounced(userId, product?._id, quantityProduct)
   }, [quantityProduct])
 
   const quantityLess = (): void => {
@@ -52,14 +52,14 @@ const ProductCart = ({ userId, product, quantity, optionSelectedIndex }: Product
 
   return (
     <div className='w-full flex text-[--text-200] text-sm gap-2'>
-      <Image src={product.image[0]} alt={product.name} width={70} height={60} />
+      <Image src={product?.image[0]} alt={product?.name} width={70} height={60} />
       <div className='flex justify-between w-full'>
         <div className='flex flex-col gap-1'>
           <p className='font-bold'>
-            {product.name}
+            {product?.name}
           </p>
           <p className='font-semibold'>
-            $ {product.options[optionSelectedIndex]?.price.toLocaleString()}
+            $ {product?.options[optionSelectedIndex]?.price.toLocaleString()}
           </p>
         </div>
         <div className='flex items-center gap-1'>

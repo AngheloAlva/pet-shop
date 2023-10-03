@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { getProductsBySearch } from '@/api/api'
+import { searchProducts } from '@/api/product'
 import type { Product } from '@/interfaces/interfaces'
 
 import {
@@ -29,7 +29,8 @@ const Search = (): JSX.Element => {
 
     if (searchQuery.length > 2) {
       setIsLoading(true)
-      await getProductsBySearch(searchQuery, setSearchResults)
+      await searchProducts(searchQuery)
+        .then((products) => { setSearchResults(products.products) })
       setIsLoading(false)
     } else {
       setSearchResults([])

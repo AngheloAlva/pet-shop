@@ -4,7 +4,7 @@ import axios from 'axios'
 const getCart = async (userId: string): Promise<{ msg: string, cart: ItemCart[] }> => {
   try {
     const response = await axios.get(`http://localhost:3001/users/${userId}/cart`)
-    return response.data.cart
+    return response.data
   } catch (error) {
     console.error(error)
     throw error
