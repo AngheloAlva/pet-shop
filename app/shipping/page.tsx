@@ -6,7 +6,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { withPageAuthRequired, useUser } from '@auth0/nextjs-auth0/client'
-import { createCheckoutSession, getUser } from '@/api/api'
+import { getUser } from '@/api/user'
+import { createCheckoutSession } from '@/api/cart'
 
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Label } from '@/components/ui/label'
@@ -73,7 +74,7 @@ const page = (): JSX.Element => {
                     <Image src={product.image[0]} alt={product.name} width={100} height={100} />
                     <div className='flex flex-col text-[--text-200]'>
                       <p className='font-semibold'>{product.name}</p>
-                      <p className='font-semibold'>$ {product?.weightOptions[cartItems[index].optionSelectedIndex].price.toLocaleString()}</p>
+                      <p className='font-semibold'>$ {product?.options[cartItems[index].optionSelectedIndex].price.toLocaleString()}</p>
                       <p className='text-sm mt-2'>Cantidad: {cartItems[index]?.quantity}</p>
                     </div>
                   </div>
@@ -149,8 +150,11 @@ const page = (): JSX.Element => {
                   <p>
                     Subtotal: $ {
                       cartItems.reduce((acc, item, index) => {
-                        const price = cart[index]?.weightOptions[item.optionSelectedIndex].price
-                        return acc + (price * item.quantity)
+                        const price = cart[index]?.options[item.optionSelectedIndex]?.price
+                        if (typeof price === 'number') {
+                          return acc + (price * item.quantity)
+                        }
+                        return acc
                       }, 0).toLocaleString()
                     }
                   </p>
@@ -174,8 +178,11 @@ const page = (): JSX.Element => {
                   <p>
                     Total: $ {
                       cartItems.reduce((acc, item, index) => {
-                        const price = cart[index]?.weightOptions[item.optionSelectedIndex].price
-                        return acc + (price * item.quantity)
+                        const price = cart[index]?.options[item.optionSelectedIndex]?.price
+                        if (typeof price === 'number') {
+                          return acc + (price * item.quantity)
+                        }
+                        return acc
                       }, 0) + (shippingMethod === 'CHILEXPRESS' ? 3000 : shippingMethod === 'STARKEN' ? 2000 : shippingMethod === 'BLUE EXPRESS' ? 2000 : 0)
                     }
                   </p>

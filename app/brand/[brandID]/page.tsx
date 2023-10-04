@@ -1,6 +1,6 @@
 'use client'
 
-import { getProducts } from '@/api/api'
+import { getProducts } from '@/api/product'
 import ProductCard from '@/components/ProductCard'
 import type { Product } from '@/interfaces/interfaces'
 import React, { useEffect, useState } from 'react'
@@ -11,7 +11,12 @@ const BrandPage = ({ params }: { params: { brandID: string } }): JSX.Element => 
   useEffect(() => {
     async function fetchProducts (): Promise<void> {
       try {
-        await getProducts(setProducts, { brand: params.brandID })
+        await getProducts()
+          .then((res) => {
+            const products = res.products
+            const filteredProducts = products.filter((product: Product) => product.brand._id === params.brandID)
+            setProducts(filteredProducts)
+          })
       } catch (error) {
         console.error(error)
       }

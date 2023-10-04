@@ -2,16 +2,24 @@
 
 import React, { useEffect, useState } from 'react'
 import type { Product } from '@/interfaces/interfaces'
-import { getProducts } from '@/api/api'
+import { getProducts } from '@/api/product'
 import ProductCard from '@/components/ProductCard'
+
+import { useUser } from '@auth0/nextjs-auth0/client'
 
 const CategoryPage = ({ params }: { params: { categoryID: string } }): JSX.Element => {
   const [products, setProducts] = useState<Product[]>([])
+  const { user } = useUser()
 
   useEffect(() => {
     async function fetchProducts (): Promise<void> {
       try {
-        await getProducts(setProducts, { category: params.categoryID })
+        await getProducts()
+          .then((res) => {
+            const products = res.products
+            const filteredProducts = products.filter((product: Product) => product.brand._id === params.categoryID)
+            setProducts(filteredProducts)
+          })
       } catch (error) {
         console.error(error)
       }
@@ -28,7 +36,7 @@ const CategoryPage = ({ params }: { params: { categoryID: string } }): JSX.Eleme
         {
           products.map((product, index) => (
             index < 10 && (
-              <ProductCard key={product._id} product={product} className='w-auto flex flex-col justify-between sm:block' />
+              <ProductCard key={product._id} userId={user?.sub ?? ''} product={product} className='w-auto flex flex-col justify-between sm:block' />
             )
           ))
         }
