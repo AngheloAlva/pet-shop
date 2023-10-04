@@ -1,11 +1,11 @@
 import React, { useContext, useEffect } from 'react'
-
-import type { Product } from '@/interfaces/interfaces'
 import Image from 'next/image'
+
 import { FaRegTrashCan } from 'react-icons/fa6'
 
 import { updateCart } from '@/api/cart'
 import { CartContext } from '@/context/CartContext'
+import type { Product } from '@/interfaces/interfaces'
 
 interface ProductCartProps {
   userId: string

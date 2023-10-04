@@ -1,28 +1,11 @@
 'use client'
+import React from 'react'
 
-import { getProducts } from '@/api/product'
 import ProductCard from '@/components/ProductCard'
-import type { Product } from '@/interfaces/interfaces'
-import React, { useEffect, useState } from 'react'
+import useProductAndBrands from '@/hooks/useProduct&Brands'
 
 const BrandPage = ({ params }: { params: { brandID: string } }): JSX.Element => {
-  const [products, setProducts] = useState<Product[]>([])
-
-  useEffect(() => {
-    async function fetchProducts (): Promise<void> {
-      try {
-        await getProducts()
-          .then((res) => {
-            const products = res.products
-            const filteredProducts = products.filter((product: Product) => product.brand._id === params.brandID)
-            setProducts(filteredProducts)
-          })
-      } catch (error) {
-        console.error(error)
-      }
-    }
-    void fetchProducts()
-  }, [params.brandID])
+  const { products, userId } = useProductAndBrands({ brand: params.brandID })
 
   return (
     <div className='mx-5'>
@@ -33,7 +16,7 @@ const BrandPage = ({ params }: { params: { brandID: string } }): JSX.Element => 
         {
           products.map((product, index) => (
             index < 10 && (
-              <ProductCard key={product._id} product={product} className='w-auto flex flex-col justify-between sm:block' />
+              <ProductCard key={product._id} userId={userId} product={product} className='w-auto flex flex-col justify-between sm:block' />
             )
           ))
         }

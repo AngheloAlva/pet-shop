@@ -40,11 +40,11 @@ const ProductCard = ({ product, className, userId }: ProductCardProps): JSX.Elem
   return (
     <div className={cn(producCardClass, className)} >
       {
-        product.options.map(op => Number(op.discount) > 0 && (
+        Number(selectedOption.discount) > 0 && (
           <div className='absolute -top-2 -left-12 bg-[--primary-100] text-[--text-200] font-bold rounded-lg px-14 py-4 -rotate-45'>
-            -{op.discount}%
+            -{selectedOption.discount}%
           </div>
-        ))
+        )
       }
       <Link href={`/product/${product._id}`} passHref>
         <div className='w-full flex items-center justify-center mb-4'>
@@ -66,7 +66,16 @@ const ProductCard = ({ product, className, userId }: ProductCardProps): JSX.Elem
         {product.brand.name}
       </Link>
       <p className='text-[--text-200] font-semibold text-lg mb-5'>
-        {/* ${selectedOption.price.toLocaleString('es-CL')} */}
+        {
+          Number(selectedOption.discount) > 0
+            ? (
+                <>
+                  <span className='line-through mr-2 text-sm'>${selectedOption.price.toLocaleString('es-CL')}</span>
+                  <span>${(Number(selectedOption.price) * (1 - Number(selectedOption.discount) / 100)).toLocaleString('es-CL')}</span>
+                </>
+              )
+            : `$${selectedOption.price.toLocaleString('es-CL')}`
+        }
       </p>
       <div className='flex gap-2 mt-2 flex-wrap'>
         {

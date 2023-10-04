@@ -1,31 +1,12 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
-import type { Product } from '@/interfaces/interfaces'
-import { getProducts } from '@/api/product'
+import React from 'react'
 import ProductCard from '@/components/ProductCard'
 
-import { useUser } from '@auth0/nextjs-auth0/client'
+import useProductAndBrands from '@/hooks/useProduct&Brands'
 
 const CategoryPage = ({ params }: { params: { categoryID: string } }): JSX.Element => {
-  const [products, setProducts] = useState<Product[]>([])
-  const { user } = useUser()
-
-  useEffect(() => {
-    async function fetchProducts (): Promise<void> {
-      try {
-        await getProducts()
-          .then((res) => {
-            const products = res.products
-            const filteredProducts = products.filter((product: Product) => product.brand._id === params.categoryID)
-            setProducts(filteredProducts)
-          })
-      } catch (error) {
-        console.error(error)
-      }
-    }
-    void fetchProducts()
-  }, [params.categoryID])
+  const { products, userId } = useProductAndBrands({ category: params.categoryID })
 
   return (
     <div className='mx-5'>
@@ -36,7 +17,7 @@ const CategoryPage = ({ params }: { params: { categoryID: string } }): JSX.Eleme
         {
           products.map((product, index) => (
             index < 10 && (
-              <ProductCard key={product._id} userId={user?.sub ?? ''} product={product} className='w-auto flex flex-col justify-between sm:block' />
+              <ProductCard key={product._id} userId={userId} product={product} className='w-auto flex flex-col justify-between sm:block' />
             )
           ))
         }

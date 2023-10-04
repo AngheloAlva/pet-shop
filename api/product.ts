@@ -36,7 +36,7 @@ const getProductById = async (
     return response.data
   } catch (error) {
     console.error(error)
-    throw error
+    throw new Error()
   }
 }
 
@@ -48,7 +48,7 @@ const searchProducts = async (search: string): Promise<{ total: number, products
     return response.data
   } catch (error) {
     console.error(error)
-    throw error()
+    throw new Error()
   }
 }
 

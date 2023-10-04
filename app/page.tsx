@@ -2,41 +2,23 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
 
 import Carousel from '@/components/Carousel'
 import BrandsSlider from '@/components/BrandsSlider'
 import ProductsSlide from '@/components/ProductsSlider'
 
-import type { Product, Brand } from '@/interfaces/interfaces'
 import { carouselImages, promotionsImages, servicesImages } from '../data/imgsArrays'
 
-import { getBrands } from '@/api/brand'
-import { getProducts } from '@/api/product'
-import { useUser } from '@auth0/nextjs-auth0/client'
+import useProductAndBrands from '@/hooks/useProduct&Brands'
 
 export default function Home (): JSX.Element {
-  const [products, setProducts] = useState<Product[]>([])
-  const [brands, setBrands] = useState<Brand[]>([])
-
-  const { user } = useUser()
-
-  useEffect(() => {
-    try {
-      void getProducts()
-        .then((products) => { setProducts(products.products) })
-      void getBrands()
-        .then((brands) => { setBrands(brands.brands) })
-    } catch (error) {
-      console.log(error)
-    }
-  }, [])
+  const { products, brands, userId } = useProductAndBrands()
 
   return (
     <>
       <Carousel images={carouselImages} />
 
-      <ProductsSlide slideTitle='Top Ventas' products={products} userId={user?.sub ?? ''} />
+      <ProductsSlide slideTitle='Top Ventas' products={products} userId={userId} />
 
       <h2 className='text-xl font-bold mb-3 mt-5 pl-5'>Promociones</h2>
       <div className='flex flex-col gap-3 px-5'>
@@ -49,7 +31,7 @@ export default function Home (): JSX.Element {
         }
       </div>
 
-      <ProductsSlide slideTitle='Nuevos Productos' products={products} userId={user?.sub ?? ''} />
+      <ProductsSlide slideTitle='Nuevos Productos' products={products} userId={userId} />
 
       <div className='flex flex-col w-full px-5 my-7 gap-3'>
         {
