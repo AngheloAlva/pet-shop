@@ -100,19 +100,19 @@ export default function ProductView ({ params }: { params: { productID: string }
         </div>
 
         <div className='flex flex-col sm:w-4/5'>
-          <h1 className='text-2xl font-semibold text-[--accent-200]'>{product?.name}</h1>
-          <Link href={`/brand/${product?.brand._id}`} className='text-[--text-200] font-medium text-base mt-1 mb-3 cursor-pointer'>
+          <h1 className='text-2xl font-semibold text-[--primary-200]'>{product?.name}</h1>
+          <Link href={`/brand/${product?.brand._id}`} className='text-[--accent-200] font-medium text-base mt-1 mb-3 cursor-pointer'>
             {product?.brand.name}
           </Link>
           <hr />
-          <p className='text-sm mt-2 mb-4'>
+          <p className='text-sm font-medium mt-2 mb-4 text-[--text-200]'>
             {product?.miniDescription}
           </p>
           <hr />
           <div className='flex gap-2 mt-6 mb-4'>
             {
               product?.options.map((op) => (
-                <button className={`text-[--text-200] pl-3 pr-10 rounded-sm py-2 transition-all select-none flex flex-col
+                <button className={`text-[--text-100] pl-3 pr-10 rounded-sm py-2 transition-all select-none flex flex-col
                   ${op.option === optionSelected?.option
                     ? 'bg-[--accent-100]'
                     : 'bg-[--bg-300] text-[--text-200] hover:bg-[--accent-200] hover:text-[--bg-100]'
@@ -156,29 +156,29 @@ export default function ProductView ({ params }: { params: { productID: string }
 
       <div className='grid grid-cols-2 gap-5 mx-5 my-12 border-2 py-5 px-4 rounded-sm sm:grid-cols-4'>
         <div className='flex text-xs flex-col w-40'>
-          <FaTruckArrowRight className='text-4xl text-[--bg-100] bg-[--accent-200] rounded-full w-10 h-10 p-1 mb-2' />
+          <FaTruckArrowRight className='text-4xl text-[--bg-100] bg-[--primary-200] rounded-full w-10 h-10 p-1 mb-2' />
           <p className='font-semibold text-sm'>Envios Gratis</p>
           <p>¡Conoce cuales comunas aqui!</p>
         </div>
         <div className='flex text-xs flex-col w-40'>
-          <FaShieldHalved className='text-4xl text-[--bg-100] bg-[--accent-200] rounded-full w-10 h-10 p-1 mb-2' />
+          <FaShieldHalved className='text-4xl text-[--bg-100] bg-[--primary-200] rounded-full w-10 h-10 p-1 mb-2' />
           <p className='font-semibold text-sm'>Pagos Seguros</p>
           <p>100% protegido</p>
         </div>
         <div className='flex text-xs flex-col w-40'>
-          <FaTruckFast className='text-4xl text-[--bg-100] bg-[--accent-200] rounded-full w-10 h-10 p-1 mb-2' />
+          <FaTruckFast className='text-4xl text-[--bg-100] bg-[--primary-200] rounded-full w-10 h-10 p-1 mb-2' />
           <p className='font-semibold text-sm'>Envio Express</p>
           <p>¡Recibe el mismo dia!</p>
         </div>
         <div className='flex text-xs flex-col w-40'>
-        <FaShop className='text-4xl text-[--bg-100] bg-[--accent-200] rounded-full w-10 h-10 p-1 mb-2' />
+        <FaShop className='text-4xl text-[--bg-100] bg-[--primary-200] rounded-full w-10 h-10 p-1 mb-2' />
           <p className='font-semibold text-sm'>Tiendas</p>
           <p>Atencion de Lunes a Sabados</p>
         </div>
       </div>
 
       <div className='px-5'>
-        <h2 className='text-xl font-semibold text-[--accent-200] mb-3'>Descripción</h2>
+        <h2 className='text-xl font-semibold text-[--text-100] mb-3'>Descripción</h2>
         <Accordion type='single' collapsible className='flex flex-col gap-1'>
           {
             product?.description.map((description, index) => (

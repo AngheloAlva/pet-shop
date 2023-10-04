@@ -30,7 +30,7 @@ const AcordionMenu = ({ categoryName, typeMenu }: AcordionMenuProps): JSX.Elemen
         {
           typeMenu.map((item, index) => (
             <>
-              <Link href={`/category/${item.href}`} key={index} className='py-1 px-2 cursor-pointer hover:font-semibold transition-all'>
+              <Link href={`/category/${item.href}`} key={index} className='py-1 px-2 cursor-pointer hover:text-[--accent-200] hover:font-semibold transition-all'>
                 <SheetClose>
                   {item.title}
                 </SheetClose>

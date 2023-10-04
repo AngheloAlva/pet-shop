@@ -20,7 +20,7 @@ const Form = ({ service }: FormProps): JSX.Element => {
   }
 
   return (
-    <form className='w-5/6 border-2 rounded-lg border-t-4 border-t-[--accent-200] flex flex-col gap-4 px-7 py-7 mx-auto'>
+    <form className='w-5/6 border-2 rounded-lg border-t-4 border-t-[--accent-100] flex flex-col gap-4 px-7 py-7 mx-auto'>
         <h3 className='text-[--accent-200]'>INFORMACION NECESARIA</h3>
         <div className='flex gap-4 w-full justify-between flex-col'>
           <div className='flex gap-4 flex-col'>
@@ -158,7 +158,7 @@ const Form = ({ service }: FormProps): JSX.Element => {
           <button
             type='submit'
             onClick={onSubmit}
-            className='bg-[--accent-200] text-[--bg-100] py-2 px-3 rounded-md transition-all hover:bg-[--accent-100] hover:text-[--text-100] mt-4 w-full font-semibold text-center focus:outline-none '
+            className='bg-[--accent-100] text-[--text-100] py-2 px-3 rounded-md transition-all hover:bg-[--accent-200] hover:text-[--bg-100] mt-4 w-full font-semibold text-center focus:outline-none '
           >
             Registrar
           </button>

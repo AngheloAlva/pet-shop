@@ -59,10 +59,10 @@ const page = (): JSX.Element => {
 
   return (
     <div className='py-8 px-5'>
-      <div className='border-2 rounded-lg p-4'>
-        <div className='flex justify-between'>
+      <div className='border-2 rounded-sm p-4 bg-[--bg-200] border-[--bg-300]'>
+        <div className='flex justify-between text-[--text-100]'>
           <Link href='/'>
-            <FaAngleLeft className='text-lg text-[--text-200]' />
+            <FaAngleLeft className='text-lg' />
           </Link>
           <h2 className='text-lg font-semibold'>Resumen</h2>
         </div>
@@ -70,8 +70,8 @@ const page = (): JSX.Element => {
           {
             cartItems.length > 0
               ? cart.map((product, index) => (
-                  <div className='flex gap-2 mt-4 items-center'>
-                    <Image src={product.image[0]} alt={product.name} width={100} height={100} />
+                  <div className='flex gap-3 mt-4 items-center'>
+                    <Image src={product.image[0]} alt={product.name} className='rounded-sm' width={100} height={100} />
                     <div className='flex flex-col text-[--text-200]'>
                       <p className='font-semibold'>{product.name}</p>
                       <p className='font-semibold'>$ {product?.options[cartItems[index].optionSelectedIndex].price.toLocaleString()}</p>
@@ -82,7 +82,7 @@ const page = (): JSX.Element => {
               : (
                 <div className='flex flex-col text-[--text-200] items-center gap-5 py-2'>
                   <p className='font-semibold'>Aun no tienes productos en tu carrito</p>
-                  <Link href='/' className='bg-[--accent-100] text-[--bg-100] font-bold py-2 w-3/4 rounded-lg hover:bg-[--accent-200] text-base text-center'>
+                  <Link href='/' className='bg-[--accent-100] text-[--bg-100] font-bold py-2 w-3/4 rounded-sm hover:bg-[--accent-200] text-base text-center'>
                     Comienza a comprar
                   </Link>
                 </div>
@@ -93,14 +93,14 @@ const page = (): JSX.Element => {
       {
         cartItems.length > 0 && (
           <>
-            <div className='border-2 rounded-lg p-4 mt-2'>
+            <div className='border-2 rounded-sm p-4 mt-2 bg-[--bg-200] border-[--bg-300]'>
               {
                 userDb.address?.region === undefined
                   ? (
                       <div className='flex flex-col gap-2'>
                         <p className='font-semibold'>Aun no tienes una direccion de envio</p>
                         <Link href='/profile'>
-                          <button className='border-2 rounded-md px-3 py-1 my-3 w-full'>
+                          <button className='border-2 rounded-sm px-3 border-[--bg-300] bg-[--bg-100] py-1 my-3 w-full'>
                             Agregar direccion
                           </button>
                         </Link>
@@ -119,7 +119,7 @@ const page = (): JSX.Element => {
                         <p className='font-semibold ml-4'>Calle: {userDb.address?.street} {userDb.address?.number}</p>
                         <p className='font-semibold ml-4'>Codigo postal: {userDb.address?.zipCode}</p>
                       </div>
-                      <button className='border-2 rounded-md px-3 py-1 my-3 w-full'>
+                      <button className='border-2 rounded-sm px-3 py-1 my-3 border-[--bg-300] w-full'>
                         Usar otra direccion
                       </button>
                     </>
@@ -127,7 +127,7 @@ const page = (): JSX.Element => {
               }
             </div>
 
-            <div className='border-2 rounded-lg p-4 mt-2'>
+            <div className='border-2 rounded-sm p-4 mt-2 bg-[--bg-200] border-[--bg-300]'>
               <h2 className='text-lg font-semibold mb-3'>Metodo de envio</h2>
               <RadioGroup className='ml-5' onValueChange={handleShippingMethod}>
                 {
@@ -143,7 +143,7 @@ const page = (): JSX.Element => {
               </RadioGroup>
             </div>
 
-            <div className='border-2 rounded-lg p-4 mt-2'>
+            <div className='border-2 rounded-sm p-4 mt-2 bg-[--bg-200] border-[--bg-300]'>
             {
               cartItems.length > 0 && (
                 <div className='flex flex-col mt-5 font-semibold'>
@@ -186,7 +186,7 @@ const page = (): JSX.Element => {
                       }, 0) + (shippingMethod === 'CHILEXPRESS' ? 3000 : shippingMethod === 'STARKEN' ? 2000 : shippingMethod === 'BLUE EXPRESS' ? 2000 : 0)
                     }
                   </p>
-                  <button className='bg-[--accent-100] mt-3 text-[--bg-100] font-bold py-2 rounded-lg hover:bg-[--accent-200] text-base text-center' onClick={handleCheckout}>
+                  <button className='bg-[--accent-100] mt-4 text-[--text-100] font-bold py-2 rounded-sm hover:bg-[--accent-200] hover:text-[--bg-100] text-base text-center transition-colors' onClick={handleCheckout}>
                     Continuar con el pago
                   </button>
                 </div>

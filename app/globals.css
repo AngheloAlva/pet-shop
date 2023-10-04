@@ -4,16 +4,16 @@
  
 @layer base {
   :root {
-    --primary-100:#d4eaf7;
-    --primary-200:#b6ccd8;
-    --primary-300:#3b3c3d;
-    --accent-100:#71c4ef;
-    --accent-200:#00668c;
-    --text-100:#1d1c1c;
-    --text-200:#313d44;
-    --bg-100:#fffefb;
-    --bg-200:#f5f4f1;
-    --bg-300:#cccbc8;
+    --primary-100:#FF6F61;
+    --primary-200:#dd5147;
+    --primary-300:#8f0010;
+    --accent-100:#FFD166;
+    --accent-200:#957200;
+    --text-100:#333333;
+    --text-200:#5c5c5c;
+    --bg-100:#F5F4F1;
+    --bg-200:#ebeae7;
+    --bg-300:#c2c1be;
     
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
@@ -84,6 +84,10 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+body {
+  background-color: var(--bg-100);
 }
 
 .loader {

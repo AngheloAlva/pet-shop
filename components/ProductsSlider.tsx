@@ -25,14 +25,14 @@ const ProductsSlide = ({ slideTitle, products, userId }: ProductSlideProps): JSX
   return (
     <div className='px-5'>
       <div className='flex justify-between items-center'>
-        <h2 className='text-xl font-bold mt-4 mb-3'>
+        <h2 className='text-xl font-bold mt-4 mb-3 text-[--text-100]'>
           {slideTitle}
         </h2>
         <div className='flex gap-2'>
-          <button onClick={handlePrevClick} className='bg-[--accent-100] rounded-sm text-[--bg-100] py-1 px-1 text-base transition-all hover:bg-[--accent-200]' >
+          <button onClick={handlePrevClick} className='bg-[--primary-100] rounded-sm text-[--bg-100] py-1 px-1 text-base transition-all hover:bg-[--primary-200]' >
             <FaAngleLeft />
           </button>
-          <button onClick={handleNextClick} className='bg-[--accent-100] rounded-sm text-[--bg-100] py-1 px-1 text-base transition-all hover:bg-[--accent-200]' >
+          <button onClick={handleNextClick} className='bg-[--primary-100] rounded-sm text-[--bg-100] py-1 px-1 text-base transition-all hover:bg-[--primary-200]' >
             <FaAngleRight />
           </button>
         </div>

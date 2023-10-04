@@ -15,8 +15,8 @@ import Cart from './nav/Cart'
 
 const NavBar = (): JSX.Element => {
   return (
-    <nav className='flex flex-col bg-[--bg-100]'>
-      <header className='flex justify-between items-center px-2 py-1 bg-[--accent-100] border-b-2 border-[--accent-100]'>
+    <nav className='flex flex-col'>
+      <header className='flex justify-between items-center px-2 py-2 bg-[--primary-200]'>
         <div className="flex items-center gap-2">
           <Link href={'/'} passHref>
             <Image src={'/simple-logo.png'} alt='logo' width={45} height={45} />

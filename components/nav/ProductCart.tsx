@@ -59,21 +59,26 @@ const ProductCart = ({ userId, product, quantity, optionSelectedIndex }: Product
             {product?.name}
           </p>
           <p className='font-semibold'>
+            {product?.options[optionSelectedIndex]?.option}
+          </p>
+          <p className='font-semibold'>
             $ {product?.options[optionSelectedIndex]?.price.toLocaleString()}
           </p>
         </div>
         <div className='flex items-center gap-1'>
-          <button onClick={quantityProduct === 1 ? deleteProduct : quantityLess} className={`px-1 rounded-l-md transition-colors h-5 ${quantityProduct === 1 ? 'bg-red-200 hover:bg-red-600 text-red-600 hover:text-[--bg-100]' : 'bg-[--bg-300] hover:bg-[--bg-200]'}`}>
+          <button onClick={quantityProduct === 1 ? deleteProduct : quantityLess} className={`px-1 rounded-l-md transition-colors h-5 ${quantityProduct === 1 ? 'bg-[--primary-100] hover:bg-[--primary-300] text-[--primary-300] hover:text-[--primary-100]' : 'bg-[--bg-300] hover:bg-[--bg-200]'}`}>
             {
               quantityProduct === 1
-                ? <FaRegTrashCan className='' />
+                ? <FaRegTrashCan />
                 : ' - '
             }
           </button>
-          <span className='bg-[--bg-300] px-1 h-5'>
+          <span className='bg-[--bg-300] px-1 h-5 text-[--text-100]'>
             {quantityProduct}
           </span>
-          <button onClick={quantityMore} className='px-1 bg-[--bg-300] rounded-r-md hover:bg-[--bg-200] transition-colors h-5'> + </button>
+          <button onClick={quantityMore} className='px-1 bg-[--bg-300] text-[--text-100] rounded-r-md hover:bg-[--bg-200] transition-colors h-5'>
+            +
+          </button>
       </div>
       </div>
     </div>

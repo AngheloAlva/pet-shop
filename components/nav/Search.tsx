@@ -40,7 +40,7 @@ const Search = (): JSX.Element => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <div className='border-2 rounded-xl border-[--bg-100] px-3 items-center flex cursor-pointer gap-7 h-8 text-[--bg-100] font-bold hover:text-[--bg-200] hover:border-[--bg-200] transition-colors'>
+        <div className='border-2 rounded-lg border-[--bg-100] px-3 items-center flex cursor-pointer gap-7 h-8 text-[--bg-100] font-bold hover:text-[--bg-200] hover:border-[--bg-200] transition-colors'>
           <span>Buscar...</span>
           <FaMagnifyingGlass />
         </div>

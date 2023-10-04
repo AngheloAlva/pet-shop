@@ -20,7 +20,7 @@ export default function Home (): JSX.Element {
 
       <ProductsSlide slideTitle='Top Ventas' products={products} userId={userId} />
 
-      <h2 className='text-xl font-bold mb-3 mt-5 pl-5'>Promociones</h2>
+      <h2 className='text-xl font-bold text-[--text-100] mb-3 mt-5 pl-5'>Promociones</h2>
       <div className='flex flex-col gap-3 px-5'>
         {
           promotionsImages.map((image, index) => (

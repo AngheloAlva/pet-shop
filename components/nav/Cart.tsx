@@ -21,7 +21,7 @@ const Cart = (): JSX.Element => {
         <FaBagShopping className='text-3xl text-[--bg-100] cursor-pointer p-[.1rem] rounded-full border-[--bg-100] border-2 hover:text-[--bg-200] hover:border-[--bg-200] transition-colors' />
       </PopoverTrigger>
       <PopoverContent className='w-auto max-w-[85vw] flex flex-col'>
-        <h3 className='font-bold text-xl mb-2'>Carrito</h3>
+        <h3 className='font-bold text-xl mb-2 text-[--text-100]'>Carrito</h3>
         <Separator />
         <div className='flex flex-col gap-2 mt-4'>
           {
@@ -49,7 +49,7 @@ const Cart = (): JSX.Element => {
           cartItems.length > 0 && (
             <>
               <Separator className='my-5' />
-              <Link href={'/shipping'} className='bg-[--accent-100] text-[--bg-100] font-bold py-2 rounded-lg hover:bg-[--accent-200] text-base text-center'>
+              <Link href={'/shipping'} className='bg-[--accent-100] text-[--text-100] hover:text-[--bg-100] transition-colors font-bold py-2 rounded-lg hover:bg-[--accent-200] text-base text-center'>
                 <PopoverPrimitive.Close>
                   Continuar al checkout
                 </PopoverPrimitive.Close>
