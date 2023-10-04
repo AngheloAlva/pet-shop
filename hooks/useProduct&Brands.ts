@@ -10,11 +10,10 @@ interface Filter {
   category?: string
   brand?: string
   petType?: string
-  discount?: string
   lifeStage?: string
 }
 
-const useProductAndBrands = (filter: Filter = {}): { products: Product[], brands: Brand[], userId: string } => {
+const useProductAndBrands = ({ category, brand, petType, lifeStage }: Filter): { products: Product[], brands: Brand[], userId: string } => {
   const [products, setProducts] = useState<Product[]>([])
   const [brands, setBrands] = useState<Brand[]>([])
 
@@ -22,15 +21,19 @@ const useProductAndBrands = (filter: Filter = {}): { products: Product[], brands
   const userId = user?.sub ?? ''
 
   useEffect(() => {
-    try {
-      void getProducts(filter)
-        .then((products) => { setProducts(products.products) })
-      void getBrands()
-        .then((brands) => { setBrands(brands.brands) })
-    } catch (error) {
-      throw new Error('Error while fetching products and brands')
+    const fetchProducts = async (): Promise<void> => {
+      const data = await getProducts({ category, brand, petType, lifeStage })
+      setProducts(data.products)
     }
-  }, [filter])
+
+    const fetchBrands = async (): Promise<void> => {
+      const data = await getBrands()
+      setBrands(data.brands)
+    }
+
+    void fetchProducts()
+    void fetchBrands()
+  }, [category, brand, petType, lifeStage])
 
   return { products, brands, userId }
 }

@@ -7,7 +7,7 @@ const getBrands = async (): Promise<{ total: number, brands: Brand[] }> => {
     return response.data
   } catch (error) {
     console.error(error)
-    throw error
+    throw new Error('Error while fetching brands')
   }
 }
 

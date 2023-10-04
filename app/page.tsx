@@ -12,7 +12,7 @@ import { carouselImages, promotionsImages, servicesImages } from '../data/imgsAr
 import useProductAndBrands from '@/hooks/useProduct&Brands'
 
 export default function Home (): JSX.Element {
-  const { products, brands, userId } = useProductAndBrands()
+  const { products, brands, userId } = useProductAndBrands({})
 
   return (
     <>
