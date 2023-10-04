@@ -4,7 +4,7 @@ import React from 'react'
 
 import { withPageAuthRequired } from '@auth0/nextjs-auth0/client'
 
-import { createOrder } from '@/api/api'
+import { createOrder } from '@/api/order'
 import type { Order } from '@/interfaces/interfaces'
 
 const page = (): JSX.Element => {

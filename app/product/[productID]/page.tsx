@@ -2,28 +2,36 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 
 import { FaCartPlus, FaShop, FaTruckFast, FaShieldHalved, FaTruckArrowRight } from 'react-icons/fa6'
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion'
 
+import { addProductToCart } from '@/api/cart'
 import { getProductById } from '@/api/product'
+import { CartContext } from '@/context/CartContext'
 import type { Product } from '@/interfaces/interfaces'
+import { useUser } from '@auth0/nextjs-auth0/client'
 
-export default function ProductView ({ params }: { params: { product: string } }): JSX.Element {
+export default function ProductView ({ params }: { params: { productID: string } }): JSX.Element {
   const [quantity, setQuantity] = useState(1)
   const [product, setProduct] = useState<Product>()
   const [selectedImage, setSelectedImage] = useState(0)
   const [optionSelected, setoptionSelected] = useState<Product['options'][0]>()
 
+  const productID = params.productID
+  const { user } = useUser()
+
+  const { refreshCart } = useContext(CartContext)
+
   useEffect(() => {
-    getProductById(params.product)
+    getProductById(productID)
       .then((data) => {
         setProduct(data.product)
         setoptionSelected(data.product.options[0])
       })
       .catch((error) => { console.log(error) })
-  }, [params.product])
+  }, [productID])
 
   const handleOptionChange = (option: string): void => {
     const optionSelected = product?.options.find(op => op.option === option)
@@ -48,6 +56,16 @@ export default function ProductView ({ params }: { params: { product: string } }
 
   const handleImageChange = (imageIndex: number): void => {
     setSelectedImage(imageIndex)
+  }
+
+  const addToCart = async (): Promise<void> => {
+    const optionSelectedIndex = product?.options.findIndex(op => op.option === optionSelected?.option)
+    try {
+      await addProductToCart(user?.sub ?? '', product?._id ?? '', quantity, optionSelectedIndex)
+      await refreshCart()
+    } catch (error) {
+      throw new Error()
+    }
   }
 
   return (
@@ -129,7 +147,7 @@ export default function ProductView ({ params }: { params: { product: string } }
               </button>
             </div>
 
-            <button className='flex items-center font-semibold tracking-wide justify-center gap-2 h-10 w-full bg-[--accent-100] text-[--text-200] rounded-sm transition-all hover:bg-[--accent-200] hover:text-[--bg-100]'>
+            <button onClick={addToCart} className='flex items-center font-semibold tracking-wide justify-center gap-2 h-10 w-full bg-[--accent-100] text-[--text-200] rounded-sm transition-all hover:bg-[--accent-200] hover:text-[--bg-100]'>
               <FaCartPlus />Agregar al carrito
             </button>
           </div>
