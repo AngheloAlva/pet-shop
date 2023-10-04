@@ -29,10 +29,10 @@ const ProductsSlide = ({ slideTitle, products, userId }: ProductSlideProps): JSX
           {slideTitle}
         </h2>
         <div className='flex gap-2'>
-          <button onClick={handlePrevClick} className='bg-[--accent-100] rounded-lg text-[--bg-100] py-1 px-1 text-base transition-all hover:bg-[--accent-200]' >
+          <button onClick={handlePrevClick} className='bg-[--accent-100] rounded-sm text-[--bg-100] py-1 px-1 text-base transition-all hover:bg-[--accent-200]' >
             <FaAngleLeft />
           </button>
-          <button onClick={handleNextClick} className='bg-[--accent-100] rounded-lg text-[--bg-100] py-1 px-1 text-base transition-all hover:bg-[--accent-200]' >
+          <button onClick={handleNextClick} className='bg-[--accent-100] rounded-sm text-[--bg-100] py-1 px-1 text-base transition-all hover:bg-[--accent-200]' >
             <FaAngleRight />
           </button>
         </div>

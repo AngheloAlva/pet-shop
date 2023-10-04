@@ -14,7 +14,7 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ product, className, userId }: ProductCardProps): JSX.Element => {
-  const producCardClass = 'bg-white border-2 border-[--bg-300] rounded-xl px-3 py-2 w-64 relative overflow-hidden'
+  const producCardClass = 'bg-white border-2 border-[--bg-300] rounded-sm px-3 py-2 relative overflow-hidden'
 
   const [selectedOption, setSelectedOption] = React.useState(product.options[0])
   const { refreshCart } = useContext(CartContext)
@@ -57,31 +57,33 @@ const ProductCard = ({ product, className, userId }: ProductCardProps): JSX.Elem
             />
         </div>
       </Link>
-      <Link href={`/product/${product._id}`} passHref>
-        <p className='text-[--text-100] font-medium text-base cursor-pointer'>
-          {product.name}
+      <div className=''>
+        <Link href={`/product/${product._id}`} passHref>
+          <p className='text-[--text-100] font-medium text-base cursor-pointer'>
+            {product.name}
+          </p>
+        </Link>
+        <Link href={`/brand/${product.brand._id}`} className='text-xs text-[--primary-300] cursor-pointer'>
+          {product.brand.name}
+        </Link>
+        <p className='text-[--text-200] font-semibold text-lg mb-5'>
+          {
+            Number(selectedOption.discount) > 0
+              ? (
+                  <>
+                    <span className='line-through mr-2 text-sm'>${selectedOption.price.toLocaleString('es-CL')}</span>
+                    <span>${(Number(selectedOption.price) * (1 - Number(selectedOption.discount) / 100)).toLocaleString('es-CL')}</span>
+                  </>
+                )
+              : `$${selectedOption.price.toLocaleString('es-CL')}`
+          }
         </p>
-      </Link>
-      <Link href={`/brand/${product.brand._id}`} className='text-xs text-[--primary-300] cursor-pointer'>
-        {product.brand.name}
-      </Link>
-      <p className='text-[--text-200] font-semibold text-lg mb-5'>
-        {
-          Number(selectedOption.discount) > 0
-            ? (
-                <>
-                  <span className='line-through mr-2 text-sm'>${selectedOption.price.toLocaleString('es-CL')}</span>
-                  <span>${(Number(selectedOption.price) * (1 - Number(selectedOption.discount) / 100)).toLocaleString('es-CL')}</span>
-                </>
-              )
-            : `$${selectedOption.price.toLocaleString('es-CL')}`
-        }
-      </p>
+      </div>
       <div className='flex gap-2 mt-2 flex-wrap'>
         {
           product.options.map(op => (
             <p className={`
-              text-[--text-100] text-sm px-2 rounded-lg py-1 cursor-pointer transition-all select-none
+              text-[--text-100] text-sm px-2 rounded-sm py-1 cursor-pointer transition-all select-none
               ${op.option === selectedOption.option
                 ? 'bg-[--accent-100]'
                 : 'bg-[--bg-300] text-[--text-100] hover:bg-[--accent-200] hover:text-[--bg-100]'
@@ -95,7 +97,7 @@ const ProductCard = ({ product, className, userId }: ProductCardProps): JSX.Elem
         }
       </div>
       {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
-      <button onClick={addToCart} className='p-2 my-2 w-full bg-[--accent-100] text-[--text-200] rounded-lg transition-all hover:bg-[--accent-200] hover:text-[--bg-100]'>
+      <button onClick={addToCart} className='p-2 my-2 w-full bg-[--accent-100] text-[--text-200] rounded-sm transition-all hover:bg-[--accent-200] hover:text-[--bg-100]'>
         Agregar
       </button>
     </div>

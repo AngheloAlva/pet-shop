@@ -24,7 +24,7 @@ export default function Home (): JSX.Element {
       <div className='flex flex-col gap-3 px-5'>
         {
           promotionsImages.map((image, index) => (
-            <Link href={image.href} key={index} className='rounded-md overflow-hidden'>
+            <Link href={image.href} key={index} className='rounded-sm overflow-hidden'>
               <Image key={index} src={image.src} alt={`Promotion ${index + 1}`} width={1000} height={400} />
             </Link>
           ))
@@ -36,7 +36,7 @@ export default function Home (): JSX.Element {
       <div className='flex flex-col w-full px-5 my-7 gap-3'>
         {
           servicesImages.map((image, index) => (
-            <Link href={image.href} key={index} className='rounded-md overflow-hidden shadow-xl'>
+            <Link href={image.href} key={index} className='rounded-sm overflow-hidden shadow-xl'>
               <Image src={image.src} alt={`Service ${index + 1}`} width={1000} height={400} />
             </Link>
           ))
@@ -49,11 +49,11 @@ export default function Home (): JSX.Element {
       </div>
 
       <div className='mx-5 my-5 relative'>
-        <Image src={'/imgs/email-subscription.png'} alt='Email Subscription' width={1000} height={400} className='rounded-lg z-0' />
+        <Image src={'/imgs/email-subscription.png'} alt='Email Subscription' width={1000} height={400} className='rounded-sm z-0' />
         <div className=''>
           <form action="">
-            <input type="email" placeholder='Email...' className='absolute bottom-14 left-5 rounded-lg py-1 px-2 text-[--text-200]' />
-            <button type='submit' className='absolute bottom-5 left-5 rounded-lg py-1 px-2 bg-[--accent-100] text-[--text-100] font-semibold'>Suscribirse</button>
+            <input type="email" placeholder='Email...' className='absolute bottom-14 left-5 rounded-sm py-1 px-2 text-[--text-200]' />
+            <button type='submit' className='absolute bottom-5 left-5 rounded-sm py-1 px-2 bg-[--accent-100] text-[--text-100] font-semibold'>Suscribirse</button>
           </form>
         </div>
       </div>

@@ -14,7 +14,7 @@ const BrandsSlider = ({ brands }: BrandsSliderProps): JSX.Element => {
       {
         brands.map((brand, index) => (
           <SwiperSlide key={index} className='max-w-[7rem] min-h-[5rem]'>
-            <div className='flex h-14 bg-[--primary-200] rounded-lg items-center justify-center shadow-lg'>
+            <div className='flex h-16 bg-[--bg-300] rounded-sm items-center justify-center shadow-lg'>
               <Image src={brand.image} alt={brand.name} width={90} height={20} />
             </div>
           </SwiperSlide>
