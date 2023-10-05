@@ -1,27 +1,25 @@
 'use client'
 
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { CartContext } from '@/context/CartContext'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { withPageAuthRequired, useUser } from '@auth0/nextjs-auth0/client'
-import { getUser } from '@/api/user'
+import { withPageAuthRequired } from '@auth0/nextjs-auth0/client'
 import { createCheckoutSession } from '@/api/cart'
 
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Label } from '@/components/ui/label'
 
-import type { User } from '@/interfaces/interfaces'
-
 import { FaAngleLeft } from 'react-icons/fa6'
+import { useUserDB } from '@/hooks/useUser'
 
 const page = (): JSX.Element => {
   const { cart, cartItems } = useContext(CartContext)
-  const { user } = useUser()
+  const { user } = useUserDB()
 
-  const [userDb, setUserDb] = React.useState<User>([])
-  const [shippingMethod, setShippingMethod] = React.useState<string>('')
+  const [shippingMethod, setShippingMethod] = useState<string>('')
+  const [paymentActive, setPaymentActive] = useState<boolean>(false)
 
   const shippingMethods = [
     { value: 'CHILEXPRESS', label: 'ChileExpress' },
@@ -42,19 +40,11 @@ const page = (): JSX.Element => {
     window.location.href = session.url
   }
 
-  React.useEffect(() => {
-    const getUserDb = async (): Promise<void> => {
-      const userDb = await getUser(user?.sub ?? '')
-      setUserDb(userDb)
-    }
-
-    if (user != null) {
-      void getUserDb()
-    }
-  }, [user])
-
   const handleShippingMethod = (value: string): void => {
     setShippingMethod(value)
+    if (user?.address?.region !== undefined) {
+      setPaymentActive(true)
+    }
   }
 
   return (
@@ -95,7 +85,7 @@ const page = (): JSX.Element => {
           <>
             <div className='border-2 rounded-sm p-4 mt-2 bg-[--bg-200] border-[--bg-300]'>
               {
-                userDb.address?.region === undefined
+                user?.address?.region === undefined
                   ? (
                       <div className='flex flex-col gap-2'>
                         <p className='font-semibold'>Aun no tienes una direccion de envio</p>
@@ -110,14 +100,14 @@ const page = (): JSX.Element => {
                     <>
                       <h2 className='text-lg font-semibold'>Datos de envio</h2>
                       <div className='flex flex-col gap-2 mt-2'>
-                        <p className='font-semibold'>Nombre: {userDb.name} {userDb.lastName}</p>
-                        <p className='font-semibold'>Email: {userDb.email}</p>
-                        <p className='font-semibold'>Telefono: {userDb.phone}</p>
+                        <p className='font-semibold'>Nombre: {user.name} {user.lastName}</p>
+                        <p className='font-semibold'>Email: {user.email}</p>
+                        <p className='font-semibold'>Telefono: {user.phone}</p>
                         <p className='font-semibold'>Direccion:</p>
-                        <p className='font-semibold ml-4'>Comuna: {userDb.address?.comuna}</p>
-                        <p className='font-semibold ml-4'>Region: {userDb.address?.region}</p>
-                        <p className='font-semibold ml-4'>Calle: {userDb.address?.street} {userDb.address?.number}</p>
-                        <p className='font-semibold ml-4'>Codigo postal: {userDb.address?.zipCode}</p>
+                        <p className='font-semibold ml-4'>Comuna: {user.address?.comuna}</p>
+                        <p className='font-semibold ml-4'>Region: {user.address?.region}</p>
+                        <p className='font-semibold ml-4'>Calle: {user.address?.street} {user.address?.number}</p>
+                        <p className='font-semibold ml-4'>Codigo postal: {user.address?.zipCode}</p>
                       </div>
                       <button className='border-2 rounded-sm px-3 py-1 my-3 border-[--bg-300] w-full'>
                         Usar otra direccion
@@ -186,7 +176,11 @@ const page = (): JSX.Element => {
                       }, 0) + (shippingMethod === 'CHILEXPRESS' ? 3000 : shippingMethod === 'STARKEN' ? 2000 : shippingMethod === 'BLUE EXPRESS' ? 2000 : 0)
                     }
                   </p>
-                  <button className='bg-[--accent-100] mt-4 text-[--text-100] font-bold py-2 rounded-sm hover:bg-[--accent-200] hover:text-[--bg-100] text-base text-center transition-colors' onClick={handleCheckout}>
+                  <button
+                    className={`bg-[--accent-100] mt-4 text-[--text-100] font-bold py-2 rounded-sm text-base text-center transition-colors ${!paymentActive ? 'select-none opacity-70 cursor-not-allowed' : 'hover:bg-[--accent-200] hover:text-[--bg-100]'}`}
+                    disabled={!paymentActive}
+                    onClick={handleCheckout}
+                  >
                     Continuar con el pago
                   </button>
                 </div>

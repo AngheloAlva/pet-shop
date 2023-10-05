@@ -1,8 +1,7 @@
 'use client'
 
-import React, { useEffect } from 'react'
-import { useUser, withPageAuthRequired } from '@auth0/nextjs-auth0/client'
-import { getUser } from '@/api/user'
+import React from 'react'
+import { withPageAuthRequired } from '@auth0/nextjs-auth0/client'
 
 import {
   Tabs,
@@ -11,17 +10,10 @@ import {
   TabsTrigger
 } from '@/components/ui/tabs'
 import PersonalInfo from '@/components/profile/Personal-info'
-
-import type { User } from '@/interfaces/interfaces'
+import { useUserDB } from '@/hooks/useUser'
 
 const ProfilePage = (): JSX.Element => {
-  const [userDb, setUserDb] = React.useState<User>({})
-  const { user } = useUser()
-
-  useEffect(() => {
-    void getUser(user?.sub as string)
-      .then((res) => { setUserDb(res.user) })
-  }, [])
+  const { user } = useUserDB()
 
   return (
     <>
@@ -30,21 +22,21 @@ const ProfilePage = (): JSX.Element => {
           Bienvenido {user?.name}
         </h1>
         <Tabs defaultValue='personal-info'>
-          <TabsList>
+          <TabsList className='bg-[--bg-200]'>
             <TabsTrigger value='personal-info'>Datos Personales</TabsTrigger>
             <TabsTrigger value='history'>Historial</TabsTrigger>
             <TabsTrigger value='payment-methods'>Metodos de pago</TabsTrigger>
           </TabsList>
-          <TabsContent value='personal-info'>
-            <PersonalInfo user={userDb} />
+          <TabsContent value='personal-info' className='bg-[--bg-200] boder-[--bg-300] rounded-md'>
+            <PersonalInfo user={user} />
           </TabsContent>
           <TabsContent value='history'>
 
           </TabsContent>
-          <TabsContent value='payment-history'>
+          <TabsContent value='payment-history' className='bg-[--bg-200] boder-[--bg-300] rounded-md'>
 
           </TabsContent>
-          <TabsContent value='directions'>
+          <TabsContent value='directions' className='bg-[--bg-200] boder-[--bg-300] rounded-md'>
 
           </TabsContent>
         </Tabs>

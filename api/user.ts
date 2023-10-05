@@ -11,7 +11,7 @@ const postUser = async (user: SimpleUser): Promise<{ msg: string }> => {
   }
 }
 
-const getUser = async (id: string): Promise<{ msg: string, user: User }> => {
+const getUser = async (id: string): Promise<{ msg: string, user: User[] }> => {
   try {
     const response = await axios(`http://localhost:3001/users/${id}`)
     return response.data
