@@ -55,8 +55,8 @@ const PersonalInfo = ({ user }: PersonalInfoProps): JSX.Element => {
           region,
           comuna,
           isApartment,
-          apartamentNumber: parseInt((document.getElementById('aparment-number') as HTMLInputElement)?.value),
-          zipCode: parseInt((document.getElementById('zip-code') as HTMLInputElement)?.value)
+          apartamentNumber: parseInt((document.getElementById('aparmentNumber') as HTMLInputElement)?.value),
+          zipCode: parseInt((document.getElementById('zipCode') as HTMLInputElement)?.value)
         }
       })
 

@@ -61,9 +61,18 @@ const ProductCart = ({ userId, product, quantity, optionSelectedIndex }: Product
           <p className='font-semibold'>
             {product?.options[optionSelectedIndex]?.option}
           </p>
-          <p className='font-semibold'>
-            $ {product?.options[optionSelectedIndex]?.price.toLocaleString()}
-          </p>
+          <div className='font-semibold'>
+            {
+              Number(product?.options[optionSelectedIndex].discount) > 0
+                ? (
+                    <>
+                      <span className='line-through mr-1 text-xs'>${product?.options[optionSelectedIndex].price.toLocaleString('es-CL')}</span>
+                      <span>${(Number(product?.options[optionSelectedIndex].price) * (1 - Number(product?.options[optionSelectedIndex].discount) / 100)).toLocaleString('es-CL')}</span>
+                    </>
+                  )
+                : `$${product?.options[optionSelectedIndex].price.toLocaleString('es-CL')}`
+            }
+          </div>
         </div>
         <div className='flex items-center gap-1'>
           <button onClick={quantityProduct === 1 ? deleteProduct : quantityLess} className={`px-1 rounded-l-md transition-colors h-5 ${quantityProduct === 1 ? 'bg-[--primary-100] hover:bg-[--primary-300] text-[--primary-300] hover:text-[--primary-100]' : 'bg-[--bg-300] hover:bg-[--bg-200]'}`}>
