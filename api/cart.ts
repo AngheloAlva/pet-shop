@@ -51,12 +51,12 @@ const addProductToCart = async (
 
 const createCheckoutSession = async (
   items: Array<{ productId: string, quantity: number, optionSelectedIndex: number }>
-): Promise<{ msg: string, id: string }> => {
+): Promise<{ msg: string, url: string }> => {
   try {
     const response = await axios.post(
       'http://localhost:3001/payment', { items }
     )
-    return response.data
+    return response.data.url
   } catch (error) {
     console.log(error)
     throw error

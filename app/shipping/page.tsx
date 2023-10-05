@@ -37,12 +37,12 @@ const page = (): JSX.Element => {
     }))
 
     const session = await createCheckoutSession(items)
-    window.location.href = session.url
+    window.location.href = session
   }
 
   const handleShippingMethod = (value: string): void => {
     setShippingMethod(value)
-    if (user?.address?.region !== undefined) {
+    if (user?.address?.street !== undefined && user?.address?.street !== '') {
       setPaymentActive(true)
     }
   }
