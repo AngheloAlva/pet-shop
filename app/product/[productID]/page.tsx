@@ -2,42 +2,33 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 
 import { FaCartPlus, FaShop, FaTruckFast, FaShieldHalved, FaTruckArrowRight } from 'react-icons/fa6'
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion'
 
 import { addProductToCart } from '@/api/cart'
-import { getProductById } from '@/api/product'
 import { CartContext } from '@/context/CartContext'
 import type { Product } from '@/interfaces/interfaces'
 import { useUser } from '@auth0/nextjs-auth0/client'
+import useProduct from '@/hooks/useProduct'
 
 export default function ProductView ({ params }: { params: { productID: string } }): JSX.Element {
   const [quantity, setQuantity] = useState(1)
-  const [product, setProduct] = useState<Product>()
   const [selectedImage, setSelectedImage] = useState(0)
-  const [optionSelected, setoptionSelected] = useState<Product['options'][0]>()
+  const [optionSelected, setOptionSelected] = useState<Product['options'][0]>()
 
   const productID = params.productID
+  const { product } = useProduct({ productID, setOptionSelected })
   const { user } = useUser()
 
   const { refreshCart } = useContext(CartContext)
-
-  useEffect(() => {
-    getProductById(productID)
-      .then((data) => {
-        setProduct(data.product)
-        setoptionSelected(data.product.options[0])
-      })
-      .catch((error) => { console.log(error) })
-  }, [productID])
 
   const handleOptionChange = (option: string): void => {
     const optionSelected = product?.options.find(op => op.option === option)
 
     if (optionSelected != null) {
-      setoptionSelected(optionSelected)
+      setOptionSelected(optionSelected)
       setQuantity(1)
     }
   }
