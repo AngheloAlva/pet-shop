@@ -87,7 +87,7 @@ export interface UserUpdate {
     zipCode: number
     region: string
     comuna: string
-    isApartament: boolean
+    isApartment: boolean
     apartamentNumber: number
   }
   phone: string

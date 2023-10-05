@@ -20,7 +20,7 @@ interface PersonalInfoProps {
 const PersonalInfo = ({ user }: PersonalInfoProps): JSX.Element => {
   const { toast } = useToast()
 
-  const [isApartment, setIsApartment] = React.useState<boolean>(false)
+  const [isApartment, setIsApartment] = React.useState<boolean>(user.address?.isApartment)
   const [listComunas, setListComunas] = React.useState<string[]>([])
   const [region, setRegion] = React.useState<string>('')
   const [comuna, setComuna] = React.useState<string>('')
@@ -54,7 +54,7 @@ const PersonalInfo = ({ user }: PersonalInfoProps): JSX.Element => {
           number: parseInt((document.getElementById('number') as HTMLInputElement)?.value),
           region,
           comuna,
-          isApartament: isApartment,
+          isApartment,
           apartamentNumber: parseInt((document.getElementById('aparment-number') as HTMLInputElement)?.value),
           zipCode: parseInt((document.getElementById('zip-code') as HTMLInputElement)?.value)
         }
@@ -146,20 +146,20 @@ const PersonalInfo = ({ user }: PersonalInfoProps): JSX.Element => {
                   }
                 </SelectContent>
               </Select>
-              <div className=''>
-                <Checkbox className='mr-2 my-3' id='is-apartment' onClick={() => { setIsApartment(!isApartment) }} />
-                <Label htmlFor='is-aparment'>¿Departamento?</Label>
+              <div className='flex items-center gap-2 mt-3 mb-1 ml-1'>
+                <Checkbox id='isApartment' className='-mt-2' onClick={() => { setIsApartment(!isApartment) }} checked={isApartment} />
+                <Label htmlFor='isAparment'>¿Departamento?</Label>
               </div>
               {
                 isApartment && (
                   <>
-                    <Label htmlFor='aparment-number'>Numero de Dpto</Label>
-                    <Input id='aparment-number' value={user.address?.apartamentNumber} required={isApartment} />
+                    <Label htmlFor='aparmentNumber'>Numero de Dpto</Label>
+                    <Input id='aparmentNumber' value={user.address?.apartamentNumber} required={isApartment} />
                   </>
                 )
               }
-              <Label htmlFor='zip-code'>Codigo Postal</Label>
-              <Input id='zip-code' defaultValue={user.address?.zipCode} />
+              <Label htmlFor='zipCode'>Codigo Postal</Label>
+              <Input id='zipCode' defaultValue={user.address?.zipCode} />
 
               <Button type='submit' className='my-5 w-full text-base bg-[--accent-200] text-[--bg-100] font-bold hover:bg-[--accent-100] transition-all hover:text-[--text-200]' >
                 Guardar
