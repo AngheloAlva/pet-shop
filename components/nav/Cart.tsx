@@ -38,7 +38,7 @@ const Cart = (): JSX.Element => {
               : (
                 <div className='flex flex-col text-[--text-200] items-center gap-5 py-2'>
                   <p className='font-semibold'>Aun no tienes productos en tu carrito</p>
-                  <PopoverPrimitive.Close className='bg-[--accent-100] text-[--bg-100] font-bold py-2 w-3/4 rounded-lg'>
+                  <PopoverPrimitive.Close className='bg-[--accent-100] text-[--text-100] font-bold py-2 w-3/4 rounded-lg hover:text-[--bg-100] hover:bg-[--accent-200] transition-colors'>
                     Comienza a comprar
                   </PopoverPrimitive.Close>
                 </div>
