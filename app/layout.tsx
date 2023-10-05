@@ -7,6 +7,7 @@ import { Nunito_Sans } from 'next/font/google'
 import Footer from '@/components/Footer'
 import { UserProvider } from '@auth0/nextjs-auth0/client'
 import { CartProvider } from '@/context/CartContext'
+import { Toaster } from '@/components/ui/toaster'
 
 const nunitoSans = Nunito_Sans({
   weight: ['200', '300', '400', '500', '600', '700', '800'],
@@ -31,6 +32,7 @@ export default function RootLayout ({
           <body className={nunitoSans.className}>
             <NavBar />
             {children}
+            <Toaster />
             <Footer />
           </body>
         </CartProvider>
