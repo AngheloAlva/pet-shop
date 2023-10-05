@@ -6,6 +6,8 @@ import { cn } from '@/lib/utils'
 
 import { addProductToCart } from '@/api/cart'
 import { CartContext } from '@/context/CartContext'
+import { useUserDB } from '@/hooks/useUser'
+import { useToast } from './ui/use-toast'
 
 interface ProductCardProps {
   product: Product
@@ -14,6 +16,8 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ product, className, userId }: ProductCardProps): JSX.Element => {
+  const { toast } = useToast()
+
   const producCardClass = 'bg-white border-2 border-[--bg-200] rounded-sm px-3 py-2 relative overflow-hidden'
 
   const [selectedOption, setSelectedOption] = React.useState(product.options[0])
@@ -29,6 +33,18 @@ const ProductCard = ({ product, className, userId }: ProductCardProps): JSX.Elem
 
   const addToCart = async (): Promise<void> => {
     const optionSelectedIndex = product.options.findIndex(op => op.option === selectedOption.option)
+
+    if (userId === undefined || userId === '') {
+      toast({
+        title: 'Error al agregar el producto al carrito',
+        description: 'Debes iniciar sesión para agregar productos al carrito',
+        variant: 'destructive',
+        className: 'text-xl py-10'
+      })
+
+      return
+    }
+
     try {
       await addProductToCart(userId, product._id, 1, optionSelectedIndex)
       await refreshCart()

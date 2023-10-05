@@ -20,7 +20,7 @@ interface PersonalInfoProps {
 const PersonalInfo = ({ user }: PersonalInfoProps): JSX.Element => {
   const { toast } = useToast()
 
-  const [isApartment, setIsApartment] = React.useState<boolean>(user.address?.isApartment)
+  const [isApartment, setIsApartment] = React.useState<boolean>(user?.address?.isApartment)
   const [listComunas, setListComunas] = React.useState<string[]>([])
   const [region, setRegion] = React.useState<string>('')
   const [comuna, setComuna] = React.useState<string>('')
@@ -62,8 +62,8 @@ const PersonalInfo = ({ user }: PersonalInfoProps): JSX.Element => {
 
       toast({
         title: 'Datos actualizados',
-        description: 'Se han actualizado los datos correctamente',
-        duration: 3000
+        description: 'Se han actualizado los datos correctamente. Ya puedes cerrar esta ventana',
+        duration: 4000
       })
     } catch (error) {
       toast({

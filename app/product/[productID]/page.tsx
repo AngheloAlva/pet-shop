@@ -12,8 +12,11 @@ import { CartContext } from '@/context/CartContext'
 import type { Product } from '@/interfaces/interfaces'
 import { useUser } from '@auth0/nextjs-auth0/client'
 import useProduct from '@/hooks/useProduct'
+import { useToast } from '@/components/ui/use-toast'
 
 export default function ProductView ({ params }: { params: { productID: string } }): JSX.Element {
+  const { toast } = useToast()
+
   const [quantity, setQuantity] = useState(1)
   const [selectedImage, setSelectedImage] = useState(0)
   const [optionSelected, setOptionSelected] = useState<Product['options'][0]>()
@@ -51,6 +54,18 @@ export default function ProductView ({ params }: { params: { productID: string }
 
   const addToCart = async (): Promise<void> => {
     const optionSelectedIndex = product?.options.findIndex(op => op.option === optionSelected?.option)
+
+    if (user === undefined || user === '') {
+      toast({
+        title: 'Error al agregar el producto al carrito',
+        description: 'Debes iniciar sesión para agregar productos al carrito',
+        variant: 'destructive',
+        className: 'text-xl py-10'
+      })
+
+      return
+    }
+
     try {
       await addProductToCart(user?.sub ?? '', product?._id ?? '', quantity, optionSelectedIndex)
       await refreshCart()

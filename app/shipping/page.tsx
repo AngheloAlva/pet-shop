@@ -10,9 +10,11 @@ import { createCheckoutSession } from '@/api/cart'
 
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Label } from '@/components/ui/label'
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 
 import { FaAngleLeft } from 'react-icons/fa6'
 import { useUserDB } from '@/hooks/useUser'
+import PersonalInfo from '@/components/profile/Personal-info'
 
 const page = (): JSX.Element => {
   const { cart, cartItems } = useContext(CartContext)
@@ -21,13 +23,20 @@ const page = (): JSX.Element => {
   const [shippingMethod, setShippingMethod] = useState<string>('')
   const [paymentActive, setPaymentActive] = useState<boolean>(false)
 
-  const shippingMethods = [
-    { value: 'CHILEXPRESS', label: 'ChileExpress' },
-    { value: 'STARKEN', label: 'Starken' },
-    { value: 'BLUE EXPRESS', label: 'Blue Express' },
-    { value: 'PICKUP', label: 'Retiro en Tienda' },
-    { value: 'SHOP DELIVERY', label: 'Reparto de la tienda' }
-  ]
+  const subTotal = cartItems.reduce((acc, item, index) => {
+    const price = cart[index]?.options[item.optionSelectedIndex]?.price
+    if (typeof price === 'number') {
+      return acc + (price * item.quantity)
+    }
+    return acc
+  }, 0)
+
+  const handleShippingMethod = (value: string): void => {
+    setShippingMethod(value)
+    if (user?.address?.street !== undefined && user?.address?.street !== '') {
+      setPaymentActive(true)
+    }
+  }
 
   const handleCheckout = async (): Promise<void> => {
     const items = cartItems.map(item => ({
@@ -36,15 +45,13 @@ const page = (): JSX.Element => {
       optionSelectedIndex: item.optionSelectedIndex
     }))
 
-    const session = await createCheckoutSession(items)
-    window.location.href = session
-  }
-
-  const handleShippingMethod = (value: string): void => {
-    setShippingMethod(value)
-    if (user?.address?.street !== undefined && user?.address?.street !== '') {
-      setPaymentActive(true)
+    let payShippment
+    if (shippingMethod === 'payShippment') {
+      payShippment = subTotal < 20000
     }
+
+    const session = await createCheckoutSession(items, payShippment)
+    window.location.href = session
   }
 
   return (
@@ -89,11 +96,21 @@ const page = (): JSX.Element => {
                   ? (
                       <div className='flex flex-col gap-2'>
                         <p className='font-semibold'>Aun no tienes una direccion de envio</p>
-                        <Link href='/profile'>
-                          <button className='border-2 rounded-sm px-3 border-[--bg-300] bg-[--bg-100] py-1 my-3 w-full'>
-                            Agregar direccion
-                          </button>
-                        </Link>
+                        <Dialog>
+                          <DialogTrigger>
+                            <button className='border-2 rounded-sm px-3 border-[--bg-300] bg-[--bg-100] py-1 my-3 w-full'>
+                              Agregar direccion
+                            </button>
+                          </DialogTrigger>
+                          <DialogContent>
+                            <DialogHeader>
+                              <DialogTitle>
+                                Agregar direccion
+                              </DialogTitle>
+                            </DialogHeader>
+                            <PersonalInfo user={user} />
+                          </DialogContent>
+                        </Dialog>
                       </div>
                     )
                   : (
@@ -109,9 +126,6 @@ const page = (): JSX.Element => {
                         <p className='font-semibold ml-4'>Calle: {user.address?.street} {user.address?.number}</p>
                         <p className='font-semibold ml-4'>Codigo postal: {user.address?.zipCode}</p>
                       </div>
-                      <button className='border-2 rounded-sm px-3 py-1 my-3 border-[--bg-300] w-full'>
-                        Usar otra direccion
-                      </button>
                     </>
                     )
               }
@@ -120,16 +134,14 @@ const page = (): JSX.Element => {
             <div className='border-2 rounded-sm p-4 mt-2 bg-[--bg-200] border-[--bg-300]'>
               <h2 className='text-lg font-semibold mb-3'>Metodo de envio</h2>
               <RadioGroup className='ml-5' onValueChange={handleShippingMethod}>
-                {
-                  shippingMethods.map(method => (
-                    <div className='flex space-x-2'>
-                      <RadioGroupItem value={method.value} id={method.value} />
-                      <Label htmlFor={method.value} className='flex gap-2'>
-                        {method.label}
-                      </Label>
-                    </div>
-                  ))
-                }
+                <div className='flex space-x-2'>
+                  <RadioGroupItem value={'payShippment'} id={shippingMethod} />
+                  <Label htmlFor={'payShippment'} className='flex gap-2'>Reparto a Domicilio</Label>
+                </div>
+                <div className='flex space-x-2'>
+                  <RadioGroupItem value={'pickup'} id={shippingMethod} />
+                  <Label htmlFor={'pickup'} className='flex gap-2'>Retiro en Tienda</Label>
+                </div>
               </RadioGroup>
             </div>
 
@@ -152,29 +164,15 @@ const page = (): JSX.Element => {
                   <p>
                     Envio: $
                     {
-                      shippingMethod === 'CHILEXPRESS'
-                        ? ' 3.000'
-                        : shippingMethod === 'STARKEN'
-                          ? ' 2.000'
-                          : shippingMethod === 'BLUE EXPRESS'
-                            ? ' 2.000'
-                            : shippingMethod === 'PICKUP'
-                              ? ' 0'
-                              : shippingMethod === 'SHOP DELIVERY'
-                                ? ' 0'
-                                : ' 0'
+                      shippingMethod === 'payShippment'
+                        ? subTotal > 20000
+                          ? '0'
+                          : '3000'
+                        : '0'
                     }
                   </p>
                   <p>
-                    Total: $ {
-                      cartItems.reduce((acc, item, index) => {
-                        const price = cart[index]?.options[item.optionSelectedIndex]?.price
-                        if (typeof price === 'number') {
-                          return acc + (price * item.quantity)
-                        }
-                        return acc
-                      }, 0) + (shippingMethod === 'CHILEXPRESS' ? 3000 : shippingMethod === 'STARKEN' ? 2000 : shippingMethod === 'BLUE EXPRESS' ? 2000 : 0)
-                    }
+                    Total: $ { (subTotal + (shippingMethod === 'payShippment' ? (subTotal > 20000 ? 0 : 3000) : 0)).toLocaleString() }
                   </p>
                   <button
                     className={`bg-[--accent-100] mt-4 text-[--text-100] font-bold py-2 rounded-sm text-base text-center transition-colors ${!paymentActive ? 'select-none opacity-70 cursor-not-allowed' : 'hover:bg-[--accent-200] hover:text-[--bg-100]'}`}
