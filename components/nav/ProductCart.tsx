@@ -52,7 +52,9 @@ const ProductCart = ({ userId, product, quantity, optionSelectedIndex }: Product
 
   return (
     <div className='w-full flex text-[--text-200] text-sm gap-2'>
-      <Image src={product?.image[0]} alt={product?.name} width={70} height={60} />
+      <div>
+        <Image src={product?.image[0]} alt={product?.name} width={100} height={60} />
+      </div>
       <div className='flex justify-between w-full'>
         <div className='flex flex-col gap-1'>
           <p className='font-bold'>
