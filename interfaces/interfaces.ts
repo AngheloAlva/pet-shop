@@ -39,6 +39,7 @@ export interface ProductSlideProps {
   slideTitle: string
   products: Product[]
   userId: string
+  href: string
 }
 
 export interface Brand {

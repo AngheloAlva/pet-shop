@@ -13,12 +13,14 @@ import useProductAndBrands from '@/hooks/useProduct&Brands'
 
 export default function Home (): JSX.Element {
   const { products, brands, userId } = useProductAndBrands({})
+  const acanaProducts = products.filter(product => product.brand.name === 'Acana')
+  const acanaId = acanaProducts[0]?.brand?._id
 
   return (
     <>
       <Carousel images={carouselImages} />
 
-      <ProductsSlide slideTitle='Top Ventas' products={products} userId={userId} />
+      <ProductsSlide slideTitle='Top Ventas' products={products} userId={userId} href='/products' />
 
       <h2 className='text-xl font-bold text-[--text-100] mb-3 mt-5 pl-5'>Promociones</h2>
       <div className='flex flex-col gap-3 px-5'>
@@ -31,7 +33,7 @@ export default function Home (): JSX.Element {
         }
       </div>
 
-      <ProductsSlide slideTitle='Nuevos Productos' products={products} userId={userId} />
+      <ProductsSlide slideTitle='Productos de ACANA' products={acanaProducts} userId={userId} href={`/brand/${acanaId}`} />
 
       <div className='flex flex-col w-full px-5 my-7 gap-3'>
         {

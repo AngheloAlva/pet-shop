@@ -6,8 +6,10 @@ import { FaAngleRight, FaAngleLeft } from 'react-icons/fa6'
 import SwiperCore from 'swiper/modules'
 
 import type { ProductSlideProps } from '@/interfaces/interfaces'
+import { Button } from './ui/button'
+import Link from 'next/link'
 
-const ProductsSlide = ({ slideTitle, products, userId }: ProductSlideProps): JSX.Element => {
+const ProductsSlide = ({ slideTitle, products, userId, href }: ProductSlideProps): JSX.Element => {
   const swiperRef = useRef(null)
 
   const handlePrevClick = (): void => {
@@ -45,7 +47,21 @@ const ProductsSlide = ({ slideTitle, products, userId }: ProductSlideProps): JSX
         {
           products.map((product, index) => (
             <SwiperSlide key={index} className='max-w-[16rem]'>
-              <ProductCard product={product} className={''} userId={userId} key={index} />
+              {
+                index < 10
+                  ? (
+                    <ProductCard product={product} userId={userId} key={product._id} />
+                    )
+                  : (
+                    <div>
+                      <Link href={href}>
+                        <Button className='w-64' variant={'outline'}>
+                          Ver mas...
+                        </Button>
+                      </Link>
+                    </div>
+                    )
+              }
             </SwiperSlide>
           ))
         }
