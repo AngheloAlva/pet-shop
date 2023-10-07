@@ -7,7 +7,7 @@ const postUser = async (user: SimpleUser): Promise<{ msg: string }> => {
     return response.data.msg
   } catch (error) {
     console.error(error)
-    throw error
+    throw new Error()
   }
 }
 
@@ -17,7 +17,7 @@ const getUser = async (id: string): Promise<{ msg: string, user: User[] }> => {
     return response.data
   } catch (error) {
     console.error(error)
-    throw error
+    throw new Error()
   }
 }
 
@@ -27,7 +27,7 @@ const updateUser = async (user: UserUpdate): Promise<{ msg: string, user: User }
     return response.data
   } catch (error) {
     console.error(error)
-    throw error
+    throw new Error()
   }
 }
 
