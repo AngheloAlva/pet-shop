@@ -23,7 +23,7 @@ const Cart = (): JSX.Element => {
       <PopoverContent className='w-auto max-w-[85vw] flex flex-col'>
         <h3 className='font-bold text-xl mb-2 text-[--text-100]'>Carrito</h3>
         <Separator />
-        <div className='flex flex-col gap-2 mt-4'>
+        <div className='flex flex-col gap-2 mt-4 overflow-y-scroll max-h-96'>
           {
             cartItems.length > 0
               ? cart.map((product, index) => (

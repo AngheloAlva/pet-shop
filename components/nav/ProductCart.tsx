@@ -65,14 +65,14 @@ const ProductCart = ({ userId, product, quantity, optionSelectedIndex }: Product
           </p>
           <div className='font-semibold'>
             {
-              Number(product?.options[optionSelectedIndex].discount) > 0
+              Number(product?.options[optionSelectedIndex]?.discount) > 0
                 ? (
                     <>
                       <span className='line-through mr-1 text-xs'>${product?.options[optionSelectedIndex].price.toLocaleString('es-CL')}</span>
                       <span>${(Number(product?.options[optionSelectedIndex].price) * (1 - Number(product?.options[optionSelectedIndex].discount) / 100)).toLocaleString('es-CL')}</span>
                     </>
                   )
-                : `$${product?.options[optionSelectedIndex].price.toLocaleString('es-CL')}`
+                : `$${product?.options[optionSelectedIndex]?.price.toLocaleString('es-CL')}`
             }
           </div>
         </div>
