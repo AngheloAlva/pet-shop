@@ -11,7 +11,7 @@ import UserDropdown from './nav/User-dropdown'
 import Search from './nav/Search'
 import Cart from './nav/Cart'
 
-import useCategoryBrands from '@/hooks/useCategory&Brands'
+import useCategoryBrands from '@/hooks/useCategory'
 
 const NavBar = (): JSX.Element => {
   const { catCategories, dogCategories } = useCategoryBrands()

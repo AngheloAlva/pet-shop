@@ -16,7 +16,7 @@ import {
 import { FaBars } from 'react-icons/fa6'
 
 import AcordionMenu from './AcordionMenu'
-import useCategoryBrands from '@/hooks/useCategory&Brands'
+import useCategoryBrands from '@/hooks/useCategory'
 
 const SheetMenu = (): JSX.Element => {
   const { catCategories, dogCategories } = useCategoryBrands()

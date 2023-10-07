@@ -139,3 +139,10 @@ export interface Category {
   image: string
   petType: string[]
 }
+
+export interface Filter {
+  category?: string
+  brand?: string
+  petType?: string
+  lifeStage?: string
+}

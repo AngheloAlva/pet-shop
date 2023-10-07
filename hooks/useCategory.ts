@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { getCategories } from '@/api/category'
 import type { Category } from '@/interfaces/interfaces'
 
-const useCategoryBrands = (): { categories: Category[], dogCategories: Category[], catCategories: Category[] } => {
+const useCategory = (): { categories: Category[], dogCategories: Category[], catCategories: Category[] } => {
   const [categories, setCategories] = useState<Category[]>([])
 
   useEffect(() => {
@@ -21,4 +21,4 @@ const useCategoryBrands = (): { categories: Category[], dogCategories: Category[
   return { categories, dogCategories, catCategories }
 }
 
-export default useCategoryBrands
+export default useCategory

@@ -4,16 +4,15 @@ import { getBrands } from '@/api/brand'
 import { getProducts } from '@/api/product'
 import { useUser } from '@auth0/nextjs-auth0/client'
 
-import type { Product, Brand } from '@/interfaces/interfaces'
+import type { Product, Brand, Filter } from '@/interfaces/interfaces'
 
-interface Filter {
-  category?: string
-  brand?: string
-  petType?: string
-  lifeStage?: string
-}
-
-const useProductAndBrands = ({ category, brand, petType, lifeStage }: Filter): { products: Product[], brands: Brand[], userId: string } => {
+const useProductAndBrands = ({
+  category, brand, petType, lifeStage
+}: Filter): {
+  products: Product[]
+  brands: Brand[]
+  userId: string
+} => {
   const [products, setProducts] = useState<Product[]>([])
   const [brands, setBrands] = useState<Brand[]>([])
 
