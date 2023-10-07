@@ -15,13 +15,15 @@ import {
 
 import { FaBars } from 'react-icons/fa6'
 
-import { dogMenu, catMenu, aquaristicMenu, birdMenu, reptileMenu, smallAnimalMenu } from '@/data/NavbarItems'
 import AcordionMenu from './AcordionMenu'
+import useCategoryBrands from '@/hooks/useCategory&Brands'
 
 const SheetMenu = (): JSX.Element => {
+  const { catCategories, dogCategories } = useCategoryBrands()
+
   return (
     <Sheet>
-      <SheetTrigger asChild>
+      <SheetTrigger asChild className='md:hidden'>
         <button className='text-2xl text-[--bg-100]'>
           <FaBars />
         </button>
@@ -33,12 +35,16 @@ const SheetMenu = (): JSX.Element => {
           </SheetTitle>
         </SheetHeader>
         <Accordion type='single' collapsible>
-          <AcordionMenu typeMenu={dogMenu} categoryName='PERROS' />
-          <AcordionMenu typeMenu={catMenu} categoryName='GATOS' />
-          <AcordionMenu typeMenu={aquaristicMenu} categoryName='AQUARISTICA' />
-          <AcordionMenu typeMenu={birdMenu} categoryName='AVES' />
-          <AcordionMenu typeMenu={reptileMenu} categoryName='REPTILES' />
-          <AcordionMenu typeMenu={smallAnimalMenu} categoryName='PEQUEÑOS ANIMALES' />
+          <AcordionMenu
+            typeMenu={dogCategories}
+            categoryRedirect='dogs'
+            categoryName='PERROS'
+          />
+          <AcordionMenu
+            typeMenu={catCategories}
+            categoryRedirect='cats'
+            categoryName='GATOS'
+          />
         </Accordion>
         <SheetFooter>
           <SheetClose />

@@ -1,12 +1,13 @@
 import React from 'react'
-import type { NavMenuItemProps } from '../interfaces/interfaces'
+
 import {
   NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuTrigger,
   ListItem
 } from '@/components/ui/navigation-menu'
-import Link from 'next/link'
+
+import type { NavMenuItemProps } from '../interfaces/interfaces'
 
 const NavMenuItem = ({ navMenuTitle, itemsArray }: NavMenuItemProps): JSX.Element => {
   return (
@@ -15,26 +16,13 @@ const NavMenuItem = ({ navMenuTitle, itemsArray }: NavMenuItemProps): JSX.Elemen
         {navMenuTitle}
       </NavigationMenuTrigger>
       <NavigationMenuContent>
-        <div className='grid gap-1 p-4 grid-cols-3 w-[95vw]'>
-          {itemsArray.map((component) => (
+        <div className='grid gap-1 p-4 grid-cols-3 w-96'>
+          {itemsArray.map((item) => (
             <ListItem
-              key={component.title}
-              title={component.title}
-              titleHref={`/category/${component.href}`}
+              key={item._id}
+              title={item.name}
+              titleHref={`category/${item._id}`}
             >
-              <ul>
-                <li className='flex flex-col'>
-                  {component.description.map((description) => (
-                    <Link
-                      href='#'
-                      key={description}
-                      className='hover:text-[--text-100] hover:font-semibold transition-all cursor-pointer'
-                    >
-                      {description}
-                    </Link>
-                  ))}
-                </li>
-              </ul>
             </ListItem>
           ))}
         </div>

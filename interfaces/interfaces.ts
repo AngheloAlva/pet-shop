@@ -25,11 +25,7 @@ interface ProductOption {
 
 export interface NavMenuItemProps {
   navMenuTitle: string
-  itemsArray: Array<{
-    title: string
-    href: string
-    description: string[]
-  }>
+  itemsArray: Category[]
 }
 
 export interface CarouselProps {
@@ -141,4 +137,5 @@ export interface Category {
   name: string
   description: string
   image: string
+  petType: string[]
 }

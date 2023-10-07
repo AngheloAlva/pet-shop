@@ -9,11 +9,13 @@ import SheetMenu from './nav/SheetMenu'
 import NavMenuItem from './NavMenuItem'
 import UserDropdown from './nav/User-dropdown'
 import Search from './nav/Search'
-
-import { catMenu, dogMenu, aquaristicMenu, birdMenu, reptileMenu, smallAnimalMenu } from '@/data/NavbarItems'
 import Cart from './nav/Cart'
 
+import useCategoryBrands from '@/hooks/useCategory&Brands'
+
 const NavBar = (): JSX.Element => {
+  const { catCategories, dogCategories } = useCategoryBrands()
+
   return (
     <nav className='flex flex-col'>
       <header className='flex justify-between items-center px-2 py-2 bg-[--primary-200]'>
@@ -30,15 +32,10 @@ const NavBar = (): JSX.Element => {
           <UserDropdown />
         </div>
       </header>
-
-      <NavigationMenu className='bg-[--accent-200] hidden'>
+      <NavigationMenu className='hidden md:flex w-full bg-[--bg-300]'>
         <NavigationMenuList>
-          <NavMenuItem navMenuTitle='PERROS' itemsArray={dogMenu} />
-          <NavMenuItem navMenuTitle='GATOS' itemsArray={catMenu} />
-          <NavMenuItem navMenuTitle='ACUARISTICA' itemsArray={aquaristicMenu} />
-          <NavMenuItem navMenuTitle='AVES' itemsArray={birdMenu} />
-          <NavMenuItem navMenuTitle='MASCOTAS PEQUEÑAS' itemsArray={smallAnimalMenu} />
-          <NavMenuItem navMenuTitle='REPTILES' itemsArray={reptileMenu} />
+          <NavMenuItem navMenuTitle='PERROS' itemsArray={dogCategories} />
+          <NavMenuItem navMenuTitle='GATOS' itemsArray={catCategories} />
         </NavigationMenuList>
       </NavigationMenu>
     </nav>
