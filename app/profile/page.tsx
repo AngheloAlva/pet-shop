@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/tabs'
 import PersonalInfo from '@/components/profile/Personal-info'
 import { useUserDB } from '@/hooks/useUser'
+import OrdersHistory from '@/components/profile/Orders-history'
 
 const ProfilePage = (): JSX.Element => {
   const { user } = useUserDB()
@@ -25,19 +26,12 @@ const ProfilePage = (): JSX.Element => {
           <TabsList className='bg-[--bg-200]'>
             <TabsTrigger value='personal-info'>Datos Personales</TabsTrigger>
             <TabsTrigger value='history'>Historial</TabsTrigger>
-            <TabsTrigger value='payment-methods'>Metodos de pago</TabsTrigger>
           </TabsList>
           <TabsContent value='personal-info' className='bg-[--bg-200] boder-[--bg-300] rounded-md'>
             <PersonalInfo user={user} />
           </TabsContent>
           <TabsContent value='history'>
-
-          </TabsContent>
-          <TabsContent value='payment-history' className='bg-[--bg-200] boder-[--bg-300] rounded-md'>
-
-          </TabsContent>
-          <TabsContent value='directions' className='bg-[--bg-200] boder-[--bg-300] rounded-md'>
-
+            <OrdersHistory user={user} />
           </TabsContent>
         </Tabs>
       </div>

@@ -100,19 +100,22 @@ export interface SimpleUser {
 }
 
 export interface Order {
-  id: string
+  _id: string
   userId: string
-  RUT: string
-  products: {
-    products: Product[]
+  products: Array<{
+    price_data: {
+      currency: string
+      product_data: {
+        name: string
+        description: string
+      }
+      unit_amount: number
+    }
     quantity: number
-    price: number
-  }
+    _id: string
+  }>
   total: number
-  paymentMethod: string
-  paymentStatus: string
   shippingMethod: string
-  shippingStatus: string
   shippingAddress: {
     street: string
     number: number
@@ -122,6 +125,8 @@ export interface Order {
     isApartament: boolean
     apartamentNumber: number
   }
+  paid: boolean
+  createdAt: Date
 }
 
 export interface ItemCart {
