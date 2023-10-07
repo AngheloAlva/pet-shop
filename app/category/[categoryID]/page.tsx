@@ -105,6 +105,9 @@ const CategoryPage = ({ params }: { params: { categoryID: string } }): JSX.Eleme
               </div>
             </SheetDescription>
             <SheetFooter>
+              <Button variant={'destructive'} className='mt-10 w-full' onClick={() => { setFilters({ ...filters, brand: '', lifeStage: '' }) }}>
+                Limpiar filtros
+              </Button>
               <SheetClose className='mt-10 w-full'>
                 <Button className='w-full'>
                   Aplicar filtros
@@ -116,7 +119,6 @@ const CategoryPage = ({ params }: { params: { categoryID: string } }): JSX.Eleme
       </div>
       <div className='grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
         {
-          // Verify if products is not empty
           products.length !== 0
             ? products.map((product) => (
               <ProductCard key={product._id} userId={userId} product={product} className='w-auto flex flex-col justify-between sm:block' />
