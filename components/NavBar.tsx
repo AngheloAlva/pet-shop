@@ -32,7 +32,7 @@ const NavBar = (): JSX.Element => {
           <UserDropdown />
         </div>
       </header>
-      <NavigationMenu className='hidden md:flex w-full bg-[--bg-300]'>
+      <NavigationMenu className='hidden md:flex w-full bg-white text-[--text-100]'>
         <NavigationMenuList>
           <NavMenuItem navMenuTitle='PERROS' itemsArray={dogCategories} />
           <NavMenuItem navMenuTitle='GATOS' itemsArray={catCategories} />

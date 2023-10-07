@@ -131,7 +131,7 @@ React.ComponentPropsWithoutRef<'a'>
           )}
           {...props}
         >
-          <Link href={`/${titleHref}`} className='text-sm font-medium leading-none cursor-pointer hover:font-semibold transition-all'>
+          <Link href={`/${titleHref}`} className='text-base font-medium leading-none cursor-pointer hover:font-bold transition-all'>
             {title}
           </Link>
           <div className=' text-xs leading-snug text-muted-foreground'>

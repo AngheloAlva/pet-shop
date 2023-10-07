@@ -28,7 +28,7 @@ const SheetMenu = (): JSX.Element => {
           <FaBars />
         </button>
       </SheetTrigger>
-      <SheetContent side={'left'} className='overflow-y-scroll'>
+      <SheetContent side={'left'} className='overflow-y-scroll w-60'>
         <SheetHeader>
           <SheetTitle className='text-left'>
             Categorias:
