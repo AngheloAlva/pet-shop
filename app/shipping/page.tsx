@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
 import { useUserDB } from '@/hooks/useUser'
 import React, { useContext, useState } from 'react'
 import { CartContext } from '@/context/CartContext'
@@ -77,7 +76,7 @@ const page = (): JSX.Element => {
       payShippment = subTotal < 20000
     }
 
-    const session = await createCheckoutSession(items, payShippment)
+    const session = await createCheckoutSession(items, payShippment, user.id)
     window.location.href = session
   }
 
