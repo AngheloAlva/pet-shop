@@ -9,8 +9,10 @@
 - **Gestion de usuarios** [Auth0](https://auth0.com/es)
 - **Infraestructura de pagos** [Stripe](https://stripe.com/es-us)
 - **Emails** [React Email](https://react.email/docs/introduction)
-- **Gestion de contenido** [Contentlayer](https://contentlayer.dev/)
 - **Carga de archivos** [Uploadthing](https://uploadthing.com/)
 - **Base de datos** [MongoDB](https://www.mongodb.com/)
 - **ORM** [Mongoose](https://mongoosejs.com/)
 - **Servidor** [Express](https://expressjs.com/)
+
+# Server [GitHub](https://github.com/AngheloAlva/pet-shop-express)
+# Admin Dashboard [GitHub](https://github.com/AngheloAlva/pet-shop-admin)
