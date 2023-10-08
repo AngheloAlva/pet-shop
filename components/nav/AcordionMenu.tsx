@@ -12,16 +12,17 @@ import Link from 'next/link'
 interface AcordionMenuProps {
   categoryName: string
   categoryRedirect: string
+  petType?: string
   typeMenu: Array<{
     _id: string
     name: string
     description: string
     image: string
-    petType: string[]
+    petType?: string[]
   }>
 }
 
-const AcordionMenu = ({ categoryName, categoryRedirect, typeMenu }: AcordionMenuProps): JSX.Element => {
+const AcordionMenu = ({ categoryName, categoryRedirect, typeMenu, petType }: AcordionMenuProps): JSX.Element => {
   return (
     <AccordionItem value={categoryName} className='border-none'>
       <AccordionTrigger className='text-left text-sm font-semibold border-none'>
@@ -33,7 +34,7 @@ const AcordionMenu = ({ categoryName, categoryRedirect, typeMenu }: AcordionMenu
         {
           typeMenu.map((item) => (
             <>
-              <Link href={`/category/${item._id}`} key={item._id} className=' px-2 cursor-pointer hover:text-[--accent-200] hover:font-semibold transition-all'>
+              <Link href={`/category/${item._id}/${petType}`} key={item._id} className=' px-2 cursor-pointer hover:text-[--accent-200] hover:font-semibold transition-all'>
                 <SheetClose>
                   {item.name}
                 </SheetClose>

@@ -26,6 +26,7 @@ interface ProductOption {
 export interface NavMenuItemProps {
   navMenuTitle: string
   itemsArray: Category[]
+  petType?: string
 }
 
 export interface CarouselProps {

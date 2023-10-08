@@ -34,8 +34,8 @@ const NavBar = (): JSX.Element => {
       </header>
       <NavigationMenu className='hidden md:flex w-full bg-white text-[--text-100]'>
         <NavigationMenuList>
-          <NavMenuItem navMenuTitle='PERROS' itemsArray={dogCategories} />
-          <NavMenuItem navMenuTitle='GATOS' itemsArray={catCategories} />
+          <NavMenuItem navMenuTitle='PERROS' itemsArray={dogCategories} petType='dog' />
+          <NavMenuItem navMenuTitle='GATOS' itemsArray={catCategories} petType='cat' />
         </NavigationMenuList>
       </NavigationMenu>
     </nav>

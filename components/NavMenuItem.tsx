@@ -9,7 +9,7 @@ import {
 
 import type { NavMenuItemProps } from '../interfaces/interfaces'
 
-const NavMenuItem = ({ navMenuTitle, itemsArray }: NavMenuItemProps): JSX.Element => {
+const NavMenuItem = ({ navMenuTitle, itemsArray, petType }: NavMenuItemProps): JSX.Element => {
   return (
     <NavigationMenuItem>
       <NavigationMenuTrigger className='font-bold text-sm w-36 flex bg-transparent transition-all data-[state=open]:bg-[--accent-100] data-[state=open]:text-[--bg-100] rounded-none'>
@@ -21,7 +21,7 @@ const NavMenuItem = ({ navMenuTitle, itemsArray }: NavMenuItemProps): JSX.Elemen
             <ListItem
               key={item._id}
               title={item.name}
-              titleHref={`category/${item._id}`}
+              titleHref={`category/${item._id}/${petType}`}
             >
             </ListItem>
           ))}

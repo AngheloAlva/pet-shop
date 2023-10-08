@@ -20,15 +20,17 @@ import { Button } from '@/components/ui/button'
 import { FormSelect } from '@/components/ui/FormSelect'
 
 import type { Filter } from '@/interfaces/interfaces'
-import useCategoryBrands from '@/hooks/useCategory';
+import useCategoryBrands from '@/hooks/useCategory'
 
 const CategoryPage = ({ params }: { params: { categoryID: string } }): JSX.Element => {
   const [filters, setFilters] = useState<Filter>({
-    category: params.categoryID,
+    category: params.categoryID[0],
     brand: '',
-    lifeStage: ''
+    lifeStage: '',
+    petType: params.categoryID[1]
   })
 
+  const petType = [{ name: 'Perro', _id: 'dog' }, { name: 'Gato', _id: 'cat' }]
   const lifeStages = [
     {
       name: 'Puppy',
@@ -59,7 +61,7 @@ const CategoryPage = ({ params }: { params: { categoryID: string } }): JSX.Eleme
     <div className='mx-5'>
       <div className='flex justify-between items-center'>
         <h1 className='font-bold mt-7 mb-3'>
-          Categoria: {categories.find(category => category._id === params.categoryID)?.name}
+          Categoria: {categories.find(category => category._id === params.categoryID[0])?.name}
         </h1>
         <Sheet>
           <SheetTrigger asChild>
@@ -103,6 +105,25 @@ const CategoryPage = ({ params }: { params: { categoryID: string } }): JSX.Eleme
                   </Button>
                 </div>
               </div>
+              {
+                params.categoryID[1] !== null && (
+                  <div className="flex flex-col mt-5">
+                    <Label>Tipo de mascota</Label>
+                    <div className='flex gap-2 items-center'>
+                      <FormSelect
+                        field='petType'
+                        placeholder='Selecciona una etapa de vida'
+                        value={filters.petType}
+                        list={petType}
+                        handleFilterChange={handleFilterChange}
+                      />
+                      <Button variant={'outline'} onClick={() => { handleFilterChange('petType', '') }}>
+                        Limpiar
+                      </Button>
+                    </div>
+                  </div>
+                )
+              }
             </SheetDescription>
             <SheetFooter>
               <Button variant={'destructive'} className='mt-10 w-full' onClick={() => { setFilters({ ...filters, brand: '', lifeStage: '' }) }}>

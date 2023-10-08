@@ -39,11 +39,13 @@ const SheetMenu = (): JSX.Element => {
             typeMenu={dogCategories}
             categoryRedirect='dogs'
             categoryName='PERROS'
+            petType='dog'
           />
           <AcordionMenu
             typeMenu={catCategories}
             categoryRedirect='cats'
             categoryName='GATOS'
+            petType='cat'
           />
         </Accordion>
         <SheetFooter>
