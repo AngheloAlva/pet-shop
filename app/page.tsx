@@ -12,7 +12,7 @@ import { carouselImages, promotionsImages, servicesImages } from '../data/imgsAr
 import useProductAndBrands from '@/hooks/useProduct&Brands'
 
 export default function Home (): JSX.Element {
-  const { products, brands, userId } = useProductAndBrands({})
+  const { products, brands, userId } = useProductAndBrands({ })
   const acanaProducts = products.filter(product => product.brand.name === 'Acana')
   const acanaId = acanaProducts[0]?.brand?._id
 
@@ -45,8 +45,11 @@ export default function Home (): JSX.Element {
         }
       </div>
 
-      <h2 className='text-xl font-bold mb-3 mt-5 pl-5'>Marcas</h2>
-      <div className='mx-5'>
+      <div className='px-5 flex flex-col gap-3'>
+        <div className='flex justify-between items-center'>
+          <h2 className='text-xl font-bold'>Marcas</h2>
+          <Link href='/brand' className='text-[--text-200] px-2 hover:underline py-0 transition-colors font-semibold'>Ver todas</Link>
+        </div>
         <BrandsSlider brands={brands} />
       </div>
 

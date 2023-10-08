@@ -48,7 +48,7 @@ const ProductsSlide = ({ slideTitle, products, userId, href }: ProductSlideProps
           products.map((product, index) => (
             <SwiperSlide key={index} className='max-w-[16rem]'>
               {
-                index < 10
+                index < 14
                   ? (
                     <ProductCard product={product} userId={userId} key={product._id} />
                     )
