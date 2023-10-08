@@ -14,5 +14,5 @@
 - **ORM** [Mongoose](https://mongoosejs.com/)
 - **Servidor** [Express](https://expressjs.com/)
 
-# Server [GitHub](https://github.com/AngheloAlva/pet-shop-express)
-# Admin Dashboard [GitHub](https://github.com/AngheloAlva/pet-shop-admin)
+### Server [GitHub](https://github.com/AngheloAlva/pet-shop-express)
+### Admin Dashboard [GitHub](https://github.com/AngheloAlva/pet-shop-admin)
