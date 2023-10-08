@@ -123,7 +123,7 @@ const BrandPage = ({ params }: { params: { brandID: string } }): JSX.Element => 
             : (
               <>
                 <h1 className='font-bold text-xl col-span-3 my-4'>Lo lamentamos 😢. No hay productos para estos filtros</h1>
-                <Button className='mb-72' onClick={() => { setFilters({ ...filters, brand: '', lifeStage: '' }) }}>
+                <Button className='mb-72' onClick={() => { setFilters({ ...filters, lifeStage: '', petType: '' }) }}>
                   Limpiar filtros
                 </Button>
               </>
