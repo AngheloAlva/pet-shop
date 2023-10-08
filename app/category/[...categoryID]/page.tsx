@@ -23,11 +23,16 @@ import type { Filter } from '@/interfaces/interfaces'
 import useCategoryBrands from '@/hooks/useCategory'
 
 const CategoryPage = ({ params }: { params: { categoryID: string } }): JSX.Element => {
+  const productsPerPage = 15
+  const [page, setPage] = useState<number>(1)
+
   const [filters, setFilters] = useState<Filter>({
     category: params.categoryID[0],
     brand: '',
     lifeStage: '',
-    petType: params.categoryID[1]
+    petType: params.categoryID[1],
+    productLimit: productsPerPage,
+    productFrom: 0
   })
 
   const petType = [{ name: 'Perro', _id: 'dog' }, { name: 'Gato', _id: 'cat' }]
@@ -47,13 +52,21 @@ const CategoryPage = ({ params }: { params: { categoryID: string } }): JSX.Eleme
     }
   ]
 
-  const { products, userId, brands } = useProductAndBrands(filters)
+  const { products, userId, brands, totalProducts } = useProductAndBrands(filters)
   const { categories } = useCategoryBrands()
 
   const handleFilterChange = (filterName: string, filterValue: string): void => {
     setFilters({
       ...filters,
       [filterName]: filterValue
+    })
+  }
+
+  const handlePageChange = (newPage: number): void => {
+    setPage(newPage)
+    setFilters({
+      ...filters,
+      productFrom: (newPage - 1) * productsPerPage
     })
   }
 
@@ -154,6 +167,28 @@ const CategoryPage = ({ params }: { params: { categoryID: string } }): JSX.Eleme
               )
         }
       </div>
+      {
+        totalProducts > productsPerPage
+          ? (
+            <div className='flex justify-center items-center gap-2 mt-10 mb-20'>
+              <Button
+                variant={page === 1 ? 'outline' : 'default'}
+                onClick={() => { handlePageChange(page - 1) }}
+                disabled={page === 1}
+              >
+                Anterior
+              </Button>
+              <Button
+                variant={page === Math.ceil(totalProducts / productsPerPage) ? 'outline' : 'default'}
+                onClick={() => { handlePageChange(page + 1) }}
+                disabled={page === Math.ceil(totalProducts / productsPerPage)}
+              >
+                Siguiente
+              </Button>
+            </div>
+            )
+          : null
+      }
     </div>
   )
 }

@@ -147,4 +147,7 @@ export interface Filter {
   brand?: string
   petType?: string
   lifeStage?: string
+  brandLimit?: number
+  productLimit?: number
+  productFrom?: number
 }

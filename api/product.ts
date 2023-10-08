@@ -8,10 +8,12 @@ const getProducts = async (
     petType?: string
     discount?: string
     lifeStage?: string
-  } = {}
+  } = {},
+  limit: number = 15,
+  from: number = 0
 ): Promise<{ total: number, products: Product[] }> => {
   try {
-    let url = 'http://localhost:3001/products?'
+    let url = `http://localhost:3001/products?limit=${limit}&from=${from}&`
     if (filters.category != null) url += `category=${filters.category}&`
     if (filters.brand != null) url += `brand=${filters.brand}&`
     if (filters.petType != null) url += `petType=${filters.petType}&`

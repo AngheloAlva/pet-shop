@@ -7,13 +7,15 @@ import { useUser } from '@auth0/nextjs-auth0/client'
 import type { Product, Brand, Filter } from '@/interfaces/interfaces'
 
 const useProductAndBrands = ({
-  category, brand, petType, lifeStage
+  category, brand, petType, lifeStage, brandLimit = 15, productLimit = 15, productFrom = 0
 }: Filter): {
   products: Product[]
   brands: Brand[]
   userId: string
+  totalProducts: number
 } => {
   const [products, setProducts] = useState<Product[]>([])
+  const [totalProducts, setTotalProducts] = useState<number>(0)
   const [brands, setBrands] = useState<Brand[]>([])
 
   const { user } = useUser()
@@ -21,20 +23,21 @@ const useProductAndBrands = ({
 
   useEffect(() => {
     const fetchProducts = async (): Promise<void> => {
-      const data = await getProducts({ category, brand, petType, lifeStage })
+      const data = await getProducts({ category, brand, petType, lifeStage }, productLimit, productFrom)
       setProducts(data.products)
+      setTotalProducts(data.total)
     }
 
     const fetchBrands = async (): Promise<void> => {
-      const data = await getBrands()
+      const data = await getBrands(brandLimit)
       setBrands(data.brands)
     }
 
     void fetchProducts()
     void fetchBrands()
-  }, [category, brand, petType, lifeStage])
+  }, [category, brand, petType, lifeStage, productFrom])
 
-  return { products, brands, userId }
+  return { products, brands, userId, totalProducts }
 }
 
 export default useProductAndBrands

@@ -22,11 +22,16 @@ import type { Filter } from '@/interfaces/interfaces'
 import useCategory from '@/hooks/useCategory'
 
 const BrandPage = (): JSX.Element => {
+  const productsPerPage = 15
+  const [page, setPage] = useState<number>(1)
+
   const [filters, setFilters] = useState<Filter>({
     brand: '',
     lifeStage: '',
     petType: '',
-    category: ''
+    category: '',
+    productLimit: productsPerPage,
+    productFrom: 0
   })
 
   const petTypes = [{ name: 'Dog', _id: 'dog' }, { name: 'Cat', _id: 'cat' }]
@@ -46,13 +51,21 @@ const BrandPage = (): JSX.Element => {
     }
   ]
 
-  const { products, userId, brands } = useProductAndBrands(filters)
+  const { products, userId, brands, totalProducts } = useProductAndBrands(filters)
   const { categories } = useCategory()
 
   const handleFilterChange = (filterName: string, filterValue: string): void => {
     setFilters({
       ...filters,
       [filterName]: filterValue
+    })
+  }
+
+  const handlePageChange = (page: number): void => {
+    setPage(page)
+    setFilters({
+      ...filters,
+      productFrom: (page - 1) * productsPerPage
     })
   }
 
@@ -152,18 +165,42 @@ const BrandPage = (): JSX.Element => {
       {
           products.length !== 0
             ? products.map((product) => (
-              <ProductCard key={product._id} userId={userId} product={product} className='w-auto flex flex-col justify-between sm:block' />
+              <>
+                <ProductCard key={product._id} userId={userId} product={product} className='w-auto flex flex-col justify-between sm:block' />
+              </>
             ))
             : (
               <>
                 <h1 className='font-bold text-xl col-span-3 my-4'>Lo lamentamos 😢. No hay productos para estos filtros</h1>
-                <Button className='mb-72' onClick={() => { setFilters({ ...filters, brand: '', lifeStage: '' }) }}>
+                <Button className='mb-72' onClick={() => { setFilters({ ...filters, brand: '', lifeStage: '', category: '', petType: '' }) }}>
                   Limpiar filtros
                 </Button>
               </>
               )
         }
       </div>
+      {
+        totalProducts > productsPerPage
+          ? (
+            <div className='flex justify-center items-center gap-2 mt-10 mb-20'>
+              <Button
+                variant={page === 1 ? 'outline' : 'default'}
+                onClick={() => { handlePageChange(page - 1) }}
+                disabled={page === 1}
+              >
+                Anterior
+              </Button>
+              <Button
+                variant={page === Math.ceil(totalProducts / productsPerPage) ? 'outline' : 'default'}
+                onClick={() => { handlePageChange(page + 1) }}
+                disabled={page === Math.ceil(totalProducts / productsPerPage)}
+              >
+                Siguiente
+              </Button>
+            </div>
+            )
+          : null
+      }
     </div>
   )
 }
