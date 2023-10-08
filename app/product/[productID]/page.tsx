@@ -188,7 +188,7 @@ export default function ProductView ({ params }: { params: { productID: string }
         <Accordion type='single' collapsible className='flex flex-col gap-1'>
           {
             product?.description.map((description, index) => (
-              <AccordionItem value={description.title} key={index}>
+              <AccordionItem value={description.title} key={description.title}>
                 <AccordionTrigger>
                   {description.title}
                 </AccordionTrigger>
