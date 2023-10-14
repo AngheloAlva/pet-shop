@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Image from 'next/image'
 
 import { FaRegTrashCan } from 'react-icons/fa6'
@@ -15,24 +15,16 @@ interface ProductCartProps {
 }
 
 const ProductCart = ({ userId, product, quantity, optionSelectedIndex }: ProductCartProps): JSX.Element => {
-  const [quantityProduct, setQuantityProduct] = React.useState<number>(quantity)
-  let timeoutId: string | number | NodeJS.Timeout | null | undefined = null
-
+  const [quantityProduct, setQuantityProduct] = useState<number>(quantity)
   const { refreshCart } = useContext(CartContext)
 
-  const updateCartDebounced = (userId: string, productId: string, quantity: number): void => {
-    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-    if (timeoutId) {
-      clearTimeout(timeoutId)
-    }
-
-    timeoutId = setTimeout(() => {
-      void updateCart(userId, productId, quantity)
-    }, 500)
+  const updateCartImmediately = async (userId: string, productId: string, quantity: number): Promise<void> => {
+    await updateCart(userId, productId, quantity)
+    await refreshCart()
   }
 
   useEffect(() => {
-    updateCartDebounced(userId, product?._id, quantityProduct)
+    void updateCartImmediately(userId, product._id, quantityProduct)
   }, [quantityProduct])
 
   const quantityLess = (): void => {
