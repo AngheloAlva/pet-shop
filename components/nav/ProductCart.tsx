@@ -1,11 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react'
 import Image from 'next/image'
 
 import { FaRegTrashCan } from 'react-icons/fa6'
 
-import { updateCart } from '@/api/cart'
-import { CartContext } from '@/context/CartContext'
 import type { Product } from '@/interfaces/interfaces'
+import useQuantityProduct from '@/hooks/useQuantityProduct'
 
 interface ProductCartProps {
   userId: string
@@ -15,32 +13,7 @@ interface ProductCartProps {
 }
 
 const ProductCart = ({ userId, product, quantity, optionSelectedIndex }: ProductCartProps): JSX.Element => {
-  const [quantityProduct, setQuantityProduct] = useState<number>(quantity)
-  const { refreshCart } = useContext(CartContext)
-
-  const updateCartImmediately = async (userId: string, productId: string, quantity: number): Promise<void> => {
-    await updateCart(userId, productId, quantity)
-    await refreshCart()
-  }
-
-  useEffect(() => {
-    void updateCartImmediately(userId, product._id, quantityProduct)
-  }, [quantityProduct])
-
-  const quantityLess = (): void => {
-    if (quantityProduct === 1) return
-    setQuantityProduct(quantityProduct - 1)
-  }
-
-  const quantityMore = (): void => {
-    if (product.options[optionSelectedIndex].stock === quantityProduct) return
-    setQuantityProduct(quantityProduct + 1)
-  }
-
-  const deleteProduct = async (): Promise<void> => {
-    await updateCart(userId, product._id, 0)
-    await refreshCart()
-  }
+  const { deleteProduct, quantityLess, quantityMore, quantityProduct } = useQuantityProduct({ userId, product, quantity, optionSelectedIndex })
 
   return (
     <div className='w-full flex text-[--text-200] text-sm gap-2'>
