@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import debounce from 'lodash/debounce'
+
 import { searchProducts } from '@/api/product'
 import type { Product } from '@/interfaces/interfaces'
 
@@ -20,6 +22,13 @@ const Search = (): JSX.Element => {
   const [searchResults, setSearchResults] = useState<Product[]>([])
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
+  const searchProductsDebounced = debounce(async (searchQuery: string) => {
+    setIsLoading(true)
+    await searchProducts(searchQuery)
+      .then((products) => { setSearchResults(products.products) })
+    setIsLoading(false)
+  }, 300)
+
   const handleSearchChange = async (e: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
     const searchQuery = e.target.value
     if (searchQuery.length === 0) {
@@ -28,9 +37,7 @@ const Search = (): JSX.Element => {
     }
 
     if (searchQuery.length > 2) {
-      setIsLoading(true)
-      await searchProducts(searchQuery)
-        .then((products) => { setSearchResults(products.products) })
+      searchProductsDebounced(searchQuery)
       setIsLoading(false)
     } else {
       setSearchResults([])

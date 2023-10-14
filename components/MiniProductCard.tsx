@@ -12,6 +12,18 @@ interface MiniProductCardProps {
 }
 
 const MiniProductCard = ({ product, setSearchResults }: MiniProductCardProps): JSX.Element => {
+  let lowestPrice = Number.MAX_SAFE_INTEGER
+  let highestPrice = Number.MIN_SAFE_INTEGER
+
+  product.options.forEach((option) => {
+    if (Number(option.price) < lowestPrice) {
+      lowestPrice = Number(option.price)
+    }
+    if (Number(option.price) > highestPrice) {
+      highestPrice = Number(option.price)
+    }
+  })
+
   return (
     <Link href={`/product/${product._id}`} onClick={() => { setSearchResults([]) }}>
       <DialogPrimitive.Close className='flex items-center gap-2 px-3 py-2 hover:bg-[--bg-300] rounded-lg cursor-pointer w-full'>
@@ -21,7 +33,12 @@ const MiniProductCard = ({ product, setSearchResults }: MiniProductCardProps): J
             {product.name}
           </p>
           <p className='text-[--text-200] font-semibold text-lg'>
-            ${product.options[0].price.toLocaleString('es-CL')}
+            {
+              lowestPrice === highestPrice
+                ? `$${lowestPrice.toLocaleString('es-CL')}`
+                : `$${lowestPrice.toLocaleString('es-CL')} - $${highestPrice.toLocaleString('es-CL')}`
+            }
+            {/* ${product.options[0].price.toLocaleString('es-CL')} */}
           </p>
         </div>
       </DialogPrimitive.Close>
