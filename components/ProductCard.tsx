@@ -6,7 +6,6 @@ import { cn } from '@/lib/utils'
 
 import { addProductToCart } from '@/api/cart'
 import { CartContext } from '@/context/CartContext'
-import { useUserDB } from '@/hooks/useUser'
 import { useToast } from './ui/use-toast'
 
 interface ProductCardProps {
@@ -57,7 +56,7 @@ const ProductCard = ({ product, className, userId }: ProductCardProps): JSX.Elem
     <div className={cn(producCardClass, className)} >
       {
         Number(selectedOption.discount) > 0 && (
-          <div className='absolute -top-2 -left-12 bg-[--primary-100] text-[--text-200] font-bold rounded-lg px-14 py-4 -rotate-45'>
+          <div className='absolute top-1 -left-16 bg-[--primary-100] text-[--text-200] select-none font-bold rounded-lg px-20 py-4 -rotate-45'>
             -{selectedOption.discount}%
           </div>
         )

@@ -14,9 +14,9 @@ const BrandsSlider = ({ brands }: BrandsSliderProps): JSX.Element => {
     <Swiper slidesPerView={'auto'} spaceBetween={15} autoplay className='w-full'>
       {
         brands.map((brand, index) => (
-          <SwiperSlide key={index} className='max-w-[7rem]'>
+          <SwiperSlide key={index} className='max-w-[7rem] md:max-w-[9rem]'>
             <Link href={`/brand/${brand._id}`}>
-              <div className='h-14 w-full bg-[--accent-100] rounded-sm shadow-lg'>
+              <div className='h-14 w-full bg-[--accent-100] rounded-sm shadow-lg md:h-20'>
                 <Image src={brand.image} alt={brand.name} objectFit='contain' objectPosition='center' fill />
               </div>
             </Link>

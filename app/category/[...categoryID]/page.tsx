@@ -73,7 +73,7 @@ const CategoryPage = ({ params }: { params: { categoryID: string } }): JSX.Eleme
   return (
     <div className='mx-5'>
       <div className='flex justify-between items-center'>
-        <h1 className='font-bold mt-7 mb-3'>
+        <h1 className='font-bold mt-7 mb-3 md:text-xl'>
           Categoria: {categories.find(category => category._id === params.categoryID[0])?.name}
         </h1>
         <Sheet>
@@ -93,7 +93,6 @@ const CategoryPage = ({ params }: { params: { categoryID: string } }): JSX.Eleme
                 <div className='flex gap-2 items-center'>
                   <FormSelect
                     field='brand'
-                    placeholder='Selecciona una marca'
                     value={filters.brand}
                     list={brands}
                     handleFilterChange={handleFilterChange}
@@ -108,7 +107,6 @@ const CategoryPage = ({ params }: { params: { categoryID: string } }): JSX.Eleme
                 <div className='flex gap-2 items-center'>
                   <FormSelect
                     field='lifeStage'
-                    placeholder='Selecciona una etapa de vida'
                     value={filters.lifeStage}
                     list={lifeStages}
                     handleFilterChange={handleFilterChange}
@@ -151,7 +149,7 @@ const CategoryPage = ({ params }: { params: { categoryID: string } }): JSX.Eleme
           </SheetContent>
         </Sheet>
       </div>
-      <div className='grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
+      <div className='grid grid-cols-1 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
         {
           products.length !== 0
             ? products.map((product) => (

@@ -21,12 +21,12 @@ const NavBar = (): JSX.Element => {
       <header className='flex justify-between items-center px-2 py-2 bg-[--primary-200]'>
         <div className="flex items-center gap-2">
           <Link href={'/'} passHref>
-            <Image src={'/simple-logo.png'} alt='logo' width={45} height={45} />
+            <Image src={'/simple-logo.png'} alt='logo' width={45} height={45} className='sm:w-14' />
           </Link>
           <SheetMenu />
         </div>
 
-        <div className='flex gap-2 items-center'>
+        <div className='flex gap-2 items-center sm:gap-3'>
           <Search />
           <Cart />
           <UserDropdown />

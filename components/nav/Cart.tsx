@@ -18,7 +18,7 @@ const Cart = (): JSX.Element => {
   return (
     <Popover>
       <PopoverTrigger>
-        <FaBagShopping className='text-3xl text-[--bg-100] cursor-pointer p-[.1rem] rounded-full border-[--bg-100] border-2 hover:text-[--bg-200] hover:border-[--bg-200] transition-colors' />
+        <FaBagShopping className='text-3xl text-[--bg-100] cursor-pointer p-[.1rem] rounded-full border-[--bg-100] border-2 hover:text-[--bg-200] hover:border-[--bg-200] transition-colors sm:text-4xl' />
       </PopoverTrigger>
       <PopoverContent className='w-auto max-w-[85vw] flex flex-col'>
         <h3 className='font-bold text-xl mb-2 text-[--text-100]'>Carrito</h3>

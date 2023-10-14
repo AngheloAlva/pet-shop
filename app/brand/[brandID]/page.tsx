@@ -68,7 +68,7 @@ const BrandPage = ({ params }: { params: { brandID: string } }): JSX.Element => 
   return (
     <div className='mx-5'>
       <div className='flex justify-between items-center'>
-        <h1 className='font-bold mt-7 mb-3'>
+        <h1 className='font-bold mt-7 mb-3 md:text-xl'>
           Productos de {brands.find(brand => brand._id === params.brandID)?.name}
         </h1>
         <Sheet>
@@ -88,7 +88,6 @@ const BrandPage = ({ params }: { params: { brandID: string } }): JSX.Element => 
                 <div className='flex gap-2 items-center'>
                   <FormSelect
                     field='lifeStage'
-                    placeholder='Selecciona una etapa de vida'
                     value={filters.lifeStage}
                     list={lifeStages}
                     handleFilterChange={handleFilterChange}
@@ -103,7 +102,6 @@ const BrandPage = ({ params }: { params: { brandID: string } }): JSX.Element => 
                 <div className='flex gap-2 items-center'>
                   <FormSelect
                     field='petType'
-                    placeholder='Selecciona un tipo de mascota'
                     value={filters.petType}
                     list={petTypes}
                     handleFilterChange={handleFilterChange}
@@ -127,7 +125,7 @@ const BrandPage = ({ params }: { params: { brandID: string } }): JSX.Element => 
           </SheetContent>
         </Sheet>
       </div>
-      <div className='grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
+      <div className='grid grid-cols-1 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
       {
           products.length !== 0
             ? products.map((product) => (

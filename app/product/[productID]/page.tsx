@@ -76,14 +76,15 @@ export default function ProductView ({ params }: { params: { productID: string }
 
   return (
     <>
-      <div className='flex pt-4 flex-col px-5 gap-4 sm:flex-row'>
+      <div className='flex pt-4 flex-col px-5 md:px-10 lg:px-32 2xl:px-48 mt-5 gap-4 sm:flex-row'>
         <div className='flex gap-2 sm:flex-col'>
-          <div className='border-2 rounded-sm overflow-hidden mb-3'>
+          <div className='border-2 rounded-sm overflow-hidden mb-3 lg:w-[30rem] lg:h-[30rem] 2xl:w-[40rem] 2xl:h-[40rem] 2xl:p-24 lg:p-14 bg-white'>
             <Image
               src={product?.image[selectedImage] ?? ''}
               alt={product?.name ?? ''}
-              width={400}
-              height={400}
+              width={700}
+              height={700}
+              className='rounded-sm'
             />
           </div>
           <div>
@@ -153,14 +154,14 @@ export default function ProductView ({ params }: { params: { productID: string }
               </button>
             </div>
 
-            <button onClick={addToCart} className='flex items-center font-semibold tracking-wide justify-center gap-2 h-10 w-full bg-[--accent-100] text-[--text-200] rounded-sm transition-all hover:bg-[--accent-200] hover:text-[--bg-100]'>
+            <button onClick={addToCart} className='flex max-w-[20rem] items-center font-semibold tracking-wide justify-center gap-2 h-10 w-full bg-[--accent-100] text-[--text-200] rounded-sm transition-all hover:bg-[--accent-200] hover:text-[--bg-100]'>
               <FaCartPlus />Agregar al carrito
             </button>
           </div>
         </div>
       </div>
 
-      <div className='grid grid-cols-2 gap-5 mx-5 my-12 border-2 py-5 px-4 rounded-sm sm:grid-cols-4'>
+      <div className='grid grid-cols-2 gap-5 mx-5 md:mx-10 lg:mx-32 2xl:mx-48 my-12 border-2 py-5 px-4 rounded-sm sm:grid-cols-4'>
         <div className='flex text-xs flex-col w-40'>
           <FaTruckArrowRight className='text-4xl text-[--bg-100] bg-[--primary-200] rounded-full w-10 h-10 p-1 mb-2' />
           <p className='font-semibold text-sm'>Envios Gratis</p>
@@ -183,7 +184,7 @@ export default function ProductView ({ params }: { params: { productID: string }
         </div>
       </div>
 
-      <div className='px-5'>
+      <div className='px-5 md:px-10 lg:px-32 2xl:px-48'>
         <h2 className='text-xl font-semibold text-[--text-100] mb-3'>Descripción</h2>
         <Accordion type='single' collapsible className='flex flex-col gap-1'>
           {

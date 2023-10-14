@@ -16,6 +16,9 @@ export default function Home (): JSX.Element {
   const acanaProducts = products.filter(product => product.brand.name === 'Acana')
   const acanaId = acanaProducts[0]?.brand?._id
 
+  const carrierAndBagsProducts = products.filter(product => product.category._id === '6521f6ca842661091b698d40')
+  const carrierAndBagsId = carrierAndBagsProducts[0]?.category?._id
+
   return (
     <>
       <Carousel images={carouselImages} />
@@ -23,7 +26,7 @@ export default function Home (): JSX.Element {
       <ProductsSlide slideTitle='Top Ventas' products={products} userId={userId} href='/products' />
 
       <h2 className='text-xl font-bold text-[--text-100] mb-3 mt-5 pl-5'>Promociones</h2>
-      <div className='flex flex-col gap-3 px-5'>
+      <div className='grid grid-cols-1 gap-3 px-5 lg:grid-cols-2'>
         {
           promotionsImages.map((image, index) => (
             <Link href={image.href} key={index} className='rounded-sm overflow-hidden'>
@@ -35,7 +38,7 @@ export default function Home (): JSX.Element {
 
       <ProductsSlide slideTitle='Productos de ACANA' products={acanaProducts} userId={userId} href={`/brand/${acanaId}`} />
 
-      <div className='flex flex-col w-full px-5 my-7 gap-3'>
+      <div className='flex flex-col w-full px-5 my-7 gap-3 lg:flex-row'>
         {
           servicesImages.map((image, index) => (
             <Link href={image.href} key={index} className='rounded-sm overflow-hidden shadow-xl'>
@@ -53,15 +56,7 @@ export default function Home (): JSX.Element {
         <BrandsSlider brands={brands} />
       </div>
 
-      <div className='mx-5 my-5 relative'>
-        <Image src={'/imgs/email-subscription.png'} alt='Email Subscription' width={1000} height={400} className='rounded-sm z-0' />
-        <div className=''>
-          <form action="">
-            <input type="email" placeholder='Email...' className='absolute bottom-14 left-5 rounded-sm py-1 px-2 text-[--text-200]' />
-            <button type='submit' className='absolute bottom-5 left-5 rounded-sm py-1 px-2 bg-[--accent-100] text-[--text-100] font-semibold'>Suscribirse</button>
-          </form>
-        </div>
-      </div>
+      <ProductsSlide slideTitle='Nuestros Bolsos y Transportadores' products={carrierAndBagsProducts} userId={userId} href={`/category/${carrierAndBagsId}`} />
     </>
   )
 }
