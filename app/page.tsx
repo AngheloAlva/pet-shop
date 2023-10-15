@@ -25,8 +25,8 @@ export default function Home (): JSX.Element {
 
       <ProductsSlide slideTitle='Nuestros Productos' products={allProducts} userId={userId} href='/products' />
 
-      <h2 className='text-lg sm:text-xl font-bold text-[--text-100] mb-3 mt-5 pl-5'>Promociones</h2>
-      <div className='grid grid-cols-1 gap-3 px-5 md:grid-cols-2'>
+      <h2 className='text-lg sm:text-xl font-bold text-[--text-100] mb-3 mt-5 ml-5 md:mx-14 lg:mx-[10vw] 2xl:mx-[15vw]'>Promociones</h2>
+      <div className='grid grid-cols-1 gap-3 mx-5 md:grid-cols-2 max-w-max md:mx-14 lg:mx-[10vw] 2xl:mx-[15vw]'>
         {
           promotionsImages.map((image, index) => (
             <Link href={image.href} key={image.src} className='rounded-sm overflow-hidden'>
@@ -38,8 +38,8 @@ export default function Home (): JSX.Element {
 
       <ProductsSlide slideTitle='Productos de ACANA' products={acanaProducts} userId={userId} href={`/brand/${acanaId}`} />
 
-      <h2 className='text-lg sm:text-xl font-bold text-[--text-100] mb-3 mt-5 pl-5'>Servicios</h2>
-      <div className='flex flex-col w-full px-5 mb-7 gap-3 lg:flex-row'>
+      <h2 className='text-lg sm:text-xl font-bold text-[--text-100] mb-3 mt-5 ml-5 md:mx-14 lg:mx-[10vw] 2xl:mx-[15vw]'>Servicios</h2>
+      <div className='flex flex-col mx-5 mb-7 gap-3 lg:flex-row md:mx-14 lg:mx-[10vw] 2xl:mx-[15vw]'>
         {
           servicesImages.map((image, index) => (
             <Link href={image.href} key={index} className='rounded-sm overflow-hidden shadow-xl'>
@@ -49,7 +49,7 @@ export default function Home (): JSX.Element {
         }
       </div>
 
-      <div className='px-5 flex flex-col gap-3'>
+      <div className='mx-5 flex flex-col gap-3 md:mx-14 lg:mx-[10vw] 2xl:mx-[15vw]'>
         <div className='flex justify-between items-center'>
           <h2 className='text-lg sm:text-xl font-bold'>Marcas</h2>
           <Link href='/brand' className='text-[--text-200] px-2 hover:underline py-0 transition-colors font-semibold'>Ver todas</Link>

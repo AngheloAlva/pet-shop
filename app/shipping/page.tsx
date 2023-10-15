@@ -88,7 +88,7 @@ const page = (): JSX.Element => {
   }
 
   return (
-    <div className='py-8 px-5'>
+    <div className='my-8 mx-5 md:mx-20 lg:mx-[15vw] 2xl:mx-[20vw]'>
       <div className='border-2 rounded-sm p-4 bg-[--bg-200] border-[--bg-300]'>
         <div className='flex justify-between text-[--text-100]'>
           <Link href='/'>

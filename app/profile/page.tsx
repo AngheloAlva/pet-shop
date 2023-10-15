@@ -18,7 +18,7 @@ const ProfilePage = (): JSX.Element => {
 
   return (
     <>
-      <div className='mx-5 my-6 min-h-[80vh]'>
+      <div className='mx-5 my-6 min-h-[80vh] md:mx-20 lg:mx-[15vw] 2xl:mx-[20vw]'>
         <h1 className='text-xl font-semibold'>
           Bienvenido {user?.name}
         </h1>

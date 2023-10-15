@@ -29,7 +29,7 @@ const ProductsSlide = ({ slideTitle, products, userId, href }: ProductSlideProps
   }
 
   return (
-    <div className='px-5 mt-5'>
+    <div className='mx-5 mt-5 sm:mx-5 md:mx-14 lg:mx-[10vw] 2xl:mx-[15vw]'>
       <div className='flex justify-between items-center'>
         <h2 className='text-lg sm:text-xl font-bold mt-4 mb-3 text-[--text-100]'>
           {slideTitle}

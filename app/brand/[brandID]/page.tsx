@@ -66,7 +66,7 @@ const BrandPage = ({ params }: { params: { brandID: string } }): JSX.Element => 
   }
 
   return (
-    <div className='mx-5'>
+    <div className='mx-5 md:mx-14 lg:mx-[10vw] 2xl:mx-[15vw]'>
       <div className='flex justify-between items-center'>
         <h1 className='font-bold mt-7 mb-3 md:text-xl'>
           Productos de {brands.find(brand => brand._id === params.brandID)?.name}
@@ -125,7 +125,7 @@ const BrandPage = ({ params }: { params: { brandID: string } }): JSX.Element => 
           </SheetContent>
         </Sheet>
       </div>
-      <div className='grid grid-cols-1 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
+      <div className='grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
       {
           products.length !== 0
             ? products.map((product) => (
