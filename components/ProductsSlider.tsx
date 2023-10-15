@@ -1,13 +1,17 @@
 import React, { useRef } from 'react'
+
 import ProductCard from './ProductCard'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import { Skeleton } from '@/components/ui/skeleton'
 import { FaAngleRight, FaAngleLeft } from 'react-icons/fa6'
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import SwiperCore from 'swiper/modules'
 
 import type { ProductSlideProps } from '@/interfaces/interfaces'
 import { Button } from './ui/button'
 import Link from 'next/link'
+import ProductCardSkeleton from './ProductCardSkeleton'
 
 const ProductsSlide = ({ slideTitle, products, userId, href }: ProductSlideProps): JSX.Element => {
   const swiperRef = useRef(null)
@@ -39,33 +43,69 @@ const ProductsSlide = ({ slideTitle, products, userId, href }: ProductSlideProps
           </button>
         </div>
       </div>
-      <Swiper
-        slidesPerView={'auto'}
-        spaceBetween={15}
-        ref={swiperRef}
-      >
-        {
-          products.map((product, index) => (
-            <SwiperSlide key={index} className='max-w-[16rem]'>
-              {
-                index < 14
-                  ? (
-                    <ProductCard product={product} userId={userId} key={product._id} />
-                    )
-                  : (
-                    <div>
-                      <Link href={href}>
-                        <Button className='w-64' variant={'outline'}>
-                          Ver mas...
-                        </Button>
-                      </Link>
-                    </div>
-                    )
-              }
+      {products.length > 0
+        ? (
+          <Swiper
+            slidesPerView={'auto'}
+            spaceBetween={15}
+            ref={swiperRef}
+          >
+            {
+              products.map((product, index) => (
+                <SwiperSlide key={index} className='max-w-[16rem]'>
+                  {
+                    index < 14
+                      ? (
+                        <ProductCard product={product} userId={userId} key={product._id} />
+                        )
+                      : (
+                        <div>
+                          <Link href={href}>
+                            <Button className='w-64' variant={'outline'}>
+                              Ver mas...
+                            </Button>
+                          </Link>
+                        </div>
+                        )
+                  }
+                </SwiperSlide>
+              ))
+            }
+          </Swiper>
+          )
+        : (
+          <Swiper
+            slidesPerView={'auto'}
+            spaceBetween={15}
+            ref={swiperRef}
+          >
+            <SwiperSlide className='max-w-[16rem] mr-4'>
+              <ProductCardSkeleton />
             </SwiperSlide>
-          ))
-        }
-      </Swiper>
+            <SwiperSlide className='max-w-[16rem] mr-4'>
+              <ProductCardSkeleton />
+            </SwiperSlide>
+            <SwiperSlide className='max-w-[16rem] mr-4'>
+              <ProductCardSkeleton />
+            </SwiperSlide>
+            <SwiperSlide className='max-w-[16rem] mr-4'>
+              <ProductCardSkeleton />
+            </SwiperSlide>
+            <SwiperSlide className='max-w-[16rem] mr-4'>
+              <ProductCardSkeleton />
+            </SwiperSlide>
+            <SwiperSlide className='max-w-[16rem] mr-4'>
+              <ProductCardSkeleton />
+            </SwiperSlide>
+            <SwiperSlide className='max-w-[16rem] mr-4'>
+              <ProductCardSkeleton />
+            </SwiperSlide>
+            <SwiperSlide className='max-w-[16rem] mr-4'>
+              <ProductCardSkeleton />
+            </SwiperSlide>
+          </Swiper>
+          )
+      }
     </div>
   )
 }

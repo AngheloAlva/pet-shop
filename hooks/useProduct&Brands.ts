@@ -7,7 +7,7 @@ import { useUser } from '@auth0/nextjs-auth0/client'
 import type { Product, Brand, Filter } from '@/interfaces/interfaces'
 
 const useProductAndBrands = ({
-  category, brand, petType, lifeStage, brandLimit = 15, productLimit = 15, productFrom = 0
+  category, brand, petType, lifeStage, brandLimit = 15, productLimit = 15, productFrom = 0, setLoading
 }: Filter): {
   products: Product[]
   brands: Brand[]
@@ -26,6 +26,7 @@ const useProductAndBrands = ({
       const data = await getProducts({ category, brand, petType, lifeStage }, productLimit, productFrom)
       setProducts(data.products)
       setTotalProducts(data.total)
+      if (setLoading != null) setLoading(false)
     }
 
     const fetchBrands = async (): Promise<void> => {

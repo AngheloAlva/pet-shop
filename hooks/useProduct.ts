@@ -6,9 +6,10 @@ import type { Product } from '@/interfaces/interfaces'
 interface UseProduct {
   productID: string
   setOptionSelected: (option: Product['options'][0]) => void
+  setLoading: (loading: boolean) => void
 }
 
-const useProduct = ({ productID, setOptionSelected }: UseProduct): { product: Product } => {
+const useProduct = ({ productID, setOptionSelected, setLoading }: UseProduct): { product: Product } => {
   const [product, setProduct] = useState<Product>()
 
   useEffect(() => {
@@ -16,6 +17,7 @@ const useProduct = ({ productID, setOptionSelected }: UseProduct): { product: Pr
       .then((data) => {
         setProduct(data.product)
         setOptionSelected(data.product.options[0])
+        setLoading(false)
       })
       .catch((error) => { console.log(error) })
   }, [productID])

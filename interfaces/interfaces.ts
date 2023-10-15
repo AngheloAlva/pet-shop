@@ -150,4 +150,5 @@ export interface Filter {
   brandLimit?: number
   productLimit?: number
   productFrom?: number
+  setLoading?: React.Dispatch<React.SetStateAction<boolean>>
 }
