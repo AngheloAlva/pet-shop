@@ -12,7 +12,7 @@ import type { NavMenuItemProps } from '../interfaces/interfaces'
 const NavMenuItem = ({ navMenuTitle, itemsArray, petType }: NavMenuItemProps): JSX.Element => {
   return (
     <NavigationMenuItem>
-      <NavigationMenuTrigger className='font-bold text-sm w-36 flex bg-transparent transition-all data-[state=open]:bg-[--accent-100] data-[state=open]:text-[--bg-100] rounded-none'>
+      <NavigationMenuTrigger className='font-bold text-sm w-36 flex bg-transparent transition-all data-[state=open]:bg-[--accent-100] data-[state=open]:text-[--bg-100] rounded-none h-[4vh]'>
         {navMenuTitle}
       </NavigationMenuTrigger>
       <NavigationMenuContent>

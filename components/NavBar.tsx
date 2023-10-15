@@ -17,8 +17,8 @@ const NavBar = (): JSX.Element => {
   const { catCategories, dogCategories } = useCategoryBrands()
 
   return (
-    <nav className='flex flex-col'>
-      <header className='flex justify-between items-center px-2 py-2 bg-[--primary-200]'>
+    <nav className='flex flex-col fixed top-0 left-0 right-0 z-50'>
+      <header className='flex justify-between items-center px-2 bg-[--primary-200] h-[6vh] sm:h-[7vh]'>
         <div className="flex items-center gap-2">
           <Link href={'/'} passHref>
             <Image src={'/simple-logo.png'} alt='logo' width={45} height={45} className='sm:w-14' />
