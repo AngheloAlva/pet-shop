@@ -13,7 +13,7 @@ const Footer = (): JSX.Element => {
         <div className='flex flex-row gap-x-10 w-full sm:w-auto sm:gap-x-[10vw] lg:gap-x-[15vw]'>
           <ul className='flex flex-col gap-3 items-center justify-center'>
             <li><h3 className='mb-3 text-sm'>EMPRESA</h3></li>
-            <li><Link href={'/'} passHref>Quienes somos</Link></li>
+            <li><Link href={'/quienes-somos'} passHref>Quienes somos</Link></li>
             <li><Link href={'/'} passHref>Terminos y Condiciones</Link></li>
             <li><Link href={'/'} passHref>Acceso a Clientes</Link></li>
             <li><Link href={'/'} passHref>Registro</Link></li>
