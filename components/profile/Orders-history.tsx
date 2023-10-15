@@ -1,16 +1,16 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
-import getOrders from '@/api/order'
-import type { Order, User } from '@/interfaces/interfaces'
+import type { User } from '@/interfaces/interfaces'
+import useOrders from '@/hooks/useOrders'
 
 interface OrdersHistoryProps {
   user: User
 }
 
 const OrdersHistory = ({ user }: OrdersHistoryProps): JSX.Element => {
-  const [orders, setOrders] = useState<{ total: number, orders: Order[] }>({ total: 0, orders: [] })
+  const { orders } = useOrders({ userId: user.id })
 
   if (user === undefined) {
     return (
@@ -26,15 +26,6 @@ const OrdersHistory = ({ user }: OrdersHistoryProps): JSX.Element => {
       </div>
     )
   }
-
-  useEffect(() => {
-    const fetchOrders = async (): Promise<void> => {
-      const response = await getOrders(user.id)
-      setOrders(response)
-    }
-
-    void fetchOrders()
-  }, [])
 
   return (
     <>
