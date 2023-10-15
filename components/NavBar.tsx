@@ -35,14 +35,14 @@ const NavBar = (): JSX.Element => {
             <UserDropdown />
           </div>
         </header>
-        <NavigationMenu className='hidden md:flex w-full bg-white text-[--text-100]'>
+        <NavigationMenu className='hidden md:flex w-full backdrop-blur-xl text-[--text-100]'>
           <NavigationMenuList>
             <NavMenuItem navMenuTitle='PERROS' itemsArray={dogCategories} petType='dog' />
             <NavMenuItem navMenuTitle='GATOS' itemsArray={catCategories} petType='cat' />
           </NavigationMenuList>
         </NavigationMenu>
       </nav>
-      <div className='h-[9vh] w-full sm:h-[10vh] md:h-[14vh]' />
+      <div className='h-[9vh] w-full sm:h-[10vh] md:h-[14vh] bg-white' />
     </>
   )
 }
