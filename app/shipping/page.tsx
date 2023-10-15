@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useUserDB } from '@/hooks/useUser'
+import { useUserDB } from '@/hooks/useUserDB'
 import React, { useContext, useState } from 'react'
 import { CartContext } from '@/context/CartContext'
 

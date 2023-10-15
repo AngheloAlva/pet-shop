@@ -10,7 +10,7 @@ import {
   TabsTrigger
 } from '@/components/ui/tabs'
 import PersonalInfo from '@/components/profile/Personal-info'
-import { useUserDB } from '@/hooks/useUser'
+import { useUserDB } from '@/hooks/useUserDB'
 import OrdersHistory from '@/components/profile/Orders-history'
 
 const ProfilePage = (): JSX.Element => {
