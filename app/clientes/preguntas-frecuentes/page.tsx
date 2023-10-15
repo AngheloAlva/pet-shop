@@ -6,9 +6,9 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 const page = (): JSX.Element => {
   return (
     <main className='my-7 mx-5 flex flex-col md:mx-20 lg:mx-[15vw] 2xl:mx-[20vw]'>
-      <h1 className='text-xl font-bold'>PREGUNTAS FRECUENTES</h1>
+      <h1 className='text-xl font-bold text-[--primary-200] mb-4'>PREGUNTAS FRECUENTES</h1>
       <div className='flex flex-col gap-4 md:flex-row'>
-        <Image src={'/imgs/petshop-faq.png'} alt='petshop-image' width={500} height={500} className='md:w-1/2 md:h-1/2' />
+        <Image src={'/imgs/petshop-faq.png'} alt='petshop-image' width={750} height={1000} className='md:w-1/2 md:h-1/2' />
         <Accordion type='multiple' className='flex flex-col gap-1'>
           <AccordionItem value='question-1'>
             <AccordionTrigger className='text-left'>

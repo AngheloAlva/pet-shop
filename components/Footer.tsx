@@ -19,7 +19,7 @@ const Footer = (): JSX.Element => {
           <ul className='flex flex-col gap-3 items-center justify-center'>
             <li><h3 className='mb-3 text-sm'>LINKS DE INTERES</h3></li>
             <li><Link href={'/links/terminos-y-condiciones'} passHref>Terminos y Condiciones</Link></li>
-            <li><Link href={'/links/'} passHref>Politica de Envio</Link></li>
+            <li><Link href={'/links/politica-de-envio'} passHref>Politica de Envio</Link></li>
           </ul>
         </div>
         <ul className='flex flex-col gap-3 items-center justify-center'>
