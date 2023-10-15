@@ -19,8 +19,9 @@ interface PersonalInfoProps {
 
 const PersonalInfo = ({ user }: PersonalInfoProps): JSX.Element => {
   const { toast } = useToast()
+  const { name, email, phone, RUT, lastName, address } = user ?? { name: '', email: '', phone: '', RUT: '', lastName: '' }
 
-  const [isApartment, setIsApartment] = React.useState<boolean>(user?.address?.isApartment)
+  const [isApartment, setIsApartment] = React.useState<boolean>(address?.isApartament ?? false)
   const [listComunas, setListComunas] = React.useState<string[]>([])
   const [region, setRegion] = React.useState<string>('')
   const [comuna, setComuna] = React.useState<string>('')
@@ -85,16 +86,16 @@ const PersonalInfo = ({ user }: PersonalInfoProps): JSX.Element => {
               <div className='grid grid-cols-2 gap-x-3 mt-2'>
                 <Label htmlFor='name'>Nombre</Label>
                 <Label htmlFor='lastname'>Apellido</Label>
-                <Input id='name' defaultValue={user.name} />
-                <Input id='lastname' defaultValue={user.lastName} required />
+                <Input id='name' defaultValue={name} />
+                <Input id='lastname' defaultValue={lastName} required />
               </div>
               <Label htmlFor='email'>Correo</Label>
-              <Input id='email' defaultValue={user.email} disabled required />
+              <Input id='email' defaultValue={email} disabled required />
               <div className='grid grid-cols-2 gap-x-3 mt-2'>
                 <Label htmlFor='rut'>RUT</Label>
                 <Label htmlFor='phone'>Telefono</Label>
-                <Input id='rut' defaultValue={user.RUT} required />
-                <Input id='phone' defaultValue={user.phone} required />
+                <Input id='rut' defaultValue={RUT} required />
+                <Input id='phone' defaultValue={phone} required />
               </div>
 
               <Separator className='my-4' />
@@ -103,8 +104,8 @@ const PersonalInfo = ({ user }: PersonalInfoProps): JSX.Element => {
               <div className='grid grid-cols-3 gap-x-3 mt-2'>
                 <Label htmlFor='address' className='col-span-2'>Calle</Label>
                 <Label htmlFor='number'>Numero</Label>
-                <Input id='address' defaultValue={user.address?.street} className='col-span-2' required />
-                <Input id='number' defaultValue={user.address?.number} required />
+                <Input id='address' defaultValue={address?.street} className='col-span-2' required />
+                <Input id='number' defaultValue={address?.number} required />
 
               </div>
               <Label htmlFor='region'>Region</Label>
@@ -154,12 +155,12 @@ const PersonalInfo = ({ user }: PersonalInfoProps): JSX.Element => {
                 isApartment && (
                   <>
                     <Label htmlFor='aparmentNumber'>Numero de Dpto</Label>
-                    <Input id='aparmentNumber' value={user.address?.apartamentNumber} required={isApartment} />
+                    <Input id='aparmentNumber' value={address?.apartamentNumber} required={isApartment} />
                   </>
                 )
               }
               <Label htmlFor='zipCode'>Codigo Postal</Label>
-              <Input id='zipCode' defaultValue={user.address?.zipCode} />
+              <Input id='zipCode' defaultValue={address?.zipCode} />
 
               <Button type='submit' className='my-5 w-full text-base bg-[--accent-200] text-[--bg-100] font-bold hover:bg-[--accent-100] transition-all hover:text-[--text-200]' >
                 Guardar
