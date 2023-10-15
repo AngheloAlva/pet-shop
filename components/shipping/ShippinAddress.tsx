@@ -2,8 +2,14 @@ import React, { useEffect } from 'react'
 
 import PersonalInfo from '@/components/profile/Personal-info'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
+import type { User } from '@/interfaces/interfaces'
 
-const ShippinAddress = ({ user, onAddressChange }): JSX.Element => {
+interface ShippinAddressProps {
+  user: User
+  onAddressChange: (value: boolean) => void
+}
+
+const ShippinAddress = ({ user, onAddressChange }: ShippinAddressProps): JSX.Element => {
   useEffect(() => {
     if (user?.address?.street !== undefined) {
       onAddressChange(true)
