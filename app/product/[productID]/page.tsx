@@ -115,8 +115,8 @@ export default function ProductView ({ params }: { params: { productID: string }
                     <Image
                       src={product?.image[selectedImage] ?? ''}
                       alt={product?.name ?? ''}
-                      width={700}
-                      height={700}
+                      width={1000}
+                      height={1000}
                       className='rounded-sm'
                     />
                   </div>
