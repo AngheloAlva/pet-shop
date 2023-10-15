@@ -10,13 +10,13 @@ const page = (): JSX.Element => {
     <>
       <div className="bg-[url('/imgs/nuestras-tiendas-banner.png')] bg-cover bg-center h-[25vw] bg-no-repeat " />
 
-      <div className='flex justify-center items-center gap-5 -mt-10 relative flex-col'>
-        <div className='w-80 border-2 rounded-lg border-[--bg-300] overflow-hidden h-[27rem] flex flex-col'>
-          <Link href={'/tiendas/santiago-centro'} passHref className='h-64 relative w-full rounded-md overflow-hidden'>
+      <div className='flex justify-center items-center gap-5 -mt-10 relative flex-col md:flex-row'>
+        <div className='w-80 border-2 rounded-lg border-[--bg-300] overflow-hidden h-[27rem] flex flex-col md:w-96'>
+          <Link href={'/nosotros/tiendas/santiago-centro'} passHref className='h-64 relative w-full rounded-md overflow-hidden'>
             <Image src={'/imgs/tienda-santiago-centro.png'} alt='tienda-santiago-centro' layout='fill' objectFit='cover' />
           </Link>
           <div className='pt-5 px-3 bg-[--bg-100]'>
-            <Link href={'/tiendas/santiago-centro'} passHref>
+            <Link href={'/nosotros/tiendas/santiago-centro'} passHref>
               <h2 className='font-bold text-[--accent-200]'>Tienda Santiago Centro</h2>
             </Link>
             <p className='flex gap-3 items-center my-2 ml-3 text-sm text-[--text-200]'><FaMapLocationDot /> José Toribio Medina 99</p>
@@ -26,12 +26,12 @@ const page = (): JSX.Element => {
           </div>
         </div>
 
-        <div className='w-80 border-2 rounded-lg border-[--bg-300] overflow-hidden h-[27rem] flex flex-col'>
-          <Link href={'/tiendas/nunoa'} passHref className='h-64 relative w-full  rounded-md overflow-hidden'>
+        <div className='w-80 border-2 rounded-lg border-[--bg-300] overflow-hidden h-[27rem] flex flex-col md:w-96'>
+          <Link href={'/nosotros/tiendas/nunoa'} passHref className='h-64 relative w-full  rounded-md overflow-hidden'>
             <Image src={'/imgs/tienda-nunoa.jpg'} alt='tienda-nunoa' layout='fill' objectFit='cover' />
           </Link>
           <div className='pt-5 px-3 bg-[--bg-100]'>
-            <Link href={'/tiendas/nunoa'} passHref>
+            <Link href={'/nosotros/tiendas/nunoa'} passHref>
               <h2 className='font-bold text-[--accent-200]'>Tienda Ñuñoa</h2>
             </Link>
             <p className='flex gap-3 items-center my-2 ml-3 text-sm text-[--text-200]'><FaMapLocationDot /> Avenida Salvador 2536</p>
