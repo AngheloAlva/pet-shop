@@ -14,7 +14,7 @@ const Footer = (): JSX.Element => {
           <ul className='flex flex-col gap-3 items-center justify-center'>
             <li><h3 className='mb-3 text-sm'>EMPRESA</h3></li>
             <li><Link href={'/quienes-somos'} passHref>Quienes somos</Link></li>
-            <li><Link href={'/'} passHref>Terminos y Condiciones</Link></li>
+            <li><Link href={'/terminos-y-condiciones'} passHref>Terminos y Condiciones</Link></li>
             <li><Link href={'/'} passHref>Acceso a Clientes</Link></li>
             <li><Link href={'/'} passHref>Registro</Link></li>
             <li><Link href={'/'} passHref>Preguntas Frecuentes</Link></li>

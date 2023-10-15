@@ -13,7 +13,7 @@ import Link from 'next/link'
 const Carousel = ({ images }: CarouselProps): JSX.Element => {
   return (
     <Swiper
-      className='w-full max-h-[25vw] mt-[6vh] sm:mt-[7vh] md:mt-[11vh]'
+      className='w-full max-h-[25vw] '
       modules={[Autoplay, Pagination]}
       spaceBetween={0}
       centeredSlides
