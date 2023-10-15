@@ -10,7 +10,6 @@ import ProductsSlide from '@/components/ProductsSlider'
 import { carouselImages, promotionsImages, servicesImages } from '../data/imgsArrays'
 
 import useProductAndBrands from '@/hooks/useProduct&Brands'
-import ProductCardSkeleton from '@/components/ProductCardSkeleton'
 
 export default function Home (): JSX.Element {
   const { products: allProducts, brands, userId } = useProductAndBrands({ })

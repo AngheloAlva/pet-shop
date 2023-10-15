@@ -13,7 +13,7 @@ const getProducts = async (
   from: number = 0
 ): Promise<{ total: number, products: Product[] }> => {
   try {
-    let url = `http://localhost:3001/products?limit=${limit}&from=${from}&`
+    let url = `${process.env.NEXT_PUBLIC_PET_SHOP_SERVER_URL}/products?limit=${limit}&from=${from}&`
     if (filters.category != null) url += `category=${filters.category}&`
     if (filters.brand != null) url += `brand=${filters.brand}&`
     if (filters.petType != null) url += `petType=${filters.petType}&`
@@ -33,7 +33,7 @@ const getProductById = async (
 ): Promise<{ msg: string, product: Product }> => {
   try {
     const response = await axios.get(
-      `http://localhost:3001/products/${id}`
+      `${process.env.NEXT_PUBLIC_PET_SHOP_SERVER_URL}/products/${id}`
     )
     return response.data
   } catch (error) {
@@ -45,7 +45,7 @@ const getProductById = async (
 const searchProducts = async (search: string): Promise<{ total: number, products: Product[] }> => {
   try {
     const response = await axios.get(
-      `http://localhost:3001/products/search?term=${search}`
+      `${process.env.NEXT_PUBLIC_PET_SHOP_SERVER_URL}/products/search?term=${search}`
     )
     return response.data
   } catch (error) {

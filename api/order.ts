@@ -8,7 +8,7 @@ const getOrders = async (
 ): Promise<{ total: number, orders: Order[] }> => {
   try {
     const response = await axios.get(
-      `http://localhost:3001/orders/${userId}?limit=${limit}&from=${from}`
+      `${process.env.NEXT_PUBLIC_PET_SHOP_SERVER_URL}/orders/${userId}?limit=${limit}&from=${from}`
     )
     return response.data
   } catch (error) {

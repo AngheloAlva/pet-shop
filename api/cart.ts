@@ -3,7 +3,7 @@ import axios from 'axios'
 
 const getCart = async (userId: string): Promise<{ msg: string, cart: ItemCart[] }> => {
   try {
-    const response = await axios.get(`http://localhost:3001/users/${userId}/cart`)
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_PET_SHOP_SERVER_URL}/users/${userId}/cart`)
     return response.data
   } catch (error) {
     console.error(error)
@@ -17,7 +17,7 @@ const updateCart = async (
   quantity: number
 ): Promise<{ msg: string, cart: ItemCart[] }> => {
   try {
-    const response = await axios.put('http://localhost:3001/users/cart', {
+    const response = await axios.put(`${process.env.NEXT_PUBLIC_PET_SHOP_SERVER_URL}/users/cart`, {
       userId,
       productId,
       quantity
@@ -36,7 +36,7 @@ const addProductToCart = async (
   optionSelectedIndex: number
 ): Promise<{ msg: string, cart: ItemCart[] }> => {
   try {
-    const response = await axios.post('http://localhost:3001/users/cart', {
+    const response = await axios.post(`${process.env.NEXT_PUBLIC_PET_SHOP_SERVER_URL}/users/cart`, {
       userId,
       productId,
       quantity,
@@ -56,7 +56,7 @@ const createCheckoutSession = async (
 ): Promise<{ msg: string, url: string }> => {
   try {
     const response = await axios.post(
-      'http://localhost:3001/payment', { items, payShipping, userId }
+      `${process.env.NEXT_PUBLIC_PET_SHOP_SERVER_URL}/payment`, { items, payShipping, userId }
     )
     return response.data.url
   } catch (error) {
