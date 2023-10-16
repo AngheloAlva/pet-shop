@@ -79,7 +79,7 @@ const page = (): JSX.Element => {
       payShippment = false
     }
 
-    const session = await createCheckoutSession(items, payShippment, user.id)
+    const session = await createCheckoutSession(items, payShippment, user?.id ?? '')
     window.location.href = session.url
   }
 
@@ -119,7 +119,7 @@ const page = (): JSX.Element => {
       {
         cartItems.length > 0 && (
           <>
-            <ShippinAddress user={user} onAddressChange={handleAddressChange} />
+            {(user != null) && <ShippinAddress user={user} onAddressChange={handleAddressChange} />}
             <div className='border-2 rounded-sm p-4 mt-2 bg-[--bg-200] border-[--bg-300]'>
               <h2 className='text-lg font-semibold mb-3'>Metodo de envio</h2>
               <RadioGroup className='ml-5' onValueChange={handleShippingMethod}>

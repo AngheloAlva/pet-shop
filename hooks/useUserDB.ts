@@ -3,7 +3,7 @@ import type { User } from '@/interfaces/interfaces'
 import { useUser } from '@auth0/nextjs-auth0/client'
 import { useEffect, useState } from 'react'
 
-export const useUserDB = (): { user: User } => {
+export const useUserDB = (): { user: User | undefined } => {
   const { user } = useUser()
   const [userDB, setUserDB] = useState<User>()
 

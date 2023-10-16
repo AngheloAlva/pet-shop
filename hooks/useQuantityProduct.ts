@@ -55,7 +55,9 @@ const useQuantityProduct = ({
     quantityProduct,
     quantityLess,
     quantityMore,
-    deleteProduct
+    deleteProduct: () => {
+      void deleteProduct()
+    }
   }
 }
 

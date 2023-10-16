@@ -9,7 +9,7 @@ interface UseProduct {
   setLoading: (loading: boolean) => void
 }
 
-const useProduct = ({ productID, setOptionSelected, setLoading }: UseProduct): { product: Product } => {
+const useProduct = ({ productID, setOptionSelected, setLoading }: UseProduct): { product: Product | undefined } => {
   const [product, setProduct] = useState<Product>()
 
   useEffect(() => {

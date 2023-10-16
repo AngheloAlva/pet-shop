@@ -16,11 +16,15 @@ import OrdersHistory from '@/components/profile/Orders-history'
 const ProfilePage = (): JSX.Element => {
   const { user } = useUserDB()
 
+  if (user == null) {
+    return <div>Loading...</div>
+  }
+
   return (
     <>
       <div className='mx-5 my-6 min-h-[80vh] md:mx-20 lg:mx-[15vw] 2xl:mx-[20vw]'>
         <h1 className='text-xl font-semibold'>
-          Bienvenido {user?.name}
+          Bienvenido {user.name}
         </h1>
         <Tabs defaultValue='personal-info'>
           <TabsList className='bg-[--bg-200]'>

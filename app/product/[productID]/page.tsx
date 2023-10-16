@@ -70,7 +70,7 @@ export default function ProductView ({ params }: { params: { productID: string }
     }
 
     try {
-      await addProductToCart(user?.sub ?? '', product?._id ?? '', quantity, optionSelectedIndex)
+      await addProductToCart(user?.sub ?? '', product?._id ?? '', quantity, optionSelectedIndex ?? 0)
       await refreshCart()
     } catch (error) {
       throw new Error()

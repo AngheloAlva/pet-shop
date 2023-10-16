@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import type { Order, User } from '@/interfaces/interfaces'
 
 interface UseOrders {
-  userId: User['id']
+  userId: User['id'] | undefined
 }
 
 const useOrders = (
@@ -13,7 +13,7 @@ const useOrders = (
 
   useEffect(() => {
     const fetchOrders = async (): Promise<void> => {
-      const response = await getOrders(userId)
+      const response = await getOrders(userId ?? '')
       setOrders(response)
     }
 
