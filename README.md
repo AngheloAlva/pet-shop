@@ -16,3 +16,9 @@
 
 ### Server [GitHub](https://github.com/AngheloAlva/pet-shop-express)
 ### Admin Dashboard [GitHub](https://github.com/AngheloAlva/pet-shop-admin)
+
+### Cosas por hacer
+- Fixear bug con la actualizacion de datos de usuario
+- Mover el dialog hacia arriba cuando se abre en mobile
+- Implementar reload al agregar los datos de envio en shipping page
+- Cambiar el estilo de los select en mobile para la actualizacion de datos de usuario
