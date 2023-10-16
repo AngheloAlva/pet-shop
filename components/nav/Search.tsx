@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import React, { useState } from 'react'
 import debounce from 'lodash/debounce'
 
@@ -57,7 +58,6 @@ const Search = (): JSX.Element => {
           <DialogTitle className='text-left pt-3 flex justify-between items-center'>
             <div className='px-3 items-center flex'>
               <FaMagnifyingGlass className='text-[--primary-200] cursor-pointer mr-3' />
-              {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
               <input type='text' placeholder='Buscar...' className='bg-transparent text-sm focus:outline-none h-7 w-full' onChange={handleSearchChange} />
             </div>
             <DialogPrimitive.Close>
