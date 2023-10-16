@@ -39,7 +39,8 @@ const Search = (): JSX.Element => {
 
     if (searchQuery.length > 2) {
       searchProductsDebounced(searchQuery)
-      setIsLoading(false)
+        ?.then(() => { setIsLoading(false) })
+        .catch(() => { setIsLoading(false) })
     } else {
       setSearchResults([])
     }
