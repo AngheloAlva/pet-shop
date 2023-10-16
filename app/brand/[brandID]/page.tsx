@@ -88,7 +88,7 @@ const BrandPage = ({ params }: { params: { brandID: string } }): JSX.Element => 
                 <div className='flex gap-2 items-center'>
                   <FormSelect
                     field='lifeStage'
-                    value={filters.lifeStage}
+                    value={filters.lifeStage ?? ''}
                     list={lifeStages}
                     handleFilterChange={handleFilterChange}
                   />
@@ -102,7 +102,7 @@ const BrandPage = ({ params }: { params: { brandID: string } }): JSX.Element => 
                 <div className='flex gap-2 items-center'>
                   <FormSelect
                     field='petType'
-                    value={filters.petType}
+                    value={filters.petType ?? ''}
                     list={petTypes}
                     handleFilterChange={handleFilterChange}
                   />

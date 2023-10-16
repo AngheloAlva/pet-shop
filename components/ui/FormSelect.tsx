@@ -4,7 +4,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 
 interface Props {
   field: string
-  placeholder: string
   value: string
   list: Array<{
     _id: string
@@ -13,11 +12,11 @@ interface Props {
   handleFilterChange: (filterName: string, filterValue: string) => void
 }
 
-export const FormSelect = ({ field, placeholder, value, list, handleFilterChange }: Props): JSX.Element => {
+export const FormSelect = ({ field, value, list, handleFilterChange }: Props): JSX.Element => {
   return (
     <Select required value={value} onValueChange={(e) => { handleFilterChange(field, e) }}>
       <SelectTrigger>
-        <SelectValue placeholder={placeholder} />
+        <SelectValue />
       </SelectTrigger>
       <SelectContent>
         {
