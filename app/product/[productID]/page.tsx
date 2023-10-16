@@ -7,7 +7,7 @@ import React, { useContext, useState } from 'react'
 import { FaCartPlus, FaShop, FaTruckFast, FaShieldHalved, FaTruckArrowRight } from 'react-icons/fa6'
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion'
 
-import { addProductToCart } from '@/api/cart'
+import { addProductToCart } from '@/apiRequest/cart'
 import { CartContext } from '@/context/CartContext'
 import type { Product } from '@/interfaces/interfaces'
 import { useUser } from '@auth0/nextjs-auth0/client'

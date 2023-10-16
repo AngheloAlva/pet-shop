@@ -1,4 +1,4 @@
-import { getUser } from '@/api/user'
+import { getUser } from '@/apiRequest/user'
 import type { User } from '@/interfaces/interfaces'
 import { useUser } from '@auth0/nextjs-auth0/client'
 import { useEffect, useState } from 'react'

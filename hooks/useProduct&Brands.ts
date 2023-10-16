@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
-import { getBrands } from '@/api/brand'
-import { getProducts } from '@/api/product'
+import { getBrands } from '@/apiRequest/brand'
+import { getProducts } from '@/apiRequest/product'
 import { useUser } from '@auth0/nextjs-auth0/client'
 
 import type { Product, Brand, Filter } from '@/interfaces/interfaces'

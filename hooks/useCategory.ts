@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-import { getCategories } from '@/api/category'
+import { getCategories } from '@/apiRequest/category'
 import type { Category } from '@/interfaces/interfaces'
 
 const useCategory = (): { categories: Category[], dogCategories: Category[], catCategories: Category[] } => {

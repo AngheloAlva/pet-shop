@@ -11,7 +11,7 @@ import SimpleProduct from '@/components/shipping/SimpleProduct'
 import ShippinAddress from '@/components/shipping/ShippinAddress'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 
-import { createCheckoutSession } from '@/api/cart'
+import { createCheckoutSession } from '@/apiRequest/cart'
 import type { Product } from '@/interfaces/interfaces'
 import { withPageAuthRequired } from '@auth0/nextjs-auth0/client'
 

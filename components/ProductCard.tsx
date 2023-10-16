@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 
-import { addProductToCart } from '@/api/cart'
+import { addProductToCart } from '@/apiRequest/cart'
 import { CartContext } from '@/context/CartContext'
 import { useToast } from './ui/use-toast'
 

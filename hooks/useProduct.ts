@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-import { getProductById } from '@/api/product'
+import { getProductById } from '@/apiRequest/product'
 import type { Product } from '@/interfaces/interfaces'
 
 interface UseProduct {

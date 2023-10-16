@@ -10,7 +10,7 @@ import { Label } from '@/components/ui/label'
 import { regiones } from '@/data/comunasArray'
 import type { User } from '@/interfaces/interfaces'
 
-import { updateUser } from '@/api/user'
+import { updateUser } from '@/apiRequest/user'
 import { useToast } from '../ui/use-toast'
 
 interface PersonalInfoProps {

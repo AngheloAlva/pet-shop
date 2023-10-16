@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import debounce from 'lodash/debounce'
 
-import { searchProducts } from '@/api/product'
+import { searchProducts } from '@/apiRequest/product'
 import type { Product } from '@/interfaces/interfaces'
 
 import {

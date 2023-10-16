@@ -1,5 +1,5 @@
-import { getCart } from '@/api/cart'
-import { getProductById } from '@/api/product'
+import { getCart } from '@/apiRequest/cart'
+import { getProductById } from '@/apiRequest/product'
 import { useUser } from '@auth0/nextjs-auth0/client'
 import React, { useEffect } from 'react'
 import type { ItemCart, Product } from '@/interfaces/interfaces'

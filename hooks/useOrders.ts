@@ -1,4 +1,4 @@
-import getOrders from '@/api/order'
+import getOrders from '@/apiRequest/order'
 import { useEffect, useState } from 'react'
 import type { Order, User } from '@/interfaces/interfaces'
 
