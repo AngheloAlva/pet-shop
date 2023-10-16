@@ -1,4 +1,5 @@
 import React from 'react'
+import type { MouseEventHandler } from 'react'
 import { Popover, PopoverContent, PopoverTrigger } from './ui/popover'
 import { Button } from './ui/button'
 import { Calendar } from './ui/calendar'
@@ -157,7 +158,7 @@ const Form = ({ service }: FormProps): JSX.Element => {
         <div className='flex flex-col items-start'>
           <button
             type='submit'
-            onClick={onSubmit}
+            onClick={onSubmit as unknown as MouseEventHandler<HTMLButtonElement>}
             className='bg-[--accent-100] text-[--text-100] py-2 px-3 rounded-md transition-all hover:bg-[--accent-200] hover:text-[--bg-100] mt-4 w-full font-semibold text-center focus:outline-none '
           >
             Registrar
