@@ -1,7 +1,12 @@
 import Image from 'next/image'
 import React from 'react'
 
-const SimpleProduct = ({ product, item, index }): JSX.Element => {
+interface Props {
+  product: any
+  item: any
+}
+
+const SimpleProduct = ({ product, item }: Props): JSX.Element => {
   return (
     <div className='flex gap-3 mt-4'>
       <Image src={product.image[0]} alt={product.name} className='rounded-sm' width={100} height={100} />

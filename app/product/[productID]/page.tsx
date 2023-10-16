@@ -58,7 +58,7 @@ export default function ProductView ({ params }: { params: { productID: string }
   const addToCart = async (): Promise<void> => {
     const optionSelectedIndex = product?.options.findIndex(op => op.option === optionSelected?.option)
 
-    if (user === undefined || user === '') {
+    if ((user?.sub) == null) {
       toast({
         title: 'Error al agregar el producto al carrito',
         description: 'Debes iniciar sesión para agregar productos al carrito',
