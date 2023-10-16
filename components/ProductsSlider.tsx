@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
+/* eslint-disable @typescript-eslint/prefer-optional-chain */
 import React, { useRef } from 'react'
 
 import ProductCard from './ProductCard'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Skeleton } from '@/components/ui/skeleton'
 import { FaAngleRight, FaAngleLeft } from 'react-icons/fa6'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -14,7 +15,7 @@ import Link from 'next/link'
 import ProductCardSkeleton from './ProductCardSkeleton'
 
 const ProductsSlide = ({ slideTitle, products, userId, href }: ProductSlideProps): JSX.Element => {
-  const swiperRef = useRef(null)
+  const swiperRef = useRef<any>(null)
 
   const handlePrevClick = (): void => {
     if (swiperRef.current && swiperRef.current.swiper) {
