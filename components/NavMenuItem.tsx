@@ -21,7 +21,7 @@ const NavMenuItem = ({ navMenuTitle, itemsArray, petType }: NavMenuItemProps): J
             <ListItem
               key={item._id}
               title={item.name}
-              titleHref={`category/${item._id}/${petType}`}
+              href={`category/${item._id}/${petType}`}
             >
             </ListItem>
           ))}

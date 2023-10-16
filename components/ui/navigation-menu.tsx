@@ -119,7 +119,8 @@ NavigationMenuIndicator.displayName =
 const ListItem = React.forwardRef<
 React.ElementRef<'a'>,
 React.ComponentPropsWithoutRef<'a'>
->(({ className, title, children, titleHref, ...props }, ref) => {
+>(({ className, title, children, ...props }, ref) => {
+  const { href } = props
   return (
     <div>
       <NavigationMenuLink asChild>
@@ -131,7 +132,7 @@ React.ComponentPropsWithoutRef<'a'>
           )}
           {...props}
         >
-          <Link href={`/${titleHref}`} className='text-base font-medium leading-none cursor-pointer hover:font-bold transition-all'>
+          <Link href={`/${href}`} className='text-base font-medium leading-none cursor-pointer hover:font-bold transition-all'>
             {title}
           </Link>
           <div className=' text-xs leading-snug text-muted-foreground'>
