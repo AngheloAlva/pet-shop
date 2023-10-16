@@ -16,7 +16,7 @@ const NavMenuItem = ({ navMenuTitle, itemsArray, petType }: NavMenuItemProps): J
         {navMenuTitle}
       </NavigationMenuTrigger>
       <NavigationMenuContent>
-        <div className='grid gap-1 p-4 grid-cols-3 w-96'>
+        <div className='grid gap-1 p-4 grid-cols-3 w-[50vw] lg:w-[40vw]'>
           {itemsArray.map((item) => (
             <ListItem
               key={item._id}
