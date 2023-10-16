@@ -93,7 +93,7 @@ const CategoryPage = ({ params }: { params: { categoryID: string } }): JSX.Eleme
                 <div className='flex gap-2 items-center'>
                   <FormSelect
                     field='brand'
-                    value={filters.brand}
+                    value={filters.brand ?? ''}
                     list={brands}
                     handleFilterChange={handleFilterChange}
                   />
@@ -107,7 +107,7 @@ const CategoryPage = ({ params }: { params: { categoryID: string } }): JSX.Eleme
                 <div className='flex gap-2 items-center'>
                   <FormSelect
                     field='lifeStage'
-                    value={filters.lifeStage}
+                    value={filters.lifeStage ?? ''}
                     list={lifeStages}
                     handleFilterChange={handleFilterChange}
                   />
@@ -123,8 +123,7 @@ const CategoryPage = ({ params }: { params: { categoryID: string } }): JSX.Eleme
                     <div className='flex gap-2 items-center'>
                       <FormSelect
                         field='petType'
-                        placeholder='Selecciona una etapa de vida'
-                        value={filters.petType}
+                        value={filters.petType ?? ''}
                         list={petType}
                         handleFilterChange={handleFilterChange}
                       />

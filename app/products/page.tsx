@@ -92,8 +92,7 @@ const BrandPage = (): JSX.Element => {
                 <div className='flex gap-2 items-center'>
                   <FormSelect
                     field='brand'
-                    placeholder='Selecciona una marca'
-                    value={filters.brand}
+                    value={filters.brand ?? ''}
                     list={brands}
                     handleFilterChange={handleFilterChange}
                   />
@@ -107,8 +106,7 @@ const BrandPage = (): JSX.Element => {
                 <div className='flex gap-2 items-center'>
                   <FormSelect
                     field='category'
-                    placeholder='Selecciona una categoria'
-                    value={filters.category}
+                    value={filters.category ?? ''}
                     list={categories}
                     handleFilterChange={handleFilterChange}
                   />
@@ -122,8 +120,7 @@ const BrandPage = (): JSX.Element => {
                 <div className='flex gap-2 items-center'>
                   <FormSelect
                     field='lifeStage'
-                    placeholder='Selecciona una etapa de vida'
-                    value={filters.lifeStage}
+                    value={filters.lifeStage ?? ''}
                     list={lifeStages}
                     handleFilterChange={handleFilterChange}
                   />
@@ -137,8 +134,7 @@ const BrandPage = (): JSX.Element => {
                 <div className='flex gap-2 items-center'>
                   <FormSelect
                     field='petType'
-                    placeholder='Selecciona un tipo de mascota'
-                    value={filters.petType}
+                    value={filters.petType ?? ''}
                     list={petTypes}
                     handleFilterChange={handleFilterChange}
                   />
