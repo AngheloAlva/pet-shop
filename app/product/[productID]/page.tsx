@@ -187,6 +187,7 @@ export default function ProductView ({ params }: { params: { productID: string }
                       </button>
                     </div>
 
+                    {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
                     <button onClick={addToCart} className='flex max-w-[20rem] items-center font-semibold tracking-wide justify-center gap-2 h-10 w-full bg-[--accent-100] text-[--text-200] rounded-sm transition-all hover:bg-[--accent-200] hover:text-[--bg-100]'>
                       <FaCartPlus />Agregar al carrito
                     </button>

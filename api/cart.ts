@@ -1,4 +1,4 @@
-import type { ItemCart } from '@/interfaces/interfaces'
+import type { ItemCart, Product } from '@/interfaces/interfaces'
 import axios from 'axios'
 
 const getCart = async (userId: string): Promise<{ msg: string, cart: ItemCart[] }> => {
@@ -50,7 +50,7 @@ const addProductToCart = async (
 }
 
 const createCheckoutSession = async (
-  items: Array<{ productId: string, quantity: number, optionSelectedIndex: number }>,
+  items: Array<{ id: Product, quantity: number, optionSelectedIndex: number }>,
   payShipping: boolean,
   userId: string
 ): Promise<{ msg: string, url: string }> => {
@@ -58,7 +58,7 @@ const createCheckoutSession = async (
     const response = await axios.post(
       `${process.env.NEXT_PUBLIC_PET_SHOP_SERVER_URL}/payment`, { items, payShipping, userId }
     )
-    return response.data.url
+    return response.data
   } catch (error) {
     console.log(error)
     throw error

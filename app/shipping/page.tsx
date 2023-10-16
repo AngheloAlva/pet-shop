@@ -7,12 +7,13 @@ import { CartContext } from '@/context/CartContext'
 
 import { FaAngleLeft } from 'react-icons/fa6'
 import { Label } from '@/components/ui/label'
+import SimpleProduct from '@/components/shipping/SimpleProduct'
+import ShippinAddress from '@/components/shipping/ShippinAddress'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 
 import { createCheckoutSession } from '@/api/cart'
+import type { Product } from '@/interfaces/interfaces'
 import { withPageAuthRequired } from '@auth0/nextjs-auth0/client'
-import ShippinAddress from '@/components/shipping/ShippinAddress'
-import SimpleProduct from '@/components/shipping/SimpleProduct'
 
 const page = (): JSX.Element => {
   const { cart, cartItems } = useContext(CartContext)
@@ -22,7 +23,7 @@ const page = (): JSX.Element => {
   const [paymentActive, setPaymentActive] = useState<boolean>(false)
   const [addressExist, setAddressExist] = useState<boolean>(false)
 
-  const calculateSubtotal = (cartItems, cart) => {
+  const calculateSubtotal = (cartItems: any[], cart: Product[]): number => {
     return cartItems.reduce((acc, item, index) => {
       const price = cart[index]?.options[item.optionSelectedIndex]?.price
       if (typeof price === 'number') {
@@ -32,7 +33,7 @@ const page = (): JSX.Element => {
     }, 0)
   }
 
-  const calculateDiscount = (cartItems, cart) => {
+  const calculateDiscount = (cartItems: any[], cart: Product[]): number => {
     return cartItems.reduce((acc, item, index) => {
       const price = cart[index]?.options[item.optionSelectedIndex]?.price
       const discount = cart[index]?.options[item.optionSelectedIndex]?.discount
@@ -43,13 +44,13 @@ const page = (): JSX.Element => {
     }, 0)
   }
 
-  const calculateShipping = (shippingMethod, subTotal) => {
+  const calculateShipping = (shippingMethod: string, subTotal: number): number => {
     return shippingMethod === 'payShippment'
       ? subTotal > 20000 ? 0 : 3000
       : 0
   }
 
-  const calculateTotal = (subTotal, shipping, discount) => {
+  const calculateTotal = (subTotal: number, shipping: number, discount: number): number => {
     return subTotal + shipping - discount
   }
 
@@ -74,13 +75,15 @@ const page = (): JSX.Element => {
     let payShippment
     if (shippingMethod === 'payShippment') {
       payShippment = subTotal < 20000
+    } else {
+      payShippment = false
     }
 
     const session = await createCheckoutSession(items, payShippment, user.id)
-    window.location.href = session
+    window.location.href = session.url
   }
 
-  const handleAddressChange = (newAddress: boolean) => {
+  const handleAddressChange = (newAddress: boolean): void => {
     setAddressExist(newAddress)
     if (shippingMethod !== '') {
       setPaymentActive(true)
@@ -100,7 +103,7 @@ const page = (): JSX.Element => {
           {
             cartItems.length > 0
               ? cart.map((product, index) => (
-                <SimpleProduct product={product} item={cartItems[index]} index={index} key={product._id} />
+                <SimpleProduct product={product} item={cartItems[index]} key={product._id} />
               ))
               : (
                 <div className='flex flex-col text-[--text-200] items-center gap-5 py-2'>
@@ -142,6 +145,7 @@ const page = (): JSX.Element => {
                   <button
                     className={`bg-[--accent-100] mt-4 text-[--text-100] font-bold py-2 rounded-sm text-base text-center transition-colors ${!paymentActive ? 'select-none opacity-70 cursor-not-allowed' : 'hover:bg-[--accent-200] hover:text-[--bg-100]'}`}
                     disabled={!paymentActive}
+                    // eslint-disable-next-line @typescript-eslint/no-misused-promises
                     onClick={handleCheckout}
                   >
                     Continuar con el pago
